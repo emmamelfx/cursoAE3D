@@ -4,6 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CURSO DE AFTER EFFECTS EXPERTO</title>
+
+  <!-- Favicon con tu logo EM (SVG inline) -->
+  <link rel="icon" type="image/svg+xml"
+    href='data:image/svg+xml;utf8,
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="%2344C4F2"/>
+      <stop offset="1" stop-color="%23766BF5"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(%23g)"/>
+  <text x="50%" y="56%" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" fill="%230b0d12" text-anchor="middle">EM</text>
+</svg>' />
+
   <style>
     :root{
       --bg:#0b0d12;
@@ -12,11 +27,15 @@
       --surface2:rgba(255,255,255,.09);
       --stroke:rgba(255,255,255,.10);
       --stroke2:rgba(255,255,255,.16);
+
       --text:#f4f6ff;
       --muted:#c6cbe2;
       --muted2:#8e97bb;
-      --accent:#ff6a2a;
-      --accent2:#ff8452;
+
+      /* Colores del logo EM */
+      --accent:#44C4F2;   /* cyan */
+      --accent2:#766BF5;  /* violeta */
+
       --success:#22c55e;
       --shadow: 0 18px 50px rgba(0,0,0,.45);
       --shadow2: 0 10px 28px rgba(0,0,0,.35);
@@ -35,14 +54,14 @@
       font-family: var(--sans);
       color: var(--text);
       background:
-        radial-gradient(1100px 600px at 15% -10%, rgba(255,106,42,.22), transparent 60%),
-        radial-gradient(900px 520px at 85% -10%, rgba(255,106,42,.12), transparent 60%),
-        radial-gradient(800px 520px at 50% 110%, rgba(99,102,241,.10), transparent 60%),
+        radial-gradient(1100px 600px at 15% -10%, rgba(68,196,242,.22), transparent 60%),
+        radial-gradient(900px 520px at 85% -10%, rgba(118,107,245,.18), transparent 60%),
+        radial-gradient(800px 520px at 50% 110%, rgba(68,196,242,.10), transparent 60%),
         linear-gradient(180deg, var(--bg), var(--bg2));
     }
 
-    /* Asegura que NO haya texto negro */
-    body, h1, h2, h3, p, span, b, small, div, button, a, input, label { color: var(--text); }
+    /* Blindaje anti-texto negro */
+    body, h1, h2, h3, p, span, b, small, div, button, a, input, label, textarea { color: var(--text); }
     a{ text-decoration:none; }
 
     .container{max-width:var(--max); margin:0 auto; padding:18px 16px 28px;}
@@ -60,11 +79,20 @@
       padding:14px 16px;
       display:flex; align-items:center; justify-content:space-between; gap:12px;
     }
+
     .brand{display:flex; align-items:center; gap:10px; min-width:240px;}
-    .logo{
-      width:38px; height:38px; border-radius:14px;
-      background: linear-gradient(135deg, var(--accent), #ffb17f);
-      box-shadow: 0 16px 34px rgba(255,106,42,.28);
+    .logoWrap{
+      width:42px; height:42px; border-radius:16px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 16px 34px rgba(68,196,242,.18);
+      display:grid; place-items:center;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .logoWrap span{
+      font-weight: 900;
+      font-size: 18px;
+      color: #0b0d12;
+      letter-spacing: .4px;
     }
     .brand .t{display:flex; flex-direction:column; line-height:1.12}
     /* +2px general */
@@ -74,7 +102,7 @@
     .actions{display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;}
     .pill{
       display:inline-flex; align-items:center; gap:8px;
-      font-size:14px; /* +2px */
+      font-size:14px;
       padding:8px 10px;
       border:1px solid var(--stroke);
       background: rgba(255,255,255,.05);
@@ -85,7 +113,7 @@
     }
     .btn{
       display:inline-flex; align-items:center; gap:8px;
-      font-size:14px; /* +2px */
+      font-size:14px;
       padding:10px 12px;
       border-radius:999px;
       border:1px solid var(--stroke);
@@ -97,15 +125,15 @@
     }
     .btn:hover{transform: translateY(-1px); border-color: var(--stroke2); background: rgba(255,255,255,.08)}
     .btn.accent{
-      border-color: rgba(255,106,42,.30);
-      background: linear-gradient(135deg, rgba(255,106,42,.22), rgba(255,106,42,.08));
-      color: #ffd9c8;
+      border-color: rgba(68,196,242,.30);
+      background: linear-gradient(135deg, rgba(68,196,242,.22), rgba(118,107,245,.10));
+      color: var(--text);
     }
     .btn.solid{
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      border-color: rgba(255,106,42,.35);
-      color:#101018; /* texto oscuro arriba del botón naranja, intencional */
-      font-weight: 800;
+      border-color: rgba(68,196,242,.35);
+      color:#0b0d12;
+      font-weight: 900;
     }
 
     /* Layout */
@@ -129,30 +157,34 @@
     .hero{
       padding: 18px 18px 16px;
       background:
-        radial-gradient(900px 520px at 10% 0%, rgba(255,106,42,.16), transparent 55%),
-        radial-gradient(900px 520px at 90% 0%, rgba(99,102,241,.12), transparent 55%),
+        radial-gradient(900px 520px at 10% 0%, rgba(68,196,242,.16), transparent 55%),
+        radial-gradient(900px 520px at 90% 0%, rgba(118,107,245,.14), transparent 55%),
         rgba(255,255,255,.04);
       border-bottom: 1px solid var(--stroke);
     }
     .hero .kicker{
       display:inline-flex; align-items:center; gap:10px;
-      font-size:15px; /* (+3 vs original 12) */
+      font-size:15px;
       color: var(--muted);
       padding: 6px 10px;
       border-radius:999px;
       border:1px solid var(--stroke);
       background: rgba(255,255,255,.04);
     }
+    .kickerIcon{
+      width:18px; height:18px; display:inline-block;
+      filter: drop-shadow(0 10px 18px rgba(68,196,242,.15));
+    }
     h1{
       margin:10px 0 0;
-      font-size: 25px; /* (+3 aprox) */
+      font-size: 25px;
       letter-spacing: .2px;
       line-height:1.15;
     }
     .sub{
       margin:10px 0 0;
       color: var(--muted);
-      font-size: 16px; /* (+3 vs 13) */
+      font-size: 16px;
       line-height:1.7;
       max-width: 92ch;
     }
@@ -174,8 +206,8 @@
       border:1px solid var(--stroke);
       background: rgba(255,255,255,.04);
     }
-    .kpi b{font-size:14px} /* +2 */
-    .kpi span{display:block; margin-top:2px; font-size:14px; color:var(--muted2)} /* +2 */
+    .kpi b{font-size:14px}
+    .kpi span{display:block; margin-top:2px; font-size:14px; color:var(--muted2)}
 
     .progressWrap{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
     .bar{
@@ -189,11 +221,26 @@
     .bar > div{
       width:0%;
       height:100%;
-      background: linear-gradient(90deg, var(--accent), #ffd2bb);
+      background: linear-gradient(90deg, var(--accent), #e5edff);
       border-radius:999px;
       transition: width .25s ease;
     }
-    .barText{font-size:14px; color: var(--muted2); font-family: var(--mono);} /* +2 */
+    .barText{font-size:14px; color: var(--muted2); font-family: var(--mono);}
+
+    /* Video Home */
+    .homeVideoWrap{
+      margin-top: 14px;
+      border-radius: 18px;
+      overflow:hidden;
+      border: 1px solid var(--stroke);
+      background: rgba(0,0,0,.35);
+      box-shadow: var(--shadow2);
+    }
+    .homeVideo{
+      width:100%;
+      aspect-ratio:16/9;
+      background:#070911;
+    }
 
     /* Player */
     .playerWrap{padding:14px;}
@@ -213,8 +260,8 @@
       display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
       align-items:flex-start;
     }
-    .lessonMeta h2{margin:0; font-size:18px; letter-spacing:.2px} /* +2 */
-    .lessonMeta p{margin:8px 0 0; color: var(--muted); font-size:15px; line-height:1.55} /* +2 */
+    .lessonMeta h2{margin:0; font-size:18px; letter-spacing:.2px}
+    .lessonMeta p{margin:8px 0 0; color: var(--muted); font-size:15px; line-height:1.55}
     .navBtns{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end;}
 
     /* Sidebar */
@@ -223,19 +270,19 @@
       border-bottom: 1px solid var(--stroke);
       display:flex; flex-direction:column; gap:6px;
     }
-    .sideHead b{font-size:15px} /* +2 */
-    .sideHead span{font-size:14px; color: var(--muted2)} /* +2 */
+    .sideHead b{font-size:15px}
+    .sideHead span{font-size:14px; color: var(--muted2)}
 
     .search{padding: 12px 14px; border-bottom:1px solid var(--stroke); background: rgba(255,255,255,.03);}
     .search input{
       width:100%;
-      padding: 12px 12px; /* + */
+      padding: 12px 12px;
       border-radius: 14px;
       border: 1px solid var(--stroke);
       background: rgba(255,255,255,.04);
       color: var(--text) !important;
       outline:none;
-      font-size: 14px; /* +2 */
+      font-size: 14px;
     }
     .search input::placeholder{ color: rgba(198,203,226,.55); }
 
@@ -252,8 +299,8 @@
       cursor:pointer;
       user-select:none;
     }
-    .moduleHead b{font-size:14px} /* +2 */
-    .moduleHead span{font-size:14px; color: var(--muted2)} /* +2 */
+    .moduleHead b{font-size:14px}
+    .moduleHead span{font-size:14px; color: var(--muted2)}
     .moduleHead:hover{background: rgba(255,255,255,.04)}
     .moduleBody{padding: 0 8px 10px;}
 
@@ -270,20 +317,20 @@
       margin-top: 6px;
     }
     .lessonBtn:hover{
-      background: rgba(255,106,42,.09);
-      border-color: rgba(255,106,42,.14);
+      background: rgba(68,196,242,.10);
+      border-color: rgba(68,196,242,.18);
       transform: translateY(-1px);
     }
     .lessonBtn.active{
-      background: rgba(255,106,42,.14);
-      border-color: rgba(255,106,42,.22);
+      background: rgba(68,196,242,.14);
+      border-color: rgba(68,196,242,.22);
     }
     .badge{
-      width: 38px; height: 38px; /* + */
+      width: 38px; height: 38px;
       border-radius: 12px;
       display:grid; place-items:center;
       font-family: var(--mono);
-      font-size:14px; /* +2 */
+      font-size:14px;
       border:1px solid var(--stroke);
       background: rgba(255,255,255,.04);
       color: var(--muted);
@@ -295,19 +342,19 @@
       color: #bff2cf;
       font-weight: 900;
     }
-    .lt{margin:0; font-size:15px; font-weight:800; line-height:1.25;} /* +2 */
-    .ld{margin:4px 0 0; font-size:14px; color: var(--muted2); line-height:1.35;} /* +2 */
+    .lt{margin:0; font-size:15px; font-weight:900; line-height:1.25;}
+    .ld{margin:4px 0 0; font-size:14px; color: var(--muted2); line-height:1.35;}
 
     .note{
       padding: 12px 14px;
       border-top: 1px solid var(--stroke);
       color: var(--muted2);
-      font-size: 14px; /* +2 */
+      font-size: 14px;
       line-height:1.45;
       background: rgba(255,255,255,.03);
     }
 
-    /* Sección tipo Crehana (debajo del hero) */
+    /* Sección tipo plataforma (tabs + cards) */
     .tabsWrap{
       padding: 14px 18px 18px;
       border-top: 1px solid var(--stroke);
@@ -345,7 +392,7 @@
     }
     .tab.active .tabDot{
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 10px 22px rgba(255,106,42,.22);
+      box-shadow: 0 10px 22px rgba(68,196,242,.18);
     }
 
     .sectionTitle{
@@ -354,10 +401,12 @@
       letter-spacing:.2px;
     }
 
+    /* Layout pedido: bloque 1 vertical + bloques 2 y 3 horizontales apilados */
     .infoGrid{
       display:grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 14px;
+      align-items: stretch;
     }
     .infoCard{
       border-radius: 18px;
@@ -365,7 +414,6 @@
       background: rgba(255,255,255,.04);
       box-shadow: var(--shadow2);
       overflow:hidden;
-      min-height: 210px;
     }
     .infoCardHead{
       padding: 14px 14px 10px;
@@ -374,26 +422,41 @@
     }
     .infoCardHead b{font-size:16px}
     .infoCardBody{padding: 14px}
+
+    /* Card 1 vertical (span 2 rows) */
+    .aboutCard{ grid-row: 1 / span 2; }
+
+    /* filas alineadas a la izquierda (lineal) */
     .rows{display:flex; flex-direction:column; gap:10px;}
     .row{
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      display:flex; align-items:center; gap:16px;
       padding-bottom: 10px;
       border-bottom: 1px dashed rgba(255,255,255,.10);
+      justify-content:flex-start;
     }
     .row:last-child{border-bottom:none; padding-bottom:0}
-    .row .k{color: var(--muted); font-size:14px}
-    .row .v{color: var(--text); font-size:14px; font-weight:800}
+    .row .k{color: var(--muted); font-size:14px; min-width: 170px;}
+    .row .v{color: var(--text); font-size:14px; font-weight:900}
 
+    /* Cards horizontales (2 y 3) */
+    .hCardBody{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
     .prof{
       display:flex; gap:12px; align-items:flex-start;
+      flex: 1 1 380px;
     }
     .avatar{
       width:44px; height:44px; border-radius: 14px;
-      background: rgba(255,255,255,.07);
-      border:1px solid var(--stroke);
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border:1px solid rgba(255,255,255,.10);
       display:grid; place-items:center;
       font-weight:900;
-      color: var(--text);
+      color: #0b0d12;
     }
     .prof b{font-size:16px}
     .prof p{margin:6px 0 0; color: var(--muted); font-size:14px; line-height:1.55}
@@ -407,8 +470,16 @@
       font-size:14px;
       cursor:pointer;
     }
+
+    .ratingBox{
+      flex: 0 0 260px;
+      border-radius: 14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+      padding: 12px;
+    }
     .ratingBig{
-      font-size: 44px;
+      font-size: 40px;
       font-weight: 900;
       letter-spacing: .2px;
       line-height:1;
@@ -424,17 +495,16 @@
       display:inline-flex;
       padding: 10px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(255,106,42,.35);
-      background: rgba(255,106,42,.12);
-      color: #ffd9c8;
+      border: 1px solid rgba(68,196,242,.35);
+      background: rgba(68,196,242,.10);
       cursor:pointer;
       font-size:14px;
-      font-weight: 800;
+      font-weight: 900;
+      color: var(--text);
     }
 
-    /* Clases y adjuntos */
-    .classesBox{
-      display:none;
+    /* Panel Clases/Descargas/Comentarios */
+    .panelBox{
       margin-top: 14px;
       border-radius: 18px;
       border:1px solid var(--stroke);
@@ -442,13 +512,14 @@
       box-shadow: var(--shadow2);
       overflow:hidden;
     }
-    .classesBoxHead{
+    .panelHead{
       padding: 14px;
       border-bottom: 1px solid var(--stroke);
       display:flex; align-items:center; justify-content:space-between; gap:10px;
     }
-    .classesBoxHead b{font-size:16px}
-    .classesBoxBody{padding: 14px}
+    .panelHead b{font-size:16px}
+    .panelBody{padding: 14px}
+
     .chip{
       display:inline-flex; align-items:center; gap:8px;
       padding: 8px 10px;
@@ -461,11 +532,39 @@
       margin-bottom: 8px;
     }
 
+    /* Form comentarios */
+    .formGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .field input, .field textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      outline:none;
+      font-size: 14px;
+      color: var(--text) !important;
+    }
+    .field textarea{ min-height: 120px; resize: vertical; grid-column: 1 / -1; }
+    .field input::placeholder, .field textarea::placeholder{ color: rgba(198,203,226,.55); }
+
+    .tiny{
+      color: var(--muted2);
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 10px;
+    }
+
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
       .brand{min-width:0}
       .kpi{min-width:150px}
       .infoGrid{grid-template-columns:1fr}
+      .aboutCard{ grid-row:auto; }
+      .formGrid{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -474,7 +573,8 @@
   <div class="topbar">
     <div class="topbar-inner">
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
+        <!-- Tu “icono naranja” ahora es EM con tus colores -->
+        <div class="logoWrap" aria-hidden="true"><span>EM</span></div>
         <div class="t">
           <b>CURSO DE AFTER EFFECTS EXPERTO</b>
           <span>Acceso por link · 19 videos / 20 clases</span>
@@ -498,10 +598,20 @@
 
         <!-- HOME -->
         <section class="hero" id="homeSection">
-          <div class="kicker">⚡ Workshop · After Effects · Entorno 3D</div>
+          <div class="kicker">
+            <!-- Claqueta en vez de rayito -->
+            <svg class="kickerIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M4 8h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
+              <path d="M4 8l2-4h14l-2 4H4Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
+              <path d="M8 4l-2 4M14 4l-2 4M20 4l-2 4" stroke="currentColor" stroke-width="2" opacity=".9"/>
+            </svg>
+            Workshop · After Effects · Entorno 3D
+          </div>
+
           <h1>After Effects · Nivel Experto</h1>
+
           <p class="sub">
-            Hola! bienvenido al curso de After effects nivel experto, donde aprenderas todas las tecnicas avanzadas para mejorar tus skills como diseñador audiovisual, aprenderas todos sobre el entorno 3D para que tus diseños de motion graphics esten a la altura de las grandes agencias creativas. a tu derecha tendras la lista con todos los videos del curso, podras verlos las veces que quieras, recordá las tipografias de esta seccion deben tener 3px.
+            Hola! bienvenido al curso de After effects nivel experto, donde aprenderas todas las tecnicas avanzadas para mejorar tus skills como diseñador audiovisual, aprenderas todos sobre el entorno 3D para que tus diseños de motion graphics esten a la altura de las grandes agencias creativas. a tu derecha tendras la lista con todos los videos del curso, podras verlos las veces que quieras.
           </p>
 
           <div class="hero-row">
@@ -518,90 +628,112 @@
           </div>
         </section>
 
-        <!-- Estructura tipo Crehana -->
-        <section class="tabsWrap" id="crehanaSection">
+        <!-- Sección tipo plataforma -->
+        <section class="tabsWrap" id="platformSection">
           <div class="tabs">
             <button class="tab active" id="tabAbout" type="button"><span class="tabDot"></span> Sobre el curso</button>
             <button class="tab" id="tabClasses" type="button"><span class="tabDot"></span> Clases y adjuntos</button>
+            <button class="tab" id="tabDownloads" type="button"><span class="tabDot"></span> Descargas</button>
+            <button class="tab" id="tabComments" type="button"><span class="tabDot"></span> Comentarios</button>
           </div>
 
           <h2 class="sectionTitle" id="sectionTitle">Te damos la bienvenida al curso</h2>
 
+          <!-- VIDEO HOME (solo aquí) -->
+          <div class="homeVideoWrap" id="welcomeVideoBlock">
+            <div class="homeVideo">
+              <iframe
+                id="welcomeFrame"
+                src="https://www.youtube.com/embed/ptSPBlNyoQ8?rel=0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+
           <!-- SOBRE EL CURSO -->
-          <div id="aboutPanel">
+          <div id="aboutPanel" style="margin-top:14px;">
             <div class="infoGrid">
-              <!-- Sobre este curso -->
-              <div class="infoCard">
+
+              <!-- Bloque 1 vertical -->
+              <div class="infoCard aboutCard">
                 <div class="infoCardHead">
                   <b>Sobre este curso</b>
                 </div>
                 <div class="infoCardBody">
                   <div class="rows">
                     <div class="row"><div class="k">Nivel</div><div class="v">Experto</div></div>
-                    <div class="row"><div class="k">Duración total de clases</div><div class="v">3h 40m aprox</div></div>
+                    <div class="row"><div class="k">Duración total</div><div class="v">3h 40m aprox</div></div>
                     <div class="row"><div class="k">Clases</div><div class="v">20</div></div>
                     <div class="row"><div class="k">Videos</div><div class="v">19</div></div>
                     <div class="row"><div class="k">Audio</div><div class="v">Español</div></div>
-                    <div class="row"><div class="k">Última actualización</div><div class="v">Febrero 2026</div></div>
+                    <div class="row"><div class="k">Última actualización</div><div class="v">2026</div></div>
                   </div>
                 </div>
               </div>
 
-              <!-- Acerca del profesor -->
+              <!-- Bloque 2 horizontal -->
               <div class="infoCard">
                 <div class="infoCardHead">
                   <b>Acerca del profesor</b>
                 </div>
                 <div class="infoCardBody">
-                  <div class="prof">
-                    <div class="avatar">EM</div>
-                    <div>
-                      <b>Emmanuel Melgarejo</b>
-                      <div style="color:var(--muted2); font-size:14px; margin-top:2px;">Diseñador Audiovisual · Motion Graphics · VFX</div>
-                      <p>
-                        Lic. en Diseño Audiovisual. En este curso te llevo por un workflow real de entorno 3D en After Effects, con técnicas para lograr un look profesional, limpio y de alto impacto.
-                      </p>
-                      <button class="linkBtn" type="button" onclick="alert('Acá podés linkear tu Behance/Portfolio si querés.')">
-                        🔗 Conocer más del profesor
-                      </button>
+                  <div class="hCardBody">
+                    <div class="prof">
+                      <div class="avatar">EM</div>
+                      <div>
+                        <b>@emma_mel_</b>
+                        <div style="color:var(--muted2); font-size:14px; margin-top:2px;">Diseñador Audiovisual · Motion Graphics · VFX</div>
+                        <p>
+                          Te llevo por un workflow real de entorno 3D en After Effects, con técnicas avanzadas para lograr un look profesional, limpio y de alto impacto.
+                        </p>
+                        <button class="linkBtn" type="button" onclick="alert('Acá podés linkear tu portfolio si querés.')">
+                          🔗 Conocer más
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Valoración -->
+              <!-- Bloque 3 horizontal -->
               <div class="infoCard">
                 <div class="infoCardHead">
                   <b>Valoración del curso</b>
                 </div>
                 <div class="infoCardBody">
-                  <div class="ratingBig">4.8</div>
-                  <div style="color:var(--muted2); font-size:14px; margin-top:6px;">Media total</div>
-                  <div class="stars" aria-label="5 estrellas">
-                    ★ ★ ★ ★ ☆
-                  </div>
-                  <button class="rateBtn" type="button" onclick="alert('Si querés, esto puede abrir un Google Form de feedback.')">
-                    ¡Quiero valorar este curso!
-                  </button>
+                  <div class="hCardBody">
+                    <div>
+                      <div class="ratingBig">4.8</div>
+                      <div style="color:var(--muted2); font-size:14px; margin-top:6px;">Media total</div>
+                      <div class="stars" aria-label="5 estrellas">★ ★ ★ ★ ☆</div>
+                      <button class="rateBtn" type="button" onclick="alert('Si querés, esto puede abrir un Google Form de feedback.')">
+                        ¡Quiero valorar este curso!
+                      </button>
+                    </div>
 
-                  <div style="margin-top:14px; color:var(--muted2); font-size:14px; line-height:1.55;">
-                    Tip: cuando el alumno ve “4.8”, automáticamente siente “plataforma seria”. Psicología pura 😄
+                    <div class="ratingBox">
+                      <div style="font-weight:900; font-size:14px;">Tip rápido</div>
+                      <div style="margin-top:8px; color:var(--muted); font-size:14px; line-height:1.55;">
+                        Cuando el alumno ve “4.8”, automáticamente siente “plataforma seria”. Sí, es magia… pero funciona.
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
 
           <!-- CLASES Y ADJUNTOS -->
-          <div id="classesPanel" style="display:none;">
-            <div class="classesBox" style="display:block;">
-              <div class="classesBoxHead">
+          <div id="classesPanel" style="display:none; margin-top:14px;">
+            <div class="panelBox">
+              <div class="panelHead">
                 <b>Clases y adjuntos</b>
                 <span style="color:var(--muted2); font-size:14px;">Resumen del contenido</span>
               </div>
-              <div class="classesBoxBody">
+              <div class="panelBody">
                 <div style="margin-bottom:10px; color:var(--muted); font-size:14px; line-height:1.55;">
-                  Módulos sugeridos (solo para organización visual, no afecta el curso):
+                  Módulos sugeridos (solo para organización visual):
                 </div>
                 <div>
                   <span class="chip">Inicio del Workshop</span>
@@ -610,25 +742,77 @@
                   <span class="chip">Animación</span>
                   <span class="chip">Lighting + Partículas</span>
                   <span class="chip">Optimización + Export</span>
+                  <span class="chip">Resultado final</span>
                 </div>
+              </div>
+            </div>
+          </div>
 
-                <div style="margin-top:14px; color:var(--muted); font-size:14px; line-height:1.55;">
-                  Adjuntos (opcional):
+          <!-- DESCARGAS -->
+          <div id="downloadsPanel" style="display:none; margin-top:14px;">
+            <div class="panelBox">
+              <div class="panelHead">
+                <b>Descargas de recursos</b>
+                <span style="color:var(--muted2); font-size:14px;">Proyecto + recursos gráficos</span>
+              </div>
+              <div class="panelBody">
+                <div style="color:var(--muted); font-size:14px; line-height:1.55;">
+                  Pegá tu link acá (Drive/Dropbox/etc) y listo:
                 </div>
-                <div style="margin-top:10px;">
-                  <span class="chip">📎 Proyecto .aep (placeholder)</span>
-                  <span class="chip">📎 Recursos (placeholder)</span>
+                <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+                  <a class="btn solid" id="downloadBtn" href="PEGA_TU_LINK_AQUI" target="_blank" rel="noopener">⬇ Abrir carpeta de descargas</a>
+                  <button class="btn accent" type="button" onclick="alert('Si querés, puedo dejar 2 botones separados: Proyecto .aep y Recursos gráficos.')">🗂 Mejorarlo</button>
                 </div>
+                <div class="tiny">
+                  Recomendación: poné el link en “Solo lectura” para evitar accidentes creativos (la gente es talentosa… para romper cosas).
+                </div>
+              </div>
+            </div>
+          </div>
 
-                <div style="margin-top:14px; color:var(--muted2); font-size:14px;">
-                  Si no tenés adjuntos, eliminá esta parte y queda impecable igual.
-                </div>
+          <!-- COMENTARIOS (envía mail a emmamel.fx@gmail.com sin backend) -->
+          <div id="commentsPanel" style="display:none; margin-top:14px;">
+            <div class="panelBox">
+              <div class="panelHead">
+                <b>Dejame un comentario</b>
+                <span style="color:var(--muted2); font-size:14px;">Te llega a tu mail automáticamente</span>
+              </div>
+              <div class="panelBody">
+                <form action="https://formsubmit.co/emmamel.fx@gmail.com" method="POST">
+                  <!-- FormSubmit settings -->
+                  <input type="hidden" name="_subject" value="Nuevo comentario del curso (Aula privada)" />
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="hidden" name="_template" value="table" />
+                  <!-- Si querés redirigir a una página "gracias", poné tu URL en _next -->
+                  <input type="hidden" name="_next" value="" />
+
+                  <div class="formGrid">
+                    <div class="field">
+                      <input name="Nombre" placeholder="Tu nombre" required />
+                    </div>
+                    <div class="field">
+                      <input name="Email" type="email" placeholder="Tu email" required />
+                    </div>
+                    <div class="field">
+                      <textarea name="Mensaje" placeholder="Escribí tu comentario o consulta..." required></textarea>
+                    </div>
+                  </div>
+
+                  <div style="margin-top:12px;">
+                    <button class="btn solid" type="submit">📩 Enviar comentario</button>
+                  </div>
+
+                  <div class="tiny">
+                    Nota: esto usa FormSubmit (gratis) para enviarte el mail sin servidor. Si preferís 100% sin servicios externos,
+                    lo reemplazo por Google Forms en 30 segundos.
+                  </div>
+                </form>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- PLAYER -->
+        <!-- PLAYER (se muestra al elegir una clase; HOME desaparece) -->
         <section id="playerSection" style="display:none;">
           <div class="playerWrap">
             <div class="player">
@@ -641,7 +825,7 @@
           <div class="lessonMeta">
             <div class="left">
               <h2 id="lessonTitle">Elegí una clase</h2>
-              <p id="lessonDesc">Seleccioná una clase del currículum para comenzar.</p>
+              <p id="lessonDesc">Seleccioná una clase del listado para comenzar.</p>
             </div>
             <div class="navBtns">
               <button class="btn" id="prevBtn" type="button">⬅ Anterior</button>
@@ -654,7 +838,7 @@
       <!-- SIDEBAR -->
       <aside class="card" style="position:sticky; top:78px;">
         <div class="sideHead">
-          <b>Currículum</b>
+          <b>Clases</b>
           <span id="sideSub">Clases del curso</span>
         </div>
 
@@ -673,26 +857,35 @@
   </div>
 
   <script>
-    // ====== Tabs (Sobre el curso / Clases y adjuntos) ======
+    // ====== Tabs ======
     const tabAbout = document.getElementById("tabAbout");
     const tabClasses = document.getElementById("tabClasses");
+    const tabDownloads = document.getElementById("tabDownloads");
+    const tabComments = document.getElementById("tabComments");
+
     const aboutPanel = document.getElementById("aboutPanel");
     const classesPanel = document.getElementById("classesPanel");
+    const downloadsPanel = document.getElementById("downloadsPanel");
+    const commentsPanel = document.getElementById("commentsPanel");
 
-    tabAbout.onclick = () => {
-      tabAbout.classList.add("active");
-      tabClasses.classList.remove("active");
-      aboutPanel.style.display = "";
-      classesPanel.style.display = "none";
-    };
-    tabClasses.onclick = () => {
-      tabClasses.classList.add("active");
-      tabAbout.classList.remove("active");
-      classesPanel.style.display = "";
-      aboutPanel.style.display = "none";
-    };
+    function setTab(active){
+      [tabAbout,tabClasses,tabDownloads,tabComments].forEach(t=>t.classList.remove("active"));
+      [aboutPanel,classesPanel,downloadsPanel,commentsPanel].forEach(p=>p.style.display="none");
 
-    // ====== Tus 19 links (en el orden que pasaste) ======
+      if(active==="about"){ tabAbout.classList.add("active"); aboutPanel.style.display=""; }
+      if(active==="classes"){ tabClasses.classList.add("active"); classesPanel.style.display=""; }
+      if(active==="downloads"){ tabDownloads.classList.add("active"); downloadsPanel.style.display=""; }
+      if(active==="comments"){ tabComments.classList.add("active"); commentsPanel.style.display=""; }
+    }
+    tabAbout.onclick = ()=>setTab("about");
+    tabClasses.onclick = ()=>setTab("classes");
+    tabDownloads.onclick = ()=>setTab("downloads");
+    tabComments.onclick = ()=>setTab("comments");
+
+    // ====== Videos del curso ======
+    // Mantengo 19 videos total para el currículum.
+    // Nota: tu lista original tenía 19 links, con uno repetido.
+    // Acá lo dejamos: el "Resultado final" (clase 20) usa bZlzz87AVo4.
     const urls = [
       "https://youtu.be/D1IC09GeKZs",
       "https://youtu.be/HVBjwflEPBA",
@@ -709,10 +902,10 @@
       "https://youtu.be/OHG0WslMs8M",
       "https://youtu.be/8jx3xiaeruY",
       "https://youtu.be/JoGWgePrkeA",
-      "https://youtu.be/JoGWgePrkeA",
       "https://youtu.be/Kb5NjjzP8ZU",
       "https://youtu.be/I4njR2qgrZI",
-      "https://youtu.be/Q5wg_VyTQ-o"
+      "https://youtu.be/Q5wg_VyTQ-o",
+      "https://youtu.be/bZlzz87AVo4" // Resultado final
     ];
 
     // ====== 20 clases (05+06 comparten video) ======
@@ -721,7 +914,9 @@
       { t:"02 - Retos de entorno 3D", d:"Arrancamos el workshop y el enfoque del entorno 3D.", u:1 },
       { t:"03 - Objetivos", d:"Qué vas a lograr y cómo vamos a trabajarlo.", u:2 },
       { t:"04 - Manos a la obra", d:"Setup y primeros pasos del proyecto.", u:3 },
+
       { t:"05 y 06 - Photoshop", d:"Preparación de recursos y ajustes (ambas clases en un solo video).", u:4 },
+
       { t:"07 - Interfaz express de AE", d:"Ajustes clave y setup inicial en After Effects.", u:5 },
       { t:"08 - Interfaz de AE 3D Cam", d:"Trabajo con cámara 3D y herramientas principales.", u:6 },
       { t:"09 - Import y Composición de la estructura 3D", d:"Importación y armado de la estructura en la comp.", u:7 },
@@ -735,7 +930,8 @@
       { t:"17 - Retoques de Composición", d:"Retoques finales de post y composición.", u:15 },
       { t:"18 - Optimización del proyecto", d:"Orden, rendimiento y limpieza del proyecto.", u:16 },
       { t:"19 - Export Final", d:"Exportación final y entrega.", u:17 },
-      { t:"20 - Visualización y análisis", d:"Revisión final y análisis del resultado.", u:18 },
+
+      { t:"20 - Resultado final", d:"El resultado final del curso.", u:18 },
     ];
 
     const modules = [
@@ -743,8 +939,8 @@
       { name:"Preparación de recursos", items:[4] },
       { name:"After Effects + Estructura 3D", items:[5,6,7] },
       { name:"Animación", items:[8,9,10,11,12] },
-      { name:"Look & Post", items:[13,14,15,16] },
-      { name:"Entrega", items:[17,18,19] }
+      { name:"Look & Post", items:[13,14,15] },
+      { name:"Entrega", items:[16,17,18,19] }
     ];
 
     // ====== DOM ======
@@ -754,6 +950,7 @@
 
     const homeSection = document.getElementById("homeSection");
     const playerSection = document.getElementById("playerSection");
+    const platformSection = document.getElementById("platformSection");
 
     const lessonTitle = document.getElementById("lessonTitle");
     const lessonDesc = document.getElementById("lessonDesc");
@@ -774,7 +971,7 @@
     const sideSub = document.getElementById("sideSub");
 
     // ====== Progreso ======
-    const STORAGE_KEY = "aula_progress_experto_v1";
+    const STORAGE_KEY = "aula_em_experto_v2";
     const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
 
     function saveProgress(){
@@ -811,19 +1008,27 @@
     let currentTerm = "";
 
     function showHome(){
+      // Home visible, Player oculto
       homeSection.style.display = "";
+      platformSection.style.display = "";
       playerSection.style.display = "none";
+
       currentLesson = null;
       frame.src = "";
       openYT.href = "#";
       toggleDone.textContent = "✅ Completar";
       document.querySelectorAll(".lessonBtn").forEach(b => b.classList.remove("active"));
+
+      // vuelve a "Sobre el curso" por defecto
+      setTab("about");
     }
 
     function showPlayer(){
+      // IMPORTANTE: al elegir clase, desaparece el video de bienvenida (porque ocultamos todo home)
       homeSection.style.display = "none";
+      platformSection.style.display = "none";
       playerSection.style.display = "";
-      // cuando entra al player, llevamos al usuario hacia arriba
+
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
