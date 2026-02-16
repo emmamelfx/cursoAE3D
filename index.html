@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CURSO DE AFTER EFFECTS EXPERTO</title>
 
-  <!-- Favicon con tu logo EM (SVG inline) -->
   <link rel="icon" type="image/svg+xml"
     href='data:image/svg+xml;utf8,
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
@@ -16,7 +15,7 @@
     </linearGradient>
   </defs>
   <rect width="128" height="128" rx="28" fill="url(%23g)"/>
-  <text x="50%" y="56%" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" fill="%230b0d12" text-anchor="middle">EM</text>
+  <text x="50%" y="56%" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" fill="%23ffffff" text-anchor="middle">EM</text>
 </svg>' />
 
   <style>
@@ -26,17 +25,19 @@
       --surface:rgba(255,255,255,.06);
       --surface2:rgba(255,255,255,.09);
       --stroke:rgba(255,255,255,.10);
-      --stroke2:rgba(255,255,255,.16);
+      --stroke2:rgba(255,255,255,.20);
 
       --text:#f4f6ff;
       --muted:#c6cbe2;
       --muted2:#8e97bb;
 
-      /* Colores del logo EM */
-      --accent:#44C4F2;   /* cyan */
-      --accent2:#766BF5;  /* violeta */
+      /* Colores logo EM */
+      --accent:#44C4F2;
+      --accent2:#766BF5;
 
-      --success:#22c55e;
+      --ok:#30d158;
+      --softRed:#ff6b6b;
+
       --shadow: 0 18px 50px rgba(0,0,0,.45);
       --shadow2: 0 10px 28px rgba(0,0,0,.35);
       --r12:12px;
@@ -60,7 +61,6 @@
         linear-gradient(180deg, var(--bg), var(--bg2));
     }
 
-    /* Blindaje anti-texto negro */
     body, h1, h2, h3, p, span, b, small, div, button, a, input, label, textarea { color: var(--text); }
     a{ text-decoration:none; }
 
@@ -88,14 +88,8 @@
       display:grid; place-items:center;
       border: 1px solid rgba(255,255,255,.12);
     }
-    .logoWrap span{
-      font-weight: 900;
-      font-size: 18px;
-      color: #0b0d12;
-      letter-spacing: .4px;
-    }
+    .logoWrap span{font-weight: 900; font-size: 18px; color:#fff; letter-spacing:.4px;}
     .brand .t{display:flex; flex-direction:column; line-height:1.12}
-    /* +2px general */
     .brand .t b{font-size:15px; letter-spacing:.2px}
     .brand .t span{font-size:14px; color:var(--muted2)}
 
@@ -122,17 +116,18 @@
       box-shadow: var(--shadow2);
       transition: transform .08s ease, border-color .12s ease, background .12s ease;
       user-select:none;
+      color:#fff;
     }
     .btn:hover{transform: translateY(-1px); border-color: var(--stroke2); background: rgba(255,255,255,.08)}
     .btn.accent{
-      border-color: rgba(68,196,242,.30);
-      background: linear-gradient(135deg, rgba(68,196,242,.22), rgba(118,107,245,.10));
-      color: var(--text);
+      border-color: rgba(68,196,242,.35);
+      background: linear-gradient(135deg, rgba(68,196,242,.22), rgba(118,107,245,.12));
+      color: #fff;
     }
     .btn.solid{
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      border-color: rgba(68,196,242,.35);
-      color:#0b0d12;
+      border-color: rgba(68,196,242,.40);
+      color:#fff; /* pedido: texto blanco sobre degradado */
       font-weight: 900;
     }
 
@@ -151,9 +146,10 @@
       border-radius: var(--r20);
       box-shadow: var(--shadow);
       overflow:hidden;
+      position:relative;
     }
 
-    /* HERO (tipos +3px acá) */
+    /* HERO */
     .hero{
       padding: 18px 18px 16px;
       background:
@@ -171,23 +167,10 @@
       border:1px solid var(--stroke);
       background: rgba(255,255,255,.04);
     }
-    .kickerIcon{
-      width:18px; height:18px; display:inline-block;
-      filter: drop-shadow(0 10px 18px rgba(68,196,242,.15));
-    }
-    h1{
-      margin:10px 0 0;
-      font-size: 25px;
-      letter-spacing: .2px;
-      line-height:1.15;
-    }
-    .sub{
-      margin:10px 0 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height:1.7;
-      max-width: 92ch;
-    }
+    .kickerIcon{width:18px; height:18px; display:inline-block;}
+    h1{margin:10px 0 0; font-size: 25px; letter-spacing: .2px; line-height:1.15;}
+    .sub{margin:10px 0 0; color: var(--muted); font-size: 16px; line-height:1.7; max-width: 92ch;}
+
     .hero-row{
       margin-top: 14px;
       display:flex;
@@ -196,9 +179,7 @@
       align-items:center;
       justify-content:space-between;
     }
-    .kpis{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-    }
+    .kpis{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
     .kpi{
       min-width: 190px;
       padding: 10px 12px;
@@ -236,11 +217,8 @@
       background: rgba(0,0,0,.35);
       box-shadow: var(--shadow2);
     }
-    .homeVideo{
-      width:100%;
-      aspect-ratio:16/9;
-      background:#070911;
-    }
+    .homeVideo{width:100%; aspect-ratio:16/9; background:#070911;}
+    iframe{width:100%; height:100%; border:0}
 
     /* Player */
     .playerWrap{padding:14px;}
@@ -253,7 +231,6 @@
       background:#070911;
       box-shadow: var(--shadow2);
     }
-    iframe{width:100%; height:100%; border:0}
 
     .lessonMeta{
       padding: 0 14px 14px;
@@ -296,8 +273,7 @@
     .moduleHead{
       padding: 10px 12px;
       display:flex; align-items:center; justify-content:space-between; gap:10px;
-      cursor:pointer;
-      user-select:none;
+      cursor:pointer; user-select:none;
     }
     .moduleHead b{font-size:14px}
     .moduleHead span{font-size:14px; color: var(--muted2)}
@@ -325,214 +301,101 @@
       background: rgba(68,196,242,.14);
       border-color: rgba(68,196,242,.22);
     }
+
+    /* Pedido: circulo verde y si fue visto pasa a rojo suave */
     .badge{
       width: 38px; height: 38px;
-      border-radius: 12px;
+      border-radius: 999px;
       display:grid; place-items:center;
       font-family: var(--mono);
       font-size:14px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
+      border:1px solid rgba(48,209,88,.35);
+      background: rgba(48,209,88,.14); /* verde */
+      color: #d8ffe3;
       flex:0 0 auto;
-    }
-    .badge.done{
-      border-color: rgba(34,197,94,.28);
-      background: rgba(34,197,94,.10);
-      color: #bff2cf;
       font-weight: 900;
     }
+    .badge.done{
+      border-color: rgba(255,107,107,.32);
+      background: rgba(255,107,107,.16); /* rojito suave */
+      color: #ffe1e1;
+    }
+
     .lt{margin:0; font-size:15px; font-weight:900; line-height:1.25;}
     .ld{margin:4px 0 0; font-size:14px; color: var(--muted2); line-height:1.35;}
 
-    .note{
+    /* Overlay panel (encima del home) */
+    .overlay{
+      position:absolute;
+      inset: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(68,196,242,.35);
+      background: rgba(10,12,18,.72);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 22px 60px rgba(0,0,0,.50);
+      display:none;
+      overflow:hidden;
+      z-index: 20;
+    }
+    .overlay.show{display:block;}
+    .overlayHead{
       padding: 12px 14px;
-      border-top: 1px solid var(--stroke);
-      color: var(--muted2);
-      font-size: 14px;
-      line-height:1.45;
-      background: rgba(255,255,255,.03);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
     }
+    .overlayHead b{font-size:16px}
+    .overlayBody{padding: 14px; max-height: calc(100% - 54px); overflow:auto;}
+    .closeBtn{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      border-radius: 999px;
+      padding: 8px 10px;
+      cursor:pointer;
+      font-weight: 900;
+    }
+    .closeBtn:hover{border-color: rgba(255,255,255,.24);}
 
-    /* Sección tipo plataforma (tabs + cards) */
-    .tabsWrap{
-      padding: 14px 18px 18px;
-      border-top: 1px solid var(--stroke);
-      background: rgba(255,255,255,.03);
-    }
-    .tabs{
+    /* Tabs en el main */
+    .tabsRow{
       display:flex;
-      gap: 14px;
+      gap: 10px;
       align-items:center;
-      border-bottom: 1px solid var(--stroke);
-      padding-bottom: 10px;
-      margin-bottom: 14px;
       flex-wrap:wrap;
+      margin-bottom: 12px;
     }
-    .tab{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
+    .tabBtn{
+      display:inline-flex; align-items:center; gap:10px;
       padding: 10px 12px;
       border-radius: 999px;
-      border: 1px solid transparent;
-      background: transparent;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
       cursor:pointer;
       font-size: 14px;
       color: var(--muted);
     }
-    .tab.active{
-      background: rgba(255,255,255,.05);
-      border-color: var(--stroke);
-      color: var(--text);
+    .tabBtn.primary{
+      border-color: rgba(68,196,242,.40);
+      background: linear-gradient(135deg, rgba(68,196,242,.18), rgba(118,107,245,.10));
+      color:#fff;
     }
-    .tabDot{
-      width:10px; height:10px; border-radius:999px;
-      background: rgba(255,255,255,.18);
-    }
-    .tab.active .tabDot{
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 10px 22px rgba(68,196,242,.18);
-    }
+    .tabBtn:hover{border-color: rgba(255,255,255,.24);}
 
-    .sectionTitle{
-      margin: 0 0 12px;
-      font-size: 20px;
-      letter-spacing:.2px;
-    }
-
-    /* Layout pedido: bloque 1 vertical + bloques 2 y 3 horizontales apilados */
-    .infoGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      align-items: stretch;
-    }
-    .infoCard{
-      border-radius: 18px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.04);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-    }
-    .infoCardHead{
-      padding: 14px 14px 10px;
-      border-bottom: 1px solid var(--stroke);
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-    .infoCardHead b{font-size:16px}
-    .infoCardBody{padding: 14px}
-
-    /* Card 1 vertical (span 2 rows) */
-    .aboutCard{ grid-row: 1 / span 2; }
-
-    /* filas alineadas a la izquierda (lineal) */
-    .rows{display:flex; flex-direction:column; gap:10px;}
-    .row{
-      display:flex; align-items:center; gap:16px;
-      padding-bottom: 10px;
-      border-bottom: 1px dashed rgba(255,255,255,.10);
-      justify-content:flex-start;
-    }
-    .row:last-child{border-bottom:none; padding-bottom:0}
-    .row .k{color: var(--muted); font-size:14px; min-width: 170px;}
-    .row .v{color: var(--text); font-size:14px; font-weight:900}
-
-    /* Cards horizontales (2 y 3) */
-    .hCardBody{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      justify-content:space-between;
-      flex-wrap:wrap;
-    }
-    .prof{
-      display:flex; gap:12px; align-items:flex-start;
-      flex: 1 1 380px;
-    }
-    .avatar{
-      width:44px; height:44px; border-radius: 14px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      border:1px solid rgba(255,255,255,.10);
-      display:grid; place-items:center;
-      font-weight:900;
-      color: #0b0d12;
-    }
-    .prof b{font-size:16px}
-    .prof p{margin:6px 0 0; color: var(--muted); font-size:14px; line-height:1.55}
-    .linkBtn{
-      display:inline-flex; align-items:center; gap:10px;
-      margin-top: 10px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.04);
-      font-size:14px;
-      cursor:pointer;
-    }
-
-    .ratingBox{
-      flex: 0 0 260px;
-      border-radius: 14px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.03);
-      padding: 12px;
-    }
-    .ratingBig{
-      font-size: 40px;
-      font-weight: 900;
-      letter-spacing: .2px;
-      line-height:1;
-    }
-    .stars{
-      display:flex; gap:6px; align-items:center;
-      margin-top: 10px;
-      color: #ffd18b;
-      font-size: 16px;
-    }
-    .rateBtn{
-      margin-top: 14px;
-      display:inline-flex;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(68,196,242,.35);
-      background: rgba(68,196,242,.10);
-      cursor:pointer;
-      font-size:14px;
-      font-weight: 900;
-      color: var(--text);
-    }
-
-    /* Panel Clases/Descargas/Comentarios */
-    .panelBox{
-      margin-top: 14px;
-      border-radius: 18px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.04);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-    }
-    .panelHead{
-      padding: 14px;
-      border-bottom: 1px solid var(--stroke);
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-    .panelHead b{font-size:16px}
-    .panelBody{padding: 14px}
-
+    /* Chips/temas */
     .chip{
       display:inline-flex; align-items:center; gap:8px;
-      padding: 8px 10px;
+      padding: 10px 12px;
       border-radius: 999px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
+      border:1px solid rgba(68,196,242,.28);
+      background: rgba(68,196,242,.10);
       font-size: 14px;
       margin-right: 8px;
       margin-bottom: 8px;
+      cursor:pointer;
+      font-weight: 900;
     }
+    .chip:hover{border-color: rgba(68,196,242,.40);}
 
-    /* Form comentarios */
+    /* Formularios */
     .formGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -542,29 +405,21 @@
       width:100%;
       padding: 12px 12px;
       border-radius: 14px;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
       outline:none;
       font-size: 14px;
       color: var(--text) !important;
     }
-    .field textarea{ min-height: 120px; resize: vertical; grid-column: 1 / -1; }
+    .field textarea{ min-height: 140px; resize: vertical; grid-column: 1 / -1; }
     .field input::placeholder, .field textarea::placeholder{ color: rgba(198,203,226,.55); }
-
-    .tiny{
-      color: var(--muted2);
-      font-size: 13px;
-      line-height: 1.5;
-      margin-top: 10px;
-    }
 
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
       .brand{min-width:0}
       .kpi{min-width:150px}
-      .infoGrid{grid-template-columns:1fr}
-      .aboutCard{ grid-row:auto; }
       .formGrid{ grid-template-columns: 1fr; }
+      .overlay{ inset: 10px; }
     }
   </style>
 </head>
@@ -573,7 +428,6 @@
   <div class="topbar">
     <div class="topbar-inner">
       <div class="brand">
-        <!-- Tu “icono naranja” ahora es EM con tus colores -->
         <div class="logoWrap" aria-hidden="true"><span>EM</span></div>
         <div class="t">
           <b>CURSO DE AFTER EFFECTS EXPERTO</b>
@@ -583,6 +437,7 @@
 
       <div class="actions">
         <span class="pill" id="pillProgress">Progreso 0%</span>
+        <button class="btn accent" id="openPanelHome" type="button">📚 Panel</button>
         <button class="btn accent" id="goHome" type="button">🏠 Inicio</button>
         <a class="btn" id="openYT" href="#" target="_blank" rel="noopener">▶ Abrir en YouTube</a>
         <button class="btn solid" id="toggleDone" type="button">✅ Completar</button>
@@ -594,12 +449,11 @@
     <div class="grid">
 
       <!-- MAIN -->
-      <main class="card">
+      <main class="card" id="mainCard">
 
         <!-- HOME -->
         <section class="hero" id="homeSection">
           <div class="kicker">
-            <!-- Claqueta en vez de rayito -->
             <svg class="kickerIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M4 8h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
               <path d="M4 8l2-4h14l-2 4H4Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
@@ -611,7 +465,7 @@
           <h1>After Effects · Nivel Experto</h1>
 
           <p class="sub">
-            Hola! bienvenido al curso de After effects nivel experto, donde aprenderas todas las tecnicas avanzadas para mejorar tus skills como diseñador audiovisual, aprenderas todos sobre el entorno 3D para que tus diseños de motion graphics esten a la altura de las grandes agencias creativas. a tu derecha tendras la lista con todos los videos del curso, podras verlos las veces que quieras.
+            Hola! bienvenido al curso de After effects nivel experto, donde aprenderas todas las tecnicas avanzadas para mejorar tus skills como diseñador audiovisual, aprenderas todos sobre el entorno 3D para que tus diseños de motion graphics esten a la altura de las grandes agencias creativas. A tu derecha tendras la lista con todos los videos del curso, podras verlos las veces que quieras.
           </p>
 
           <div class="hero-row">
@@ -626,193 +480,34 @@
               <button class="btn solid" id="startBtn" type="button">▶ Empezar</button>
             </div>
           </div>
-        </section>
 
-        <!-- Sección tipo plataforma -->
-        <section class="tabsWrap" id="platformSection">
-          <div class="tabs">
-            <button class="tab active" id="tabAbout" type="button"><span class="tabDot"></span> Sobre el curso</button>
-            <button class="tab" id="tabClasses" type="button"><span class="tabDot"></span> Clases y adjuntos</button>
-            <button class="tab" id="tabDownloads" type="button"><span class="tabDot"></span> Descargas</button>
-            <button class="tab" id="tabComments" type="button"><span class="tabDot"></span> Comentarios</button>
-          </div>
-
-          <h2 class="sectionTitle" id="sectionTitle">Te damos la bienvenida al curso</h2>
-
-          <!-- VIDEO HOME (solo aquí) -->
-          <div class="homeVideoWrap" id="welcomeVideoBlock">
+          <!-- Video bienvenida SOLO en Home -->
+          <div class="homeVideoWrap">
             <div class="homeVideo">
               <iframe
-                id="welcomeFrame"
                 src="https://www.youtube.com/embed/ptSPBlNyoQ8?rel=0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
             </div>
           </div>
 
-          <!-- SOBRE EL CURSO -->
-          <div id="aboutPanel" style="margin-top:14px;">
-            <div class="infoGrid">
-
-              <!-- Bloque 1 vertical -->
-              <div class="infoCard aboutCard">
-                <div class="infoCardHead">
-                  <b>Sobre este curso</b>
-                </div>
-                <div class="infoCardBody">
-                  <div class="rows">
-                    <div class="row"><div class="k">Nivel</div><div class="v">Experto</div></div>
-                    <div class="row"><div class="k">Duración total</div><div class="v">3h 40m aprox</div></div>
-                    <div class="row"><div class="k">Clases</div><div class="v">20</div></div>
-                    <div class="row"><div class="k">Videos</div><div class="v">19</div></div>
-                    <div class="row"><div class="k">Audio</div><div class="v">Español</div></div>
-                    <div class="row"><div class="k">Última actualización</div><div class="v">2026</div></div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Bloque 2 horizontal -->
-              <div class="infoCard">
-                <div class="infoCardHead">
-                  <b>Acerca del profesor</b>
-                </div>
-                <div class="infoCardBody">
-                  <div class="hCardBody">
-                    <div class="prof">
-                      <div class="avatar">EM</div>
-                      <div>
-                        <b>@emma_mel_</b>
-                        <div style="color:var(--muted2); font-size:14px; margin-top:2px;">Diseñador Audiovisual · Motion Graphics · VFX</div>
-                        <p>
-                          Te llevo por un workflow real de entorno 3D en After Effects, con técnicas avanzadas para lograr un look profesional, limpio y de alto impacto.
-                        </p>
-                        <button class="linkBtn" type="button" onclick="alert('Acá podés linkear tu portfolio si querés.')">
-                          🔗 Conocer más
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Bloque 3 horizontal -->
-              <div class="infoCard">
-                <div class="infoCardHead">
-                  <b>Valoración del curso</b>
-                </div>
-                <div class="infoCardBody">
-                  <div class="hCardBody">
-                    <div>
-                      <div class="ratingBig">4.8</div>
-                      <div style="color:var(--muted2); font-size:14px; margin-top:6px;">Media total</div>
-                      <div class="stars" aria-label="5 estrellas">★ ★ ★ ★ ☆</div>
-                      <button class="rateBtn" type="button" onclick="alert('Si querés, esto puede abrir un Google Form de feedback.')">
-                        ¡Quiero valorar este curso!
-                      </button>
-                    </div>
-
-                    <div class="ratingBox">
-                      <div style="font-weight:900; font-size:14px;">Tip rápido</div>
-                      <div style="margin-top:8px; color:var(--muted); font-size:14px; line-height:1.55;">
-                        Cuando el alumno ve “4.8”, automáticamente siente “plataforma seria”. Sí, es magia… pero funciona.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- CLASES Y ADJUNTOS -->
-          <div id="classesPanel" style="display:none; margin-top:14px;">
-            <div class="panelBox">
-              <div class="panelHead">
-                <b>Clases y adjuntos</b>
-                <span style="color:var(--muted2); font-size:14px;">Resumen del contenido</span>
-              </div>
-              <div class="panelBody">
-                <div style="margin-bottom:10px; color:var(--muted); font-size:14px; line-height:1.55;">
-                  Módulos sugeridos (solo para organización visual):
-                </div>
-                <div>
-                  <span class="chip">Inicio del Workshop</span>
-                  <span class="chip">Recursos + Photoshop (05/06)</span>
-                  <span class="chip">AE + Cámara 3D</span>
-                  <span class="chip">Animación</span>
-                  <span class="chip">Lighting + Partículas</span>
-                  <span class="chip">Optimización + Export</span>
-                  <span class="chip">Resultado final</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- DESCARGAS -->
-          <div id="downloadsPanel" style="display:none; margin-top:14px;">
-            <div class="panelBox">
-              <div class="panelHead">
-                <b>Descargas de recursos</b>
-                <span style="color:var(--muted2); font-size:14px;">Proyecto + recursos gráficos</span>
-              </div>
-              <div class="panelBody">
-                <div style="color:var(--muted); font-size:14px; line-height:1.55;">
-                  Pegá tu link acá (Drive/Dropbox/etc) y listo:
-                </div>
-                <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-                  <a class="btn solid" id="downloadBtn" href="PEGA_TU_LINK_AQUI" target="_blank" rel="noopener">⬇ Abrir carpeta de descargas</a>
-                  <button class="btn accent" type="button" onclick="alert('Si querés, puedo dejar 2 botones separados: Proyecto .aep y Recursos gráficos.')">🗂 Mejorarlo</button>
-                </div>
-                <div class="tiny">
-                  Recomendación: poné el link en “Solo lectura” para evitar accidentes creativos (la gente es talentosa… para romper cosas).
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- COMENTARIOS (envía mail a emmamel.fx@gmail.com sin backend) -->
-          <div id="commentsPanel" style="display:none; margin-top:14px;">
-            <div class="panelBox">
-              <div class="panelHead">
-                <b>Dejame un comentario</b>
-                <span style="color:var(--muted2); font-size:14px;">Te llega a tu mail automáticamente</span>
-              </div>
-              <div class="panelBody">
-                <form action="https://formsubmit.co/emmamel.fx@gmail.com" method="POST">
-                  <!-- FormSubmit settings -->
-                  <input type="hidden" name="_subject" value="Nuevo comentario del curso (Aula privada)" />
-                  <input type="hidden" name="_captcha" value="false" />
-                  <input type="hidden" name="_template" value="table" />
-                  <!-- Si querés redirigir a una página "gracias", poné tu URL en _next -->
-                  <input type="hidden" name="_next" value="" />
-
-                  <div class="formGrid">
-                    <div class="field">
-                      <input name="Nombre" placeholder="Tu nombre" required />
-                    </div>
-                    <div class="field">
-                      <input name="Email" type="email" placeholder="Tu email" required />
-                    </div>
-                    <div class="field">
-                      <textarea name="Mensaje" placeholder="Escribí tu comentario o consulta..." required></textarea>
-                    </div>
-                  </div>
-
-                  <div style="margin-top:12px;">
-                    <button class="btn solid" type="submit">📩 Enviar comentario</button>
-                  </div>
-
-                  <div class="tiny">
-                    Nota: esto usa FormSubmit (gratis) para enviarte el mail sin servidor. Si preferís 100% sin servicios externos,
-                    lo reemplazo por Google Forms en 30 segundos.
-                  </div>
-                </form>
-              </div>
-            </div>
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="tabBtn" id="btnTopics" type="button">🧩 Grupo de temas</button>
+            <button class="tabBtn primary" id="btnDownloads" type="button"><b>Descargas de recursos:</b>&nbsp;Proyecto + recursos gráficos</button>
+            <button class="tabBtn primary" id="btnComments" type="button">💬 Comentarios</button>
           </div>
         </section>
 
-        <!-- PLAYER (se muestra al elegir una clase; HOME desaparece) -->
+        <!-- Overlay (encima del home) -->
+        <section class="overlay" id="overlay">
+          <div class="overlayHead">
+            <b id="overlayTitle">Panel</b>
+            <button class="closeBtn" id="closeOverlay" type="button">✕</button>
+          </div>
+          <div class="overlayBody" id="overlayBody"></div>
+        </section>
+
+        <!-- PLAYER (al elegir una clase el HOME desaparece) -->
         <section id="playerSection" style="display:none;">
           <div class="playerWrap">
             <div class="player">
@@ -847,45 +542,16 @@
         </div>
 
         <div id="modules"></div>
-
-        <div class="note">
-          Progreso guardado en este navegador (local). Si abrís desde otro dispositivo, no se sincroniza.
-        </div>
       </aside>
 
     </div>
   </div>
 
   <script>
-    // ====== Tabs ======
-    const tabAbout = document.getElementById("tabAbout");
-    const tabClasses = document.getElementById("tabClasses");
-    const tabDownloads = document.getElementById("tabDownloads");
-    const tabComments = document.getElementById("tabComments");
+    // ====== Config Descargas ======
+    const DOWNLOADS_LINK = "https://drive.google.com/drive/folders/1JwAskl-_V1mdrx0JIWpMMnkqJdgiq4yX?usp=drive_link";
 
-    const aboutPanel = document.getElementById("aboutPanel");
-    const classesPanel = document.getElementById("classesPanel");
-    const downloadsPanel = document.getElementById("downloadsPanel");
-    const commentsPanel = document.getElementById("commentsPanel");
-
-    function setTab(active){
-      [tabAbout,tabClasses,tabDownloads,tabComments].forEach(t=>t.classList.remove("active"));
-      [aboutPanel,classesPanel,downloadsPanel,commentsPanel].forEach(p=>p.style.display="none");
-
-      if(active==="about"){ tabAbout.classList.add("active"); aboutPanel.style.display=""; }
-      if(active==="classes"){ tabClasses.classList.add("active"); classesPanel.style.display=""; }
-      if(active==="downloads"){ tabDownloads.classList.add("active"); downloadsPanel.style.display=""; }
-      if(active==="comments"){ tabComments.classList.add("active"); commentsPanel.style.display=""; }
-    }
-    tabAbout.onclick = ()=>setTab("about");
-    tabClasses.onclick = ()=>setTab("classes");
-    tabDownloads.onclick = ()=>setTab("downloads");
-    tabComments.onclick = ()=>setTab("comments");
-
-    // ====== Videos del curso ======
-    // Mantengo 19 videos total para el currículum.
-    // Nota: tu lista original tenía 19 links, con uno repetido.
-    // Acá lo dejamos: el "Resultado final" (clase 20) usa bZlzz87AVo4.
+    // ====== Videos del curso (19 videos reales para 20 clases: 05+06 juntos) ======
     const urls = [
       "https://youtu.be/D1IC09GeKZs",
       "https://youtu.be/HVBjwflEPBA",
@@ -908,15 +574,12 @@
       "https://youtu.be/bZlzz87AVo4" // Resultado final
     ];
 
-    // ====== 20 clases (05+06 comparten video) ======
     const lessons = [
       { t:"01 - Introducción", d:"Breve introducción al curso.", u:0 },
       { t:"02 - Retos de entorno 3D", d:"Arrancamos el workshop y el enfoque del entorno 3D.", u:1 },
       { t:"03 - Objetivos", d:"Qué vas a lograr y cómo vamos a trabajarlo.", u:2 },
       { t:"04 - Manos a la obra", d:"Setup y primeros pasos del proyecto.", u:3 },
-
       { t:"05 y 06 - Photoshop", d:"Preparación de recursos y ajustes (ambas clases en un solo video).", u:4 },
-
       { t:"07 - Interfaz express de AE", d:"Ajustes clave y setup inicial en After Effects.", u:5 },
       { t:"08 - Interfaz de AE 3D Cam", d:"Trabajo con cámara 3D y herramientas principales.", u:6 },
       { t:"09 - Import y Composición de la estructura 3D", d:"Importación y armado de la estructura en la comp.", u:7 },
@@ -930,18 +593,21 @@
       { t:"17 - Retoques de Composición", d:"Retoques finales de post y composición.", u:15 },
       { t:"18 - Optimización del proyecto", d:"Orden, rendimiento y limpieza del proyecto.", u:16 },
       { t:"19 - Export Final", d:"Exportación final y entrega.", u:17 },
-
-      { t:"20 - Resultado final", d:"El resultado final del curso.", u:18 },
+      { t:"20 - Visualización y análisis", d:"Cierre y análisis del resultado.", u:18 }
     ];
 
+    // Módulos corregidos (Look & Post incluye 15/16/17, Entrega incluye 18/19)
     const modules = [
-      { name:"Inicio del Workshop", items:[0,1,2,3] },
-      { name:"Preparación de recursos", items:[4] },
-      { name:"After Effects + Estructura 3D", items:[5,6,7] },
-      { name:"Animación", items:[8,9,10,11,12] },
-      { name:"Look & Post", items:[13,14,15] },
-      { name:"Entrega", items:[16,17,18,19] }
+      { id:"m1", name:"Inicio del Workshop", items:[0,1,2,3] },
+      { id:"m2", name:"Preparación de recursos", items:[4] },
+      { id:"m3", name:"After Effects + Estructura 3D", items:[5,6,7] },
+      { id:"m4", name:"Animación", items:[8,9,10,11,12,13] },
+      { id:"m5", name:"Look & Post", items:[14,15,16] },    // 15-17 (0-based 14-16)
+      { id:"m6", name:"Entrega", items:[17,18] },           // 18-19 (0-based 17-18)
     ];
+
+    // Resultado final: separada
+    const finalBlock = { id:"final", name:"Resultado final", items:[19] };
 
     // ====== DOM ======
     const modulesWrap = document.getElementById("modules");
@@ -950,7 +616,6 @@
 
     const homeSection = document.getElementById("homeSection");
     const playerSection = document.getElementById("playerSection");
-    const platformSection = document.getElementById("platformSection");
 
     const lessonTitle = document.getElementById("lessonTitle");
     const lessonDesc = document.getElementById("lessonDesc");
@@ -970,8 +635,19 @@
     const kpiDone = document.getElementById("kpiDone");
     const sideSub = document.getElementById("sideSub");
 
-    // ====== Progreso ======
-    const STORAGE_KEY = "aula_em_experto_v2";
+    // overlay controls
+    const overlay = document.getElementById("overlay");
+    const overlayTitle = document.getElementById("overlayTitle");
+    const overlayBody = document.getElementById("overlayBody");
+    const closeOverlay = document.getElementById("closeOverlay");
+
+    const btnTopics = document.getElementById("btnTopics");
+    const btnDownloads = document.getElementById("btnDownloads");
+    const btnComments = document.getElementById("btnComments");
+    const openPanelHome = document.getElementById("openPanelHome");
+
+    // ====== Progreso (manual) ======
+    const STORAGE_KEY = "aula_em_experto_v3";
     const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
 
     function saveProgress(){
@@ -1008,27 +684,21 @@
     let currentTerm = "";
 
     function showHome(){
-      // Home visible, Player oculto
       homeSection.style.display = "";
-      platformSection.style.display = "";
       playerSection.style.display = "none";
-
       currentLesson = null;
       frame.src = "";
       openYT.href = "#";
       toggleDone.textContent = "✅ Completar";
       document.querySelectorAll(".lessonBtn").forEach(b => b.classList.remove("active"));
-
-      // vuelve a "Sobre el curso" por defecto
-      setTab("about");
+      hideOverlay();
     }
 
     function showPlayer(){
-      // IMPORTANTE: al elegir clase, desaparece el video de bienvenida (porque ocultamos todo home)
+      // al entrar a una clase: ocultamos home (incluye video bienvenida)
       homeSection.style.display = "none";
-      platformSection.style.display = "none";
       playerSection.style.display = "";
-
+      hideOverlay();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
@@ -1060,22 +730,23 @@
       modulesWrap.innerHTML = "";
       const t = term.trim().toLowerCase();
 
-      modules.forEach((m) => {
-        const filteredItems = m.items.filter(i => {
+      function addModule(mod){
+        const filteredItems = mod.items.filter(i => {
           if(!t) return true;
           const l = lessons[i];
           return (l.t || "").toLowerCase().includes(t) || (l.d || "").toLowerCase().includes(t);
         });
         if(t && filteredItems.length === 0) return;
 
-        const mod = document.createElement("div");
-        mod.className = "module";
+        const modEl = document.createElement("div");
+        modEl.className = "module";
+        modEl.dataset.mid = mod.id;
 
         const head = document.createElement("div");
         head.className = "moduleHead";
 
         const left = document.createElement("div");
-        left.innerHTML = `<b>${m.name}</b><span style="display:block;margin-top:2px;">${filteredItems.length} clases</span>`;
+        left.innerHTML = `<b>${mod.name}</b><span style="display:block;margin-top:2px;">${filteredItems.length} clases</span>`;
 
         const right = document.createElement("span");
         right.textContent = "▼";
@@ -1086,10 +757,10 @@
 
         const body = document.createElement("div");
         body.className = "moduleBody";
+        body.dataset.body = "1";
 
         filteredItems.forEach((i) => {
           const l = lessons[i];
-
           const btn = document.createElement("button");
           btn.className = "lessonBtn";
           btn.type = "button";
@@ -1097,7 +768,7 @@
 
           const badge = document.createElement("div");
           badge.className = "badge" + (progress[i] ? " done" : "");
-          badge.textContent = progress[i] ? "✓" : String(i+1).padStart(2,"0");
+          badge.textContent = String(i+1).padStart(2,"0");
 
           const wrap = document.createElement("div");
           wrap.innerHTML = `<p class="lt">${l.t}</p><p class="ld">${l.d || " "}</p>`;
@@ -1116,15 +787,109 @@
           right.textContent = open ? "▼" : "▶";
         };
 
-        mod.appendChild(head);
-        mod.appendChild(body);
-        modulesWrap.appendChild(mod);
-      });
+        modEl.appendChild(head);
+        modEl.appendChild(body);
+        modulesWrap.appendChild(modEl);
+      }
+
+      modules.forEach(addModule);
+      addModule(finalBlock);
 
       if(currentLesson !== null){
         const btn = document.querySelector(`.lessonBtn[data-i="${currentLesson}"]`);
         if(btn) btn.classList.add("active");
       }
+    }
+
+    // ====== Overlay ======
+    function showOverlay(title, html){
+      overlayTitle.textContent = title;
+      overlayBody.innerHTML = html;
+      overlay.classList.add("show");
+    }
+    function hideOverlay(){
+      overlay.classList.remove("show");
+    }
+    closeOverlay.onclick = hideOverlay;
+
+    // acciones overlay
+    btnDownloads.onclick = () => {
+      showOverlay("Descargas de recursos: Proyecto + recursos gráficos", `
+        <div style="font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:12px;">
+          Accedé a la carpeta con el proyecto de After Effects y los recursos gráficos.
+        </div>
+        <a class="btn solid" href="${DOWNLOADS_LINK}" target="_blank" rel="noopener">⬇ Abrir carpeta de descargas</a>
+      `);
+    };
+
+    btnComments.onclick = () => {
+      showOverlay("Comentarios", `
+        <form action="https://formsubmit.co/emmamel.fx@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Nuevo comentario del curso (Aula privada)" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <div class="formGrid" style="margin-top:6px;">
+            <div class="field"><input name="Nombre" placeholder="Tu nombre" required /></div>
+            <div class="field"><input name="Email" type="email" placeholder="Tu email" required /></div>
+            <div class="field"><textarea name="Mensaje" placeholder="Escribí tu comentario o consulta..." required></textarea></div>
+          </div>
+          <div style="margin-top:12px;">
+            <button class="btn solid" type="submit">📩 Enviar comentario</button>
+          </div>
+        </form>
+      `);
+    };
+
+    // Grupo de temas: chips que hacen scroll/expand al módulo derecho
+    btnTopics.onclick = () => openTopicsOverlay();
+
+    openPanelHome.onclick = () => openTopicsOverlay();
+
+    function openTopicsOverlay(){
+      const chips = [
+        { label:"Inicio del Workshop", mid:"m1" },
+        { label:"Preparación de recursos", mid:"m2" },
+        { label:"AE + Estructura 3D", mid:"m3" },
+        { label:"Animación", mid:"m4" },
+        { label:"Look & Post", mid:"m5" },
+        { label:"Entrega", mid:"m6" },
+        { label:"Resultado final", mid:"final" },
+      ];
+
+      const chipsHtml = chips.map(c => `<button class="chip" type="button" data-mid="${c.mid}">${c.label}</button>`).join("");
+
+      showOverlay("Grupo de temas", `
+        <div style="font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:12px;">
+          Elegí un tema y te llevo directo a ese bloque en la lista de la derecha.
+        </div>
+        <div>${chipsHtml}</div>
+      `);
+
+      overlayBody.querySelectorAll("[data-mid]").forEach(btn=>{
+        btn.addEventListener("click", () => {
+          const mid = btn.getAttribute("data-mid");
+          focusModule(mid);
+          hideOverlay();
+        });
+      });
+    }
+
+    function focusModule(mid){
+      const target = document.querySelector(`.module[data-mid="${mid}"]`);
+      if(!target) return;
+
+      // expandir body si estaba cerrado (miramos si está oculto)
+      const body = target.querySelector('.moduleBody');
+      if(body && body.style.display === "none"){
+        // click en header para abrir
+        target.querySelector('.moduleHead')?.click();
+      }
+
+      // scroll hacia el módulo
+      target.scrollIntoView({ behavior:"smooth", block:"start" });
+      // mini highlight
+      target.style.boxShadow = "0 0 0 2px rgba(68,196,242,.25), 0 18px 50px rgba(0,0,0,.35)";
+      setTimeout(()=> target.style.boxShadow = "", 900);
     }
 
     // ====== Events ======
