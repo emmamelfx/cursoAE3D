@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CURSO DE AFTER EFFECTS EXPERTO</title>
 
-  <!-- Favicon EM (SVG inline) -->
   <link rel="icon" type="image/svg+xml"
     href='data:image/svg+xml;utf8,
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
@@ -23,31 +22,19 @@
     :root{
       --bg:#0b0d12;
       --bg2:#0f1320;
-
       --stroke:rgba(255,255,255,.10);
       --stroke2:rgba(255,255,255,.20);
-
       --text:#f4f6ff;
       --muted:#c6cbe2;
       --muted2:#8e97bb;
-
-      /* EM */
       --accent:#44C4F2;
       --accent2:#766BF5;
-
       --shadow: 0 18px 50px rgba(0,0,0,.45);
       --shadow2: 0 10px 28px rgba(0,0,0,.35);
-
-      --r14:14px;
-      --r16:16px;
-      --r18:18px;
-      --r20:20px;
-
+      --r14:14px; --r16:16px; --r18:18px; --r20:20px;
       --max: 1240px;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -60,7 +47,6 @@
         radial-gradient(800px 520px at 50% 110%, rgba(68,196,242,.10), transparent 60%),
         linear-gradient(180deg, var(--bg), var(--bg2));
     }
-
     a{ text-decoration:none; color:inherit; }
 
     .topbar{
@@ -145,7 +131,120 @@
       position:relative;
     }
 
-    /* HOME header + tabs + blocks */
+    /* =======================
+       ✅ FIX: Sidebar tipo "plataforma"
+       ======================= */
+    .sidebar{
+      position:sticky;
+      top:78px;
+      height: calc(100vh - 92px);     /* ocupa pantalla */
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;                /* evita que se corte raro */
+    }
+    .sideHead{
+      padding: 14px 14px 12px;
+      border-bottom: 1px solid var(--stroke);
+      display:flex; flex-direction:column; gap:6px;
+      flex:0 0 auto;
+    }
+    .sideHead b{font-size:15px; color:var(--text)}
+    .sideHead span{font-size:14px; color: var(--muted2)}
+
+    .search{
+      padding: 12px 14px;
+      border-bottom:1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+      flex:0 0 auto;
+    }
+    .search input{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: var(--r14);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      color: var(--text) !important;
+      outline:none;
+      font-size: 14px;
+    }
+    .search input::placeholder{ color: rgba(198,203,226,.55); }
+
+    /* ✅ acá vive la lista, scrollea siempre */
+    #modules{
+      padding: 10px 10px 14px;
+      overflow:auto;
+      flex:1 1 auto;
+      scrollbar-width: thin;
+    }
+    #modules::-webkit-scrollbar{width:10px}
+    #modules::-webkit-scrollbar-thumb{
+      background: rgba(255,255,255,.12);
+      border-radius: 999px;
+      border: 2px solid rgba(0,0,0,0);
+      background-clip: padding-box;
+    }
+
+    /* modules */
+    .module{
+      margin: 10px 0;
+      border-radius: var(--r16);
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+    }
+    .moduleHead{
+      padding: 10px 12px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      cursor:pointer; user-select:none;
+      color: var(--text);
+      position:sticky;
+      top:0;                 /* ✅ sticky dentro del scroll */
+      background: rgba(12,14,20,.90);
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+      z-index:5;
+    }
+    .moduleHead b{font-size:14px; color:var(--text)}
+    .moduleHead span{font-size:14px; color: var(--muted2)}
+    .moduleHead:hover{background: rgba(16,18,26,.92)}
+    .moduleBody{padding: 0 8px 10px;}
+
+    /* Fuerzo texto BLANCO en lista */
+    .lessonBtn{
+      width:100%;
+      text-align:left;
+      display:flex; gap:10px; align-items:flex-start;
+      padding: 10px 10px;
+      border-radius: var(--r14);
+      border: 1px solid transparent;
+      background: transparent;
+      cursor:pointer;
+      transition: background .12s ease, border-color .12s ease, transform .08s ease;
+      margin-top: 6px;
+      color: var(--text) !important;
+    }
+    .lessonBtn *{color: var(--text) !important;}
+    .lessonBtn:hover{
+      background: rgba(68,196,242,.10);
+      border-color: rgba(68,196,242,.18);
+      transform: translateY(-1px);
+    }
+    .lessonBtn.active{
+      background: rgba(68,196,242,.14);
+      border-color: rgba(68,196,242,.22);
+    }
+    .badge{
+      width: 14px; height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 22px rgba(68,196,242,.18);
+      margin-top: 4px;
+      flex:0 0 auto;
+    }
+    .lt{margin:0; font-size:15px; font-weight:900; line-height:1.25;}
+    .ld{margin:4px 0 0; font-size:14px; color: var(--muted2) !important; line-height:1.35;}
+
+    /* MAIN */
     .hero{
       padding: 18px 18px 16px;
       background:
@@ -155,7 +254,6 @@
       border-bottom: 1px solid var(--stroke);
       position: relative;
     }
-
     .kicker{
       display:inline-flex; align-items:center; gap:10px;
       font-size:15px;
@@ -166,14 +264,9 @@
       background: rgba(255,255,255,.04);
     }
     .kickerIcon{width:18px;height:18px;display:inline-block}
-
     .titleRow{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:10px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; flex-wrap:wrap; margin-top:10px;
     }
     h1{margin:0; font-size:25px; line-height:1.15;}
     .sub{
@@ -183,8 +276,6 @@
       line-height:1.7;
       max-width: 92ch;
     }
-
-    /* Tabs arriba del video */
     .tabsRow{
       margin-top:14px;
       display:flex;
@@ -210,7 +301,6 @@
     }
     .tabBtn:hover{border-color: rgba(255,255,255,.26);}
 
-    /* Overlay de tabs: encima del video, en la misma ubicación */
     .homeOverlay{
       position:absolute;
       left:18px; right:18px;
@@ -265,7 +355,6 @@
     }
     .chip:hover{border-color: rgba(68,196,242,.40);}
 
-    /* Bienvenida video */
     .homeVideoWrap{
       margin-top: 14px;
       border-radius: var(--r18);
@@ -279,7 +368,6 @@
     .homeVideo{width:100%; aspect-ratio:16/9; background:#070911;}
     iframe{width:100%; height:100%; border:0}
 
-    /* Presentación (texto imagen transcripto) */
     .presentation{
       margin-top: 14px;
       border-radius: var(--r18);
@@ -287,20 +375,9 @@
       background: rgba(255,255,255,.04);
       padding: 14px 14px;
     }
-    .presentation h2{
-      margin:0 0 10px;
-      font-size:18px;
-      color:var(--text);
-      letter-spacing:.2px;
-    }
-    .presentation p{
-      margin:0;
-      font-size:14px;
-      color:var(--muted);
-      line-height:1.75;
-    }
+    .presentation h2{margin:0 0 10px; font-size:18px}
+    .presentation p{margin:0; font-size:14px; color:var(--muted); line-height:1.75}
 
-    /* 3 Bloques: 1 vertical + 2 horizontales */
     .statsGrid{
       margin-top: 14px;
       display:grid;
@@ -318,40 +395,19 @@
       flex-direction:column;
       justify-content:space-between;
     }
-
-    /* vertical (sobre el curso) */
-    .statVertical{
-      grid-row: 1 / span 2;
-      min-height: 252px;
-      gap:10px;
-    }
+    .statVertical{grid-row: 1 / span 2; min-height: 252px; gap:10px;}
     .statTitle{font-size:14px;color:var(--muted2); letter-spacing:.2px}
     .statLine{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
+      display:flex; justify-content:space-between; gap:10px;
       padding: 10px 0;
       border-bottom:1px solid rgba(255,255,255,.08);
       font-size: 15px;
-      color: var(--text);
     }
-    .statLine b{font-size:15px; color:var(--text)}
+    .statLine b{font-size:15px}
     .statLine span{color:var(--muted)}
     .statLine:last-child{border-bottom:0}
-
-    /* 2 horizontales */
-    .statHoriz{
-      min-height: 120px;
-    }
-    .hTop{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .profile{
-      display:flex; align-items:center; gap:10px;
-    }
+    .hTop{display:flex; align-items:center; justify-content:space-between; gap:10px;}
+    .profile{display:flex; align-items:center; gap:10px;}
     .avatar{
       width:40px; height:40px; border-radius:14px;
       border:1px solid rgba(255,255,255,.12);
@@ -360,11 +416,10 @@
       font-weight:900;
       color:#fff;
     }
-    .profileTxt b{display:block; font-size:15px; color:var(--text)}
+    .profileTxt b{display:block; font-size:15px}
     .profileTxt span{display:block; font-size:14px; color:var(--muted2)}
     .statNote{margin-top:10px; font-size:14px; color: var(--muted); line-height:1.65}
 
-    /* Player section */
     .playerWrap{padding:14px;}
     .player{
       width:100%;
@@ -380,94 +435,11 @@
       display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
       align-items:flex-start;
     }
-    .lessonMeta h2{margin:0; font-size:18px; letter-spacing:.2px; color:var(--text)}
+    .lessonMeta h2{margin:0; font-size:18px;}
     .lessonMeta p{margin:8px 0 0; color: var(--muted); font-size:15px; line-height:1.55}
     .navBtns{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end;}
 
-    /* Sidebar */
-    .sideHead{
-      padding: 14px 14px 12px;
-      border-bottom: 1px solid var(--stroke);
-      display:flex; flex-direction:column; gap:6px;
-    }
-    .sideHead b{font-size:15px; color:var(--text)}
-    .sideHead span{font-size:14px; color: var(--muted2)}
-
-    .search{padding: 12px 14px; border-bottom:1px solid var(--stroke); background: rgba(255,255,255,.03);}
-    .search input{
-      width:100%;
-      padding: 12px 12px;
-      border-radius: var(--r14);
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.04);
-      color: var(--text) !important;
-      outline:none;
-      font-size: 14px;
-    }
-    .search input::placeholder{ color: rgba(198,203,226,.55); }
-
-    .module{
-      margin: 10px;
-      border-radius: var(--r16);
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.03);
-      overflow:hidden;
-    }
-    .moduleHead{
-      padding: 10px 12px;
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      cursor:pointer; user-select:none;
-      color: var(--text);
-    }
-    .moduleHead b{font-size:14px; color:var(--text)}
-    .moduleHead span{font-size:14px; color: var(--muted2)}
-    .moduleHead:hover{background: rgba(255,255,255,.04)}
-    .moduleBody{padding: 0 8px 10px;}
-
-    /* Fuerzo texto BLANCO en lista (no más negro) */
-    .lessonBtn{
-      width:100%;
-      text-align:left;
-      display:flex; gap:10px; align-items:flex-start;
-      padding: 10px 10px;
-      border-radius: var(--r14);
-      border: 1px solid transparent;
-      background: transparent;
-      cursor:pointer;
-      transition: background .12s ease, border-color .12s ease, transform .08s ease;
-      margin-top: 6px;
-      color: var(--text) !important;
-    }
-    .lessonBtn *{color: var(--text) !important;}
-    .lessonBtn:hover{
-      background: rgba(68,196,242,.10);
-      border-color: rgba(68,196,242,.18);
-      transform: translateY(-1px);
-    }
-    .lessonBtn.active{
-      background: rgba(68,196,242,.14);
-      border-color: rgba(68,196,242,.22);
-    }
-
-    /* ICONO: circulito sin número */
-    .badge{
-      width: 14px; height: 14px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 10px 22px rgba(68,196,242,.18);
-      margin-top: 4px;
-      flex:0 0 auto;
-    }
-
-    .lt{margin:0; font-size:15px; font-weight:900; line-height:1.25; color:var(--text) !important;}
-    .ld{margin:4px 0 0; font-size:14px; color: var(--muted2) !important; line-height:1.35;}
-
-    /* Form */
-    .formGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
+    .formGrid{display:grid; grid-template-columns: 1fr 1fr; gap: 10px;}
     .field input, .field textarea{
       width:100%;
       padding: 12px 12px;
@@ -483,6 +455,8 @@
 
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
+      .sidebar{position:relative; top:auto; height:auto;}
+      #modules{max-height: 55vh;}
       .statsGrid{grid-template-columns:1fr}
       .statVertical{grid-row:auto; min-height:auto}
       .homeOverlay{left:12px; right:12px; top: 280px;}
@@ -515,10 +489,7 @@
   <div class="container">
     <div class="grid">
 
-      <!-- MAIN -->
       <main class="card" id="mainCard">
-
-        <!-- HOME -->
         <section class="hero" id="homeSection">
           <div class="kicker">
             <svg class="kickerIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -529,7 +500,6 @@
             Workshop · After Effects · Entorno 3D
           </div>
 
-          <!-- Título + Empezar a la derecha (como pediste) -->
           <div class="titleRow">
             <h1>After Effects · Nivel Experto</h1>
             <button class="btn solid" id="startBtn" type="button">▶ Empezar</button>
@@ -539,14 +509,12 @@
             Hola! bienvenido al curso de After effects nivel experto, donde aprenderas todas las tecnicas avanzadas para mejorar tus skills como diseñador audiovisual, aprenderas todo sobre el entorno 3D para que tus diseños de motion graphics esten a la altura de las grandes agencias creativas. A tu derecha tendras la lista con todos los videos del curso, podras verlos las veces que quieras.
           </p>
 
-          <!-- TABS ARRIBA del video -->
           <div class="tabsRow">
             <button class="tabBtn" id="btnTopics" type="button">🧩 Grupo de temas</button>
             <button class="tabBtn primary" id="btnDownloads" type="button">Descargas de recursos</button>
             <button class="tabBtn primary" id="btnComments" type="button">💬 Comentarios</button>
           </div>
 
-          <!-- OVERLAY: aparece en el mismo lugar, por encima del video -->
           <div class="homeOverlay" id="homeOverlay">
             <div class="homeOverlayHead">
               <b id="homeOverlayTitle">Panel</b>
@@ -555,7 +523,6 @@
             <div class="homeOverlayBody" id="homeOverlayBody"></div>
           </div>
 
-          <!-- VIDEO BIENVENIDA -->
           <div class="homeVideoWrap" id="homeVideoWrap">
             <div class="homeVideo">
               <iframe
@@ -565,7 +532,6 @@
             </div>
           </div>
 
-          <!-- PRESENTACIÓN (texto transcripto de tu imagen) -->
           <div class="presentation">
             <h2>El curso que necesitas para potenciar tus habilidades en el mundo audiovisual</h2>
             <p>
@@ -578,27 +544,22 @@
             </p>
           </div>
 
-          <!-- BLOQUES (1 vertical + 2 horizontales) -->
           <div class="statsGrid">
-            <!-- Vertical -->
             <div class="statCard statVertical">
               <div>
                 <div class="statTitle">Sobre este curso</div>
-
                 <div class="statLine"><span>Duración total de clases</span><b>3h 40m aprox</b></div>
                 <div class="statLine"><span>Clases</span><b>20</b></div>
                 <div class="statLine"><span>Videos</span><b>21</b></div>
                 <div class="statLine"><span>Audio</span><b>Español</b></div>
                 <div class="statLine"><span>Última actualización</span><b>2026</b></div>
               </div>
-
               <div style="display:flex; gap:10px; align-items:center; justify-content:flex-start; flex-wrap:wrap;">
                 <span class="pill" id="pillInline">0 / 20</span>
               </div>
             </div>
 
-            <!-- Horizontal 1: PROFESOR -->
-            <div class="statCard statHoriz">
+            <div class="statCard">
               <div class="hTop">
                 <div class="profile">
                   <div class="avatar">EM</div>
@@ -609,33 +570,27 @@
                 </div>
                 <span class="pill">After Effects · 3D</span>
               </div>
-
               <div class="statNote">
                 Lic. en Producción y Realización Audiovisual, Director de Motion Graphics y Artista VFX. Me apasiona el arte, crear y nadar. Llevo más de 15 años trabajando en proyectos audiovisuales para Cine, TV, Publicidad y nuevas plataformas, diseñando para diferentes marcas y clientes. Te invito a recorrer este maravilloso universo audiovisual. ¡Te espero! <b>@emma_mel_</b>
               </div>
             </div>
 
-            <!-- Horizontal 2: VALORACIÓN -->
-            <div class="statCard statHoriz">
+            <div class="statCard">
               <div class="hTop">
                 <div>
                   <div class="statTitle">Valoración del curso</div>
                   <div style="display:flex; align-items:baseline; gap:10px; margin-top:4px;">
-                    <div style="font-size:30px; font-weight:900; color:var(--text);">4.9</div>
+                    <div style="font-size:30px; font-weight:900;">4.9</div>
                     <div style="color:var(--muted2); font-size:14px;">Media total</div>
                   </div>
                 </div>
-                <button class="btn accent" type="button" id="rateBtn">⭐ Valorar</button>
+                <button class="btn accent" type="button">⭐ Valorar</button>
               </div>
-
-              <div class="statNote">
-                Si te sirvió, dejá un comentario o feedback. Eso me ayuda a mejorar el curso y a sumar más contenido.
-              </div>
+              <div class="statNote">Si te sirvió, dejá un comentario o feedback. Eso me ayuda a mejorar el curso y a sumar más contenido.</div>
             </div>
           </div>
         </section>
 
-        <!-- PLAYER -->
         <section id="playerSection" style="display:none;">
           <div class="playerWrap">
             <div class="player">
@@ -644,7 +599,6 @@
                 allowfullscreen></iframe>
             </div>
           </div>
-
           <div class="lessonMeta">
             <div class="left">
               <h2 id="lessonTitle">Elegí una clase</h2>
@@ -658,8 +612,7 @@
         </section>
       </main>
 
-      <!-- SIDEBAR -->
-      <aside class="card" style="position:sticky; top:78px;">
+      <aside class="card sidebar">
         <div class="sideHead">
           <b>Clases</b>
           <span id="sideSub">Clases del curso</span>
@@ -678,8 +631,6 @@
   <script>
     const DOWNLOADS_LINK = "https://drive.google.com/drive/folders/1JwAskl-_V1mdrx0JIWpMMnkqJdgiq4yX?usp=drive_link";
 
-    // Clases 01..20 (20 clases)
-    // IMPORTANTE: acá respeté tus links finales (17..20) y final.
     const lessons = [
       { t:"01 - Introducción", d:"Breve introducción al curso.", url:"https://youtu.be/D1IC09GeKZs" },
       { t:"02 - Retos de entorno 3D", d:"Arrancamos el workshop y el enfoque del entorno 3D.", url:"https://youtu.be/HVBjwflEPBA" },
@@ -695,29 +646,24 @@
       { t:"13 - Animación de títulos", d:"Diseño y animación de títulos integrados.", url:"https://youtu.be/5Kf3hmlzw7s" },
       { t:"14 - Composición y Timing", d:"Ajustes globales de comp y ritmo.", url:"https://youtu.be/OHG0WslMs8M" },
       { t:"15 - Efectos de lighting", d:"Look final: profundidad, atmósfera e iluminación.", url:"https://youtu.be/8jx3xiaeruY" },
-      { t:"16 - Efectos de Partículas 3D", d:"Partículas para elevar el impacto visual.", url:"https://youtu.be/JoGWgePrkeA" },
-
-      // CORREGIDOS (según tus links)
+      { t:"16 - Efectos de Partículas 3D", d:"Partículas para elevar el impacto visual.", url:"https://www.youtube.com/watch?v=JoGWgePrkeA" },
       { t:"17 - Retoques de Composición", d:"Retoques finales de post y composición.", url:"https://www.youtube.com/watch?v=MIBiBZC7uZ4" },
       { t:"18 - Optimización del proyecto", d:"Orden, rendimiento y limpieza del proyecto.", url:"https://www.youtube.com/watch?v=Kb5NjjzP8ZU" },
       { t:"19 - Export Final", d:"Exportación final y entrega.", url:"https://www.youtube.com/watch?v=I4njR2qgrZI" },
       { t:"20 - Visualización y análisis", d:"Cierre y análisis del resultado.", url:"https://www.youtube.com/watch?v=sLxfVUPDj0o" }
     ];
 
-    // Resultado final (módulo aparte, solo este video)
     const FINAL_VIDEO = { t:"Resultado final", d:"Entrega final del curso.", url:"https://www.youtube.com/watch?v=bZlzz87AVo4" };
 
-    // Módulos: Look & Post = 16..20 (clases 16-20) y Entrega = solo final
     const modules = [
       { id:"m1", name:"Inicio del Workshop", items:[0,1,2,3] },
       { id:"m2", name:"Preparación de recursos", items:[4] },
       { id:"m3", name:"After Effects + Estructura 3D", items:[5,6,7] },
       { id:"m4", name:"Animación", items:[8,9,10,11,12,13] },
-      { id:"m5", name:"Look & Post", items:[14,15,16,17,18,19] }, // 16..20
+      { id:"m5", name:"Look & Post", items:[14,15,16,17,18,19] },
       { id:"m6", name:"Entrega", finalOnly:true }
     ];
 
-    // ====== DOM ======
     const q = document.getElementById("q");
     const modulesWrap = document.getElementById("modules");
 
@@ -740,7 +686,6 @@
     const pillInline = document.getElementById("pillInline");
     const sideSub = document.getElementById("sideSub");
 
-    // Home overlay tabs
     const btnTopics = document.getElementById("btnTopics");
     const btnDownloads = document.getElementById("btnDownloads");
     const btnComments = document.getElementById("btnComments");
@@ -750,8 +695,7 @@
     const homeOverlayBody = document.getElementById("homeOverlayBody");
     const closeHomeOverlay = document.getElementById("closeHomeOverlay");
 
-    // ====== Progreso (manual) ======
-    const STORAGE_KEY = "aula_em_experto_v6";
+    const STORAGE_KEY = "aula_em_experto_v7";
     const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
 
     function saveProgress(){
@@ -763,10 +707,9 @@
     function completedCount(){ return Object.values(progress).filter(Boolean).length; }
 
     function updateProgressUI(){
-      const total = lessons.length; // 20 clases
+      const total = lessons.length;
       const done = completedCount();
       const pct = total ? Math.round((done/total)*100) : 0;
-
       pillProgress.textContent = `Progreso ${pct}%`;
       pillInline.textContent = `${done} / ${total}`;
       sideSub.textContent = `${total} clases · ${pct}% completado`;
@@ -795,14 +738,12 @@
       hideHomeOverlay();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-
     function showPlayer(){
       homeSection.style.display = "none";
       playerSection.style.display = "";
       hideHomeOverlay();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-
     function updateDoneButton(){
       if(currentLesson === null){ toggleDone.textContent = "✅ Completar"; return; }
       const isDone = !!progress[currentLesson];
@@ -813,7 +754,6 @@
       const l = lessons[i];
       currentLesson = i;
       showPlayer();
-
       frame.src = toEmbed(l.url);
       lessonTitle.textContent = l.t;
       lessonDesc.textContent = l.d || " ";
@@ -827,7 +767,7 @@
     }
 
     function playFinal(){
-      currentLesson = null; // no se marca completar acá
+      currentLesson = null;
       showPlayer();
       frame.src = toEmbed(FINAL_VIDEO.url);
       lessonTitle.textContent = FINAL_VIDEO.t;
@@ -927,15 +867,12 @@
       }
     }
 
-    // ===== Home Overlay Tabs =====
     function showHomeOverlay(title, html){
       homeOverlayTitle.textContent = title;
       homeOverlayBody.innerHTML = html;
       homeOverlay.classList.add("show");
     }
-    function hideHomeOverlay(){
-      homeOverlay.classList.remove("show");
-    }
+    function hideHomeOverlay(){ homeOverlay.classList.remove("show"); }
     closeHomeOverlay.onclick = hideHomeOverlay;
 
     btnDownloads.onclick = () => {
@@ -945,16 +882,6 @@
           Accedé al <b>proyecto de After Effects</b> y a los <b>recursos gráficos</b> desde el link de Drive.
         </p>
         <a class="btn solid" href="${DOWNLOADS_LINK}" target="_blank" rel="noopener">⬇ Abrir carpeta de descargas</a>
-        <hr style="border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0;">
-        <h3>El curso que necesitas para potenciar tus habilidades en el mundo audiovisual</h3>
-        <p>
-          Durante este taller, te ayudaré a desarrollar las habilidades necesarias para convertirte en un artista y estar preparado para ingresar a un estudio o tener éxito como freelancer.
-          A través de este curso aprenderás técnicas y habilidades claves para convertirte en un profesional versátil capaz de trabajar en cualquier proyecto audiovisual.
-          El curso de <b>After Effects 3D</b> ha sido diseñado para adaptarse a estudiantes de todos los niveles, desde aquellos que recién comienzan en el mundo del diseño en movimiento,
-          hasta los que ya tienen experiencia y desean profundizar sus conocimientos. El contenido se enfoca en brindar una formación completa y detallada, para que puedas expandir tus habilidades
-          y desarrollar nuevas técnicas creativas, independientemente de tu nivel de experiencia previo. Si quieres crear gráficos en movimiento para diferentes industrias como videojuegos,
-          comerciales, películas, animaciones o web, este taller es para vos. <b>¡Inscribite hoy mismo!</b> y accede a todas las herramientas necesarias para llevar tus habilidades al siguiente nivel.
-        </p>
       `);
     };
 
@@ -1007,7 +934,7 @@
     };
 
     function focusModule(mid){
-      const target = document.querySelector(\`.module[data-mid="\${mid}"]\`);
+      const target = document.querySelector(`.module[data-mid="${mid}"]`);
       if(!target) return;
       const body = target.querySelector(".moduleBody");
       if(body && body.style.display === "none"){
@@ -1018,7 +945,6 @@
       setTimeout(()=> target.style.boxShadow = "", 900);
     }
 
-    // ===== Events =====
     goHome.onclick = showHome;
     startBtn.onclick = () => playLesson(0);
 
@@ -1042,7 +968,6 @@
       renderModules(currentTerm);
     });
 
-    // Init
     updateProgressUI();
     renderModules("");
     showHome();
