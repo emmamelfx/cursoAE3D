@@ -1,43 +1,992 @@
-const lessons = [
-  { t:"01 - Introducción", d:"Breve introducción al curso.", url:"https://youtu.be/D1IC09GeKZs" },
-  { t:"02 - Retos de entorno 3D", d:"Arrancamos el workshop y el enfoque del entorno 3D.", url:"https://youtu.be/HVBjwflEPBA" },
-  { t:"03 - Objetivos", d:"Qué vas a lograr y cómo vamos a trabajarlo.", url:"https://youtu.be/4USqAIWAIqc" },
-  { t:"04 - Manos a la obra", d:"Setup y primeros pasos del proyecto.", url:"https://youtu.be/LaMZVjZ1se4" },
-  { t:"05 y 06 - Photoshop", d:"Preparación de recursos y ajustes (ambas clases en un solo video).", url:"https://youtu.be/wyMZ_Equajc" },
-  { t:"07 - Interfaz express de AE", d:"Ajustes clave y setup inicial en After Effects.", url:"https://youtu.be/Ghydv5lH-hU" },
-  { t:"08 - Interfaz de AE 3D Cam", d:"Trabajo con cámara 3D y herramientas principales.", url:"https://youtu.be/Jwr5WONsrnw" },
-  { t:"09 - Import y Composición de la estructura 3D", d:"Importación y armado de la estructura en la comp.", url:"https://youtu.be/kIUfed9wwzs" },
-  { t:"10 - Animación de cámara 3D I", d:"Primer tramo de animación con cámara 3D.", url:"https://youtu.be/2eifWwbYoVU" },
-  { t:"11 - Animación de cámara 3D II", d:"Continuación: refinamos timing y movimientos.", url:"https://youtu.be/YRVPlf9Q8b8" },
-  { t:"12 - Animación interna", d:"Microanimaciones y vida dentro del entorno.", url:"https://youtu.be/6iZKgA6W2XA" },
-  { t:"13 - Animación de títulos", d:"Diseño y animación de títulos integrados.", url:"https://youtu.be/5Kf3hmlzw7s" },
-  { t:"14 - Composición y Timing", d:"Ajustes globales de comp y ritmo.", url:"https://youtu.be/OHG0WslMs8M" },
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CURSO DE AFTER EFFECTS EXPERTO</title>
 
-  /* ✅ 15 al 20 corregidos con tus links */
-  { t:"15 - Efectos de lighting", d:"Look final: profundidad, atmósfera e iluminación.", url:"https://www.youtube.com/watch?v=8jx3xiaeruY" },
-  { t:"16 - Efectos de Partículas 3D", d:"Partículas para elevar el impacto visual.", url:"https://www.youtube.com/watch?v=JoGWgePrkeA" },
-  { t:"17 - Retoques de Composición", d:"Retoques finales de post y composición.", url:"https://www.youtube.com/watch?v=MIBiBZC7uZ4" },
-  { t:"18 - Optimización del proyecto", d:"Orden, rendimiento y limpieza del proyecto.", url:"https://www.youtube.com/watch?v=Kb5NjjzP8ZU" },
-  { t:"19 - Export Final", d:"Exportación final y entrega.", url:"https://www.youtube.com/watch?v=I4njR2qgrZI" },
-  { t:"20 - Visualización y análisis", d:"Cierre y análisis del resultado.", url:"https://www.youtube.com/watch?v=sLxfVUPDj0o" }
-];
+  <!-- Favicon (EM) -->
+  <link rel="icon" type="image/svg+xml"
+    href='data:image/svg+xml;utf8,
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="%2344C4F2"/>
+      <stop offset="1" stop-color="%23766BF5"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(%23g)"/>
+  <text x="50%" y="56%" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" fill="%23ffffff" text-anchor="middle">EM</text>
+</svg>' />
 
-const FINAL_VIDEO = {
-  t:"Resultado final",
-  d:"Entrega final del curso.",
-  url:"https://www.youtube.com/watch?v=bZlzz87AVo4"
-};
+  <style>
+    :root{
+      --bg:#0b0d12;
+      --bg2:#0f1320;
+      --stroke:rgba(255,255,255,.10);
+      --stroke2:rgba(255,255,255,.20);
+      --text:#f4f6ff;
+      --muted:#c6cbe2;
+      --muted2:#8e97bb;
 
-/* ✅ Módulos: Look & Post incluye 15–20, Entrega SOLO resultado final */
-const modules = [
-  { id:"m1", name:"Inicio del Workshop", items:[0,1,2,3] },
-  { id:"m2", name:"Preparación de recursos", items:[4] },
-  { id:"m3", name:"After Effects + Estructura 3D", items:[5,6,7] },
-  { id:"m4", name:"Animación", items:[8,9,10,11,12,13] },
+      /* Colores del logo EM */
+      --accent:#44C4F2;
+      --accent2:#766BF5;
 
-  // ✅ Look & Post: 15–20 = índices 14 a 19
-  { id:"m5", name:"Look & Post", items:[14,15,16,17,18,19] },
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
+      --shadow2: 0 10px 28px rgba(0,0,0,.35);
+      --r14:14px; --r16:16px; --r18:18px; --r20:20px;
+      --max: 1240px;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1100px 600px at 15% -10%, rgba(68,196,242,.22), transparent 60%),
+        radial-gradient(900px 520px at 85% -10%, rgba(118,107,245,.18), transparent 60%),
+        radial-gradient(800px 520px at 50% 110%, rgba(68,196,242,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+    }
+    a{ text-decoration:none; color:inherit; }
 
-  // ✅ Entrega: solo video final
-  { id:"m6", name:"Entrega", finalOnly:true }
-];
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,13,18,.68);
+      border-bottom:1px solid var(--stroke);
+    }
+    .topbar-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 16px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .brand{display:flex; align-items:center; gap:10px;}
+    .logoWrap{
+      width:42px; height:42px; border-radius:16px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display:grid; place-items:center;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: 0 16px 34px rgba(68,196,242,.18);
+      flex:0 0 auto;
+    }
+    .logoWrap span{font-weight:900; letter-spacing:.4px; color:#fff;}
+    .brandTxt{display:flex; flex-direction:column; line-height:1.12}
+    .brandTxt b{font-size:15px}
+    .brandTxt span{font-size:14px; color:var(--muted2)}
+
+    .actions{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; align-items:center;}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      color: var(--muted);
+      font-size:14px;
+      user-select:none;
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow2);
+      cursor:pointer;
+      color:#fff;
+      font-size:14px;
+      transition: transform .08s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: var(--stroke2); background: rgba(255,255,255,.08)}
+    .btn.accent{
+      border-color: rgba(68,196,242,.35);
+      background: linear-gradient(135deg, rgba(68,196,242,.22), rgba(118,107,245,.12));
+    }
+    .btn.solid{
+      border-color: rgba(68,196,242,.40);
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      font-weight: 900;
+      color:#fff;
+    }
+
+    .container{max-width:var(--max); margin:0 auto; padding:18px 16px 28px;}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 16px;
+      align-items:start;
+      margin-top:16px;
+    }
+    .card{
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--stroke);
+      border-radius: var(--r20);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+
+    /* Sidebar tipo plataforma */
+    .sidebar{
+      position:sticky;
+      top:78px;
+      height: calc(100vh - 92px);
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+    }
+    .sideHead{
+      padding: 14px 14px 12px;
+      border-bottom: 1px solid var(--stroke);
+      display:flex; flex-direction:column; gap:6px;
+      flex:0 0 auto;
+    }
+    .sideHead b{font-size:15px; color:var(--text)}
+    .sideHead span{font-size:14px; color: var(--muted2)}
+
+    .search{
+      padding: 12px 14px;
+      border-bottom:1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+      flex:0 0 auto;
+    }
+    .search input{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: var(--r14);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      color: var(--text) !important;
+      outline:none;
+      font-size: 14px;
+    }
+    .search input::placeholder{ color: rgba(198,203,226,.55); }
+
+    #modules{
+      padding: 10px 10px 14px;
+      overflow:auto;
+      flex:1 1 auto;
+      scrollbar-width: thin;
+    }
+    #modules::-webkit-scrollbar{width:10px}
+    #modules::-webkit-scrollbar-thumb{
+      background: rgba(255,255,255,.12);
+      border-radius: 999px;
+      border: 2px solid rgba(0,0,0,0);
+      background-clip: padding-box;
+    }
+
+    .module{
+      margin: 10px 0;
+      border-radius: var(--r16);
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+    }
+    .moduleHead{
+      padding: 10px 12px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      cursor:pointer; user-select:none;
+      color: var(--text);
+      position:sticky;
+      top:0;
+      background: rgba(12,14,20,.90);
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+      z-index:5;
+    }
+    .moduleHead b{font-size:14px; color:var(--text)}
+    .moduleHead span{font-size:14px; color: var(--muted2)}
+    .moduleHead:hover{background: rgba(16,18,26,.92)}
+    .moduleBody{padding: 0 8px 10px;}
+
+    /* Lista: texto SIEMPRE BLANCO */
+    .lessonBtn{
+      width:100%;
+      text-align:left;
+      display:flex; gap:10px; align-items:flex-start;
+      padding: 10px 10px;
+      border-radius: var(--r14);
+      border: 1px solid transparent;
+      background: transparent;
+      cursor:pointer;
+      transition: background .12s ease, border-color .12s ease, transform .08s ease;
+      margin-top: 6px;
+      color: var(--text) !important;
+    }
+    .lessonBtn *{color: var(--text) !important;}
+    .lessonBtn:hover{
+      background: rgba(68,196,242,.10);
+      border-color: rgba(68,196,242,.18);
+      transform: translateY(-1px);
+    }
+    .lessonBtn.active{
+      background: rgba(68,196,242,.14);
+      border-color: rgba(68,196,242,.22);
+    }
+    .badge{
+      width: 14px; height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 22px rgba(68,196,242,.18);
+      margin-top: 4px;
+      flex:0 0 auto;
+    }
+    .lt{margin:0; font-size:15px; font-weight:900; line-height:1.25;}
+    .ld{margin:4px 0 0; font-size:14px; color: var(--muted2) !important; line-height:1.35;}
+
+    /* Main */
+    .hero{
+      padding: 18px 18px 16px;
+      background:
+        radial-gradient(900px 520px at 10% 0%, rgba(68,196,242,.16), transparent 55%),
+        radial-gradient(900px 520px at 90% 0%, rgba(118,107,245,.14), transparent 55%),
+        rgba(255,255,255,.04);
+      border-bottom: 1px solid var(--stroke);
+      position: relative;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-size:15px;
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+    }
+    .kickerIcon{width:18px;height:18px;display:inline-block}
+    .titleRow{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; flex-wrap:wrap; margin-top:10px;
+    }
+    h1{margin:0; font-size:25px; line-height:1.15;}
+    .sub{
+      margin:10px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height:1.7;
+      max-width: 92ch;
+    }
+    .tabsRow{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .tabBtn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      cursor:pointer;
+      font-size: 14px;
+      color:#fff;
+      user-select:none;
+    }
+    .tabBtn.primary{
+      border-color: rgba(68,196,242,.40);
+      background: linear-gradient(135deg, rgba(68,196,242,.18), rgba(118,107,245,.10));
+      font-weight: 900;
+    }
+    .tabBtn:hover{border-color: rgba(255,255,255,.26);}
+
+    /* Overlay (panel encima del video) */
+    .homeOverlay{
+      position:absolute;
+      left:18px; right:18px;
+      top: 242px;
+      border-radius: var(--r18);
+      border: 1px solid rgba(68,196,242,.35);
+      background: rgba(10,12,18,.72);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 22px 60px rgba(0,0,0,.50);
+      display:none;
+      overflow:hidden;
+      z-index: 20;
+    }
+    .homeOverlay.show{display:block;}
+    .homeOverlayHead{
+      padding: 12px 14px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .homeOverlayHead b{font-size:16px}
+    .closeBtn{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      border-radius: 999px;
+      padding: 8px 10px;
+      cursor:pointer;
+      font-weight: 900;
+      color:#fff;
+    }
+    .closeBtn:hover{border-color: rgba(255,255,255,.24)}
+    .homeOverlayBody{
+      padding: 14px;
+      max-height: 420px;
+      overflow:auto;
+      color: var(--text);
+    }
+    .homeOverlayBody p{color:var(--muted); line-height:1.7; margin:0}
+    .homeOverlayBody h3{margin:0 0 10px; font-size:18px; color:var(--text)}
+
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(68,196,242,.28);
+      background: rgba(68,196,242,.10);
+      font-size: 14px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      cursor:pointer;
+      font-weight: 900;
+      color:#fff;
+    }
+    .chip:hover{border-color: rgba(68,196,242,.40);}
+
+    .homeVideoWrap{
+      margin-top: 14px;
+      border-radius: var(--r18);
+      overflow:hidden;
+      border: 1px solid var(--stroke);
+      background: rgba(0,0,0,.35);
+      box-shadow: var(--shadow2);
+      position: relative;
+      z-index: 1;
+    }
+    .homeVideo{width:100%; aspect-ratio:16/9; background:#070911;}
+    iframe{width:100%; height:100%; border:0}
+
+    .presentation{
+      margin-top: 14px;
+      border-radius: var(--r18);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      padding: 14px 14px;
+    }
+    .presentation h2{margin:0 0 10px; font-size:18px}
+    .presentation p{margin:0; font-size:14px; color:var(--muted); line-height:1.75}
+
+    /* Bloques: 1 vertical + 2 horizontales */
+    .statsGrid{
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 12px;
+      align-items:stretch;
+    }
+    .statCard{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--r16);
+      padding: 12px 12px;
+      min-height: 120px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .statVertical{grid-row: 1 / span 2; min-height: 252px; gap:10px;}
+    .statTitle{font-size:14px;color:var(--muted2); letter-spacing:.2px}
+    .statLine{
+      display:flex; justify-content:space-between; gap:10px;
+      padding: 10px 0;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      font-size: 15px;
+    }
+    .statLine b{font-size:15px}
+    .statLine span{color:var(--muted)}
+    .statLine:last-child{border-bottom:0}
+    .hTop{display:flex; align-items:center; justify-content:space-between; gap:10px;}
+    .profile{display:flex; align-items:center; gap:10px;}
+    .avatar{
+      width:40px; height:40px; border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(135deg, rgba(68,196,242,.18), rgba(118,107,245,.10));
+      display:grid; place-items:center;
+      font-weight:900;
+      color:#fff;
+    }
+    .profileTxt b{display:block; font-size:15px}
+    .profileTxt span{display:block; font-size:14px; color:var(--muted2)}
+    .statNote{margin-top:10px; font-size:14px; color: var(--muted); line-height:1.65}
+
+    /* Player */
+    .playerWrap{padding:14px;}
+    .player{
+      width:100%;
+      aspect-ratio:16/9;
+      border-radius: var(--r18);
+      overflow:hidden;
+      border: 1px solid var(--stroke);
+      background:#070911;
+      box-shadow: var(--shadow2);
+    }
+    .lessonMeta{
+      padding: 0 14px 14px;
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      align-items:flex-start;
+    }
+    .lessonMeta h2{margin:0; font-size:18px;}
+    .lessonMeta p{margin:8px 0 0; color: var(--muted); font-size:15px; line-height:1.55}
+    .navBtns{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end;}
+
+    /* Form */
+    .formGrid{display:grid; grid-template-columns: 1fr 1fr; gap: 10px;}
+    .field input, .field textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: var(--r14);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      outline:none;
+      font-size: 14px;
+      color: var(--text) !important;
+    }
+    .field textarea{ min-height: 140px; resize: vertical; grid-column: 1 / -1; }
+    .field input::placeholder, .field textarea::placeholder{ color: rgba(198,203,226,.55); }
+
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+      .sidebar{position:relative; top:auto; height:auto;}
+      #modules{max-height: 55vh;}
+      .statsGrid{grid-template-columns:1fr}
+      .statVertical{grid-row:auto; min-height:auto}
+      .homeOverlay{left:12px; right:12px; top: 280px;}
+      .formGrid{ grid-template-columns: 1fr; }
+      .titleRow{align-items:flex-start}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logoWrap" aria-hidden="true"><span>EM</span></div>
+        <div class="brandTxt">
+          <b>CURSO DE AFTER EFFECTS EXPERTO</b>
+          <span>Acceso por link · 21 videos / 20 clases</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <span class="pill" id="pillProgress">Progreso 0%</span>
+        <button class="btn accent" id="goHome" type="button">🏠 Inicio</button>
+        <a class="btn" id="openYT" href="#" target="_blank" rel="noopener">▶ Abrir en YouTube</a>
+        <button class="btn solid" id="toggleDone" type="button">✅ Completar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="grid">
+
+      <main class="card" id="mainCard">
+        <!-- HOME -->
+        <section class="hero" id="homeSection">
+          <div class="kicker">
+            <!-- Claqueta -->
+            <svg class="kickerIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M4 8h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
+              <path d="M4 8l2-4h14l-2 4H4Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
+              <path d="M8 4l-2 4M14 4l-2 4M20 4l-2 4" stroke="currentColor" stroke-width="2" opacity=".9"/>
+            </svg>
+            Workshop · After Effects · Entorno 3D
+          </div>
+
+          <div class="titleRow">
+            <h1>After Effects · Nivel Experto</h1>
+            <button class="btn solid" id="startBtn" type="button">▶ Empezar</button>
+          </div>
+
+          <p class="sub">
+            Hola! bienvenido al curso de After effects nivel experto, donde aprenderas todas las tecnicas avanzadas para mejorar tus skills como diseñador audiovisual, aprenderas todo sobre el entorno 3D para que tus diseños de motion graphics esten a la altura de las grandes agencias creativas. A tu derecha tendras la lista con todos los videos del curso, podras verlos las veces que quieras.
+          </p>
+
+          <div class="tabsRow">
+            <button class="tabBtn" id="btnTopics" type="button">🧩 Grupo de temas</button>
+            <button class="tabBtn primary" id="btnDownloads" type="button">Descargas de recursos</button>
+            <button class="tabBtn primary" id="btnComments" type="button">💬 Comentarios</button>
+          </div>
+
+          <!-- Overlay -->
+          <div class="homeOverlay" id="homeOverlay">
+            <div class="homeOverlayHead">
+              <b id="homeOverlayTitle">Panel</b>
+              <button class="closeBtn" id="closeHomeOverlay" type="button">✕</button>
+            </div>
+            <div class="homeOverlayBody" id="homeOverlayBody"></div>
+          </div>
+
+          <!-- Video bienvenida (solo home) -->
+          <div class="homeVideoWrap" id="homeVideoWrap">
+            <div class="homeVideo">
+              <iframe
+                src="https://www.youtube.com/embed/ptSPBlNyoQ8?rel=0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+
+          <!-- Texto transcripto -->
+          <div class="presentation">
+            <h2>El curso que necesitas para potenciar tus habilidades en el mundo audiovisual</h2>
+            <p>
+              Durante este taller, te ayudaré a desarrollar las habilidades necesarias para convertirte en un artista y estar preparado para ingresar a un estudio o tener éxito como freelancer.
+              A través de este curso aprenderás técnicas y habilidades claves para convertirte en un profesional versátil capaz de trabajar en cualquier proyecto audiovisual.
+              El curso de <b>After Effects 3D</b> ha sido diseñado para adaptarse a estudiantes de todos los niveles, desde aquellos que recién comienzan en el mundo del diseño en movimiento,
+              hasta los que ya tienen experiencia y desean profundizar sus conocimientos. El contenido se enfoca en brindar una formación completa y detallada, para que puedas expandir tus habilidades
+              y desarrollar nuevas técnicas creativas, independientemente de tu nivel de experiencia previo. Si quieres crear gráficos en movimiento para diferentes industrias como videojuegos,
+              comerciales, películas, animaciones o web, este taller es para vos. <b>¡Inscribite hoy mismo!</b> y accede a todas las herramientas necesarias para llevar tus habilidades al siguiente nivel.
+            </p>
+          </div>
+
+          <!-- 1 vertical + 2 horizontales -->
+          <div class="statsGrid">
+            <div class="statCard statVertical">
+              <div>
+                <div class="statTitle">Sobre este curso</div>
+                <div class="statLine"><span>Duración total de clases</span><b>3h 40m aprox</b></div>
+                <div class="statLine"><span>Clases</span><b>20</b></div>
+                <div class="statLine"><span>Videos</span><b>21</b></div>
+                <div class="statLine"><span>Audio</span><b>Español</b></div>
+                <div class="statLine"><span>Última actualización</span><b>2026</b></div>
+              </div>
+              <div style="display:flex; gap:10px; align-items:center; justify-content:flex-start; flex-wrap:wrap;">
+                <span class="pill" id="pillInline">0 / 20</span>
+              </div>
+            </div>
+
+            <div class="statCard">
+              <div class="hTop">
+                <div class="profile">
+                  <div class="avatar">EM</div>
+                  <div class="profileTxt">
+                    <b>@emma_mel_</b>
+                    <span>Profesor</span>
+                  </div>
+                </div>
+                <span class="pill">After Effects · 3D</span>
+              </div>
+              <div class="statNote">
+                Lic. en Producción y Realización Audiovisual, Director de Motion Graphics y Artista VFX. Me apasiona el arte, crear y nadar. Llevo más de 15 años trabajando en proyectos audiovisuales para Cine, TV, Publicidad y nuevas plataformas, diseñando para diferentes marcas y clientes. Te invito a recorrer este maravilloso universo audiovisual. ¡Te espero! <b>@emma_mel_</b>
+              </div>
+            </div>
+
+            <div class="statCard">
+              <div class="hTop">
+                <div>
+                  <div class="statTitle">Valoración del curso</div>
+                  <div style="display:flex; align-items:baseline; gap:10px; margin-top:4px;">
+                    <div style="font-size:30px; font-weight:900;">4.9</div>
+                    <div style="color:var(--muted2); font-size:14px;">Media total</div>
+                  </div>
+                </div>
+                <button class="btn accent" type="button">⭐ Valorar</button>
+              </div>
+              <div class="statNote">Si te sirvió, dejá un comentario o feedback. Eso me ayuda a mejorar el curso y a sumar más contenido.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PLAYER -->
+        <section id="playerSection" style="display:none;">
+          <div class="playerWrap">
+            <div class="player">
+              <iframe id="frame"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="lessonMeta">
+            <div class="left">
+              <h2 id="lessonTitle">Elegí una clase</h2>
+              <p id="lessonDesc">Seleccioná una clase del listado para comenzar.</p>
+            </div>
+            <div class="navBtns">
+              <button class="btn" id="prevBtn" type="button">⬅ Anterior</button>
+              <button class="btn" id="nextBtn" type="button">Siguiente ➡</button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- SIDEBAR -->
+      <aside class="card sidebar">
+        <div class="sideHead">
+          <b>Clases</b>
+          <span id="sideSub">Clases del curso</span>
+        </div>
+
+        <div class="search">
+          <input id="q" type="search" placeholder="Buscar… (ej: cámara, 3D, export, partículas)" />
+        </div>
+
+        <div id="modules"></div>
+      </aside>
+
+    </div>
+  </div>
+
+  <script>
+    const DOWNLOADS_LINK = "https://drive.google.com/drive/folders/1JwAskl-_V1mdrx0JIWpMMnkqJdgiq4yX?usp=drive_link";
+
+    // ✅ 20 clases (19 videos + el resto según tu estructura) + “Resultado final” como entrega
+    const lessons = [
+      { t:"01 - Introducción", d:"Breve introducción al curso.", url:"https://youtu.be/D1IC09GeKZs" },
+      { t:"02 - Retos de entorno 3D", d:"Arrancamos el workshop y el enfoque del entorno 3D.", url:"https://youtu.be/HVBjwflEPBA" },
+      { t:"03 - Objetivos", d:"Qué vas a lograr y cómo vamos a trabajarlo.", url:"https://youtu.be/4USqAIWAIqc" },
+      { t:"04 - Manos a la obra", d:"Setup y primeros pasos del proyecto.", url:"https://youtu.be/LaMZVjZ1se4" },
+      { t:"05 y 06 - Photoshop", d:"Preparación de recursos y ajustes (ambas clases en un solo video).", url:"https://youtu.be/wyMZ_Equajc" },
+      { t:"07 - Interfaz express de AE", d:"Ajustes clave y setup inicial en After Effects.", url:"https://youtu.be/Ghydv5lH-hU" },
+      { t:"08 - Interfaz de AE 3D Cam", d:"Trabajo con cámara 3D y herramientas principales.", url:"https://youtu.be/Jwr5WONsrnw" },
+      { t:"09 - Import y Composición de la estructura 3D", d:"Importación y armado de la estructura en la comp.", url:"https://youtu.be/kIUfed9wwzs" },
+      { t:"10 - Animación de cámara 3D I", d:"Primer tramo de animación con cámara 3D.", url:"https://youtu.be/2eifWwbYoVU" },
+      { t:"11 - Animación de cámara 3D II", d:"Continuación: refinamos timing y movimientos.", url:"https://youtu.be/YRVPlf9Q8b8" },
+      { t:"12 - Animación interna", d:"Microanimaciones y vida dentro del entorno.", url:"https://youtu.be/6iZKgA6W2XA" },
+      { t:"13 - Animación de títulos", d:"Diseño y animación de títulos integrados.", url:"https://youtu.be/5Kf3hmlzw7s" },
+      { t:"14 - Composición y Timing", d:"Ajustes globales de comp y ritmo.", url:"https://youtu.be/OHG0WslMs8M" },
+
+      { t:"15 - Efectos de lighting", d:"Look final: profundidad, atmósfera e iluminación.", url:"https://www.youtube.com/watch?v=8jx3xiaeruY" },
+      { t:"16 - Efectos de Partículas 3D", d:"Partículas para elevar el impacto visual.", url:"https://www.youtube.com/watch?v=JoGWgePrkeA" },
+      { t:"17 - Retoques de Composición", d:"Retoques finales de post y composición.", url:"https://www.youtube.com/watch?v=MIBiBZC7uZ4" },
+      { t:"18 - Optimización del proyecto", d:"Orden, rendimiento y limpieza del proyecto.", url:"https://www.youtube.com/watch?v=Kb5NjjzP8ZU" },
+      { t:"19 - Export Final", d:"Exportación final y entrega.", url:"https://www.youtube.com/watch?v=I4njR2qgrZI" },
+      { t:"20 - Visualización y análisis", d:"Cierre y análisis del resultado.", url:"https://www.youtube.com/watch?v=sLxfVUPDj0o" }
+    ];
+
+    const FINAL_VIDEO = { t:"Resultado final", d:"Entrega final del curso.", url:"https://www.youtube.com/watch?v=bZlzz87AVo4" };
+
+    // ✅ Módulos (Look & Post 15–20; Entrega solo resultado final)
+    const modules = [
+      { id:"m1", name:"Inicio del Workshop", items:[0,1,2,3] },
+      { id:"m2", name:"Preparación de recursos", items:[4] },
+      { id:"m3", name:"After Effects + Estructura 3D", items:[5,6,7] },
+      { id:"m4", name:"Animación", items:[8,9,10,11,12,13] },
+      { id:"m5", name:"Look & Post", items:[14,15,16,17,18,19] },
+      { id:"m6", name:"Entrega", finalOnly:true }
+    ];
+
+    const q = document.getElementById("q");
+    const modulesWrap = document.getElementById("modules");
+
+    const homeSection = document.getElementById("homeSection");
+    const playerSection = document.getElementById("playerSection");
+
+    const frame = document.getElementById("frame");
+    const lessonTitle = document.getElementById("lessonTitle");
+    const lessonDesc = document.getElementById("lessonDesc");
+
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const startBtn = document.getElementById("startBtn");
+
+    const openYT = document.getElementById("openYT");
+    const goHome = document.getElementById("goHome");
+    const toggleDone = document.getElementById("toggleDone");
+
+    const pillProgress = document.getElementById("pillProgress");
+    const pillInline = document.getElementById("pillInline");
+    const sideSub = document.getElementById("sideSub");
+
+    const btnTopics = document.getElementById("btnTopics");
+    const btnDownloads = document.getElementById("btnDownloads");
+    const btnComments = document.getElementById("btnComments");
+
+    const homeOverlay = document.getElementById("homeOverlay");
+    const homeOverlayTitle = document.getElementById("homeOverlayTitle");
+    const homeOverlayBody = document.getElementById("homeOverlayBody");
+    const closeHomeOverlay = document.getElementById("closeHomeOverlay");
+
+    const STORAGE_KEY = "aula_em_experto_v_final";
+    const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+    function saveProgress(){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+      updateProgressUI();
+      renderModules(currentTerm);
+      updateDoneButton();
+    }
+    function completedCount(){ return Object.values(progress).filter(Boolean).length; }
+
+    function updateProgressUI(){
+      const total = lessons.length; // 20 clases
+      const done = completedCount();
+      const pct = total ? Math.round((done/total)*100) : 0;
+      pillProgress.textContent = `Progreso ${pct}%`;
+      pillInline.textContent = `${done} / ${total}`;
+      sideSub.textContent = `${total} clases · ${pct}% completado`;
+    }
+
+    function toEmbed(url){
+      const u = new URL(url);
+      const v = u.searchParams.get("v");
+      if(v) return `https://www.youtube.com/embed/${v}?rel=0`;
+      const parts = u.pathname.split("/").filter(Boolean);
+      if(parts.length) return `https://www.youtube.com/embed/${parts[0]}?rel=0`;
+      return "";
+    }
+
+    let currentLesson = null;
+    let currentTerm = "";
+
+    function showHome(){
+      homeSection.style.display = "";
+      playerSection.style.display = "none";
+      currentLesson = null;
+      frame.src = "";
+      openYT.href = "#";
+      toggleDone.textContent = "✅ Completar";
+      document.querySelectorAll(".lessonBtn").forEach(b => b.classList.remove("active"));
+      hideHomeOverlay();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    function showPlayer(){
+      homeSection.style.display = "none";
+      playerSection.style.display = "";
+      hideHomeOverlay();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    function updateDoneButton(){
+      if(currentLesson === null){ toggleDone.textContent = "✅ Completar"; return; }
+      const isDone = !!progress[currentLesson];
+      toggleDone.textContent = isDone ? "↩ Marcar pendiente" : "✅ Marcar completada";
+    }
+
+    function playLesson(i){
+      const l = lessons[i];
+      currentLesson = i;
+      showPlayer();
+      frame.src = toEmbed(l.url);
+      lessonTitle.textContent = l.t;
+      lessonDesc.textContent = l.d || " ";
+      openYT.href = l.url;
+
+      document.querySelectorAll(".lessonBtn").forEach(b => b.classList.remove("active"));
+      const btn = document.querySelector(`.lessonBtn[data-i="${i}"]`);
+      if(btn) btn.classList.add("active");
+
+      updateDoneButton();
+    }
+
+    function playFinal(){
+      currentLesson = null;
+      showPlayer();
+      frame.src = toEmbed(FINAL_VIDEO.url);
+      lessonTitle.textContent = FINAL_VIDEO.t;
+      lessonDesc.textContent = FINAL_VIDEO.d;
+      openYT.href = FINAL_VIDEO.url;
+      toggleDone.textContent = "✅ Completar";
+    }
+
+    function renderModules(term=""){
+      modulesWrap.innerHTML = "";
+      const t = term.trim().toLowerCase();
+
+      function addModule(mod){
+        const modEl = document.createElement("div");
+        modEl.className = "module";
+        modEl.dataset.mid = mod.id;
+
+        const head = document.createElement("div");
+        head.className = "moduleHead";
+
+        const left = document.createElement("div");
+        let count = 0;
+
+        if(mod.finalOnly){
+          count = 1;
+          left.innerHTML = `<b>${mod.name}</b><span style="display:block;margin-top:2px;">${count} video</span>`;
+        } else {
+          const filtered = mod.items.filter(i => {
+            if(!t) return true;
+            const l = lessons[i];
+            return (l.t||"").toLowerCase().includes(t) || (l.d||"").toLowerCase().includes(t);
+          });
+          if(t && filtered.length === 0) return;
+          count = filtered.length;
+          left.innerHTML = `<b>${mod.name}</b><span style="display:block;margin-top:2px;">${count} clases</span>`;
+          mod._filtered = filtered;
+        }
+
+        const right = document.createElement("span");
+        right.textContent = "▼";
+
+        head.appendChild(left);
+        head.appendChild(right);
+
+        const body = document.createElement("div");
+        body.className = "moduleBody";
+
+        if(mod.finalOnly){
+          const btn = document.createElement("button");
+          btn.className = "lessonBtn";
+          btn.type = "button";
+          btn.innerHTML = `
+            <div class="badge"></div>
+            <div>
+              <p class="lt">Resultado final</p>
+              <p class="ld">Entrega final del curso.</p>
+            </div>
+          `;
+          btn.onclick = playFinal;
+          body.appendChild(btn);
+        } else {
+          (mod._filtered || mod.items).forEach(i => {
+            const l = lessons[i];
+            const btn = document.createElement("button");
+            btn.className = "lessonBtn";
+            btn.type = "button";
+            btn.dataset.i = i;
+            btn.innerHTML = `
+              <div class="badge"></div>
+              <div>
+                <p class="lt">${l.t}</p>
+                <p class="ld">${l.d || " "}</p>
+              </div>
+            `;
+            btn.onclick = () => playLesson(i);
+            body.appendChild(btn);
+          });
+        }
+
+        let open = true;
+        head.onclick = () => {
+          open = !open;
+          body.style.display = open ? "" : "none";
+          right.textContent = open ? "▼" : "▶";
+        };
+
+        modEl.appendChild(head);
+        modEl.appendChild(body);
+        modulesWrap.appendChild(modEl);
+      }
+
+      modules.forEach(addModule);
+
+      if(currentLesson !== null){
+        const btn = document.querySelector(`.lessonBtn[data-i="${currentLesson}"]`);
+        if(btn) btn.classList.add("active");
+      }
+    }
+
+    function showHomeOverlay(title, html){
+      homeOverlayTitle.textContent = title;
+      homeOverlayBody.innerHTML = html;
+      homeOverlay.classList.add("show");
+    }
+    function hideHomeOverlay(){ homeOverlay.classList.remove("show"); }
+    closeHomeOverlay.onclick = hideHomeOverlay;
+
+    btnDownloads.onclick = () => {
+      showHomeOverlay("Descargas de recursos", `
+        <h3>Descargas de recursos</h3>
+        <p style="margin-bottom:12px;">
+          Accedé al <b>proyecto de After Effects</b> y a los <b>recursos gráficos</b> desde el link de Drive.
+        </p>
+        <a class="btn solid" href="${DOWNLOADS_LINK}" target="_blank" rel="noopener">⬇ Abrir carpeta de descargas</a>
+      `);
+    };
+
+    btnComments.onclick = () => {
+      showHomeOverlay("Comentarios", `
+        <h3>Dejá tu comentario</h3>
+        <p style="margin-bottom:12px;">
+          Cada vez que envíes un mensaje, me llega un aviso al mail <b>emmamel.fx@gmail.com</b>.
+        </p>
+        <form action="https://formsubmit.co/emmamel.fx@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Nuevo comentario del curso (Aula privada)" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <div class="formGrid" style="margin-top:6px;">
+            <div class="field"><input name="Nombre" placeholder="Tu nombre" required /></div>
+            <div class="field"><input name="Email" type="email" placeholder="Tu email" required /></div>
+            <div class="field"><textarea name="Mensaje" placeholder="Escribí tu comentario o consulta..." required></textarea></div>
+          </div>
+          <div style="margin-top:12px;">
+            <button class="btn solid" type="submit">📩 Enviar comentario</button>
+          </div>
+          <p style="margin-top:10px;color:var(--muted2);font-size:13px;line-height:1.5;">
+            Nota: FormSubmit es gratuito. La primera vez puede pedirte confirmar el mail (te llega un correo).
+          </p>
+        </form>
+      `);
+    };
+
+    btnTopics.onclick = () => {
+      const chips = [
+        { label:"Inicio del Workshop", mid:"m1" },
+        { label:"Preparación de recursos", mid:"m2" },
+        { label:"After Effects + Estructura 3D", mid:"m3" },
+        { label:"Animación", mid:"m4" },
+        { label:"Look & Post", mid:"m5" },
+        { label:"Entrega", mid:"m6" }
+      ];
+      const chipsHtml = chips.map(c => `<button class="chip" type="button" data-mid="${c.mid}">${c.label}</button>`).join("");
+      showHomeOverlay("Grupo de temas", `
+        <p style="margin-bottom:12px;">
+          Elegí un tema y te llevo directo a ese bloque en la lista de la derecha.
+        </p>
+        <div>${chipsHtml}</div>
+      `);
+
+      homeOverlayBody.querySelectorAll("[data-mid]").forEach(btn=>{
+        btn.addEventListener("click", () => {
+          const mid = btn.getAttribute("data-mid");
+          focusModule(mid);
+          hideHomeOverlay();
+        });
+      });
+    };
+
+    function focusModule(mid){
+      const target = document.querySelector(`.module[data-mid="${mid}"]`);
+      if(!target) return;
+      const body = target.querySelector(".moduleBody");
+      if(body && body.style.display === "none"){
+        target.querySelector(".moduleHead")?.click();
+      }
+      target.scrollIntoView({ behavior:"smooth", block:"start" });
+      target.style.boxShadow = "0 0 0 2px rgba(68,196,242,.25), 0 18px 50px rgba(0,0,0,.35)";
+      setTimeout(()=> target.style.boxShadow = "", 900);
+    }
+
+    goHome.onclick = showHome;
+    startBtn.onclick = () => playLesson(0);
+
+    prevBtn.onclick = () => {
+      if(currentLesson === null) return;
+      playLesson(Math.max(0, currentLesson - 1));
+    };
+    nextBtn.onclick = () => {
+      if(currentLesson === null) return;
+      playLesson(Math.min(lessons.length - 1, currentLesson + 1));
+    };
+
+    toggleDone.onclick = () => {
+      if(currentLesson === null) return;
+      progress[currentLesson] = !progress[currentLesson];
+      saveProgress();
+    };
+
+    q.addEventListener("input", () => {
+      currentTerm = q.value;
+      renderModules(currentTerm);
+    });
+
+    updateProgressUI();
+    renderModules("");
+    showHome();
+  </script>
+</body>
+</html>
