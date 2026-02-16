@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CURSO DE AFTER EFFECTS EXPERTO</title>
 
-  <!-- Favicon (EM) -->
+  <!-- Favicon EM -->
   <link rel="icon" type="image/svg+xml"
     href='data:image/svg+xml;utf8,
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
@@ -29,7 +29,6 @@
       --muted:#c6cbe2;
       --muted2:#8e97bb;
 
-      /* Colores del logo EM */
       --accent:#44C4F2;
       --accent2:#766BF5;
 
@@ -133,7 +132,7 @@
       position:relative;
     }
 
-    /* Sidebar tipo plataforma */
+    /* Sidebar */
     .sidebar{
       position:sticky;
       top:78px;
@@ -299,7 +298,7 @@
     }
     .tabBtn:hover{border-color: rgba(255,255,255,.26);}
 
-    /* Overlay (panel encima del video) */
+    /* Overlay */
     .homeOverlay{
       position:absolute;
       left:18px; right:18px;
@@ -641,7 +640,7 @@
   <script>
     const DOWNLOADS_LINK = "https://drive.google.com/drive/folders/1JwAskl-_V1mdrx0JIWpMMnkqJdgiq4yX?usp=drive_link";
 
-    // ✅ 20 clases (19 videos + el resto según tu estructura) + “Resultado final” como entrega
+    // 20 clases (videos 1–20) + 1 extra (Resultado final) = 21 videos
     const lessons = [
       { t:"01 - Introducción", d:"Breve introducción al curso.", url:"https://youtu.be/D1IC09GeKZs" },
       { t:"02 - Retos de entorno 3D", d:"Arrancamos el workshop y el enfoque del entorno 3D.", url:"https://youtu.be/HVBjwflEPBA" },
@@ -656,7 +655,6 @@
       { t:"12 - Animación interna", d:"Microanimaciones y vida dentro del entorno.", url:"https://youtu.be/6iZKgA6W2XA" },
       { t:"13 - Animación de títulos", d:"Diseño y animación de títulos integrados.", url:"https://youtu.be/5Kf3hmlzw7s" },
       { t:"14 - Composición y Timing", d:"Ajustes globales de comp y ritmo.", url:"https://youtu.be/OHG0WslMs8M" },
-
       { t:"15 - Efectos de lighting", d:"Look final: profundidad, atmósfera e iluminación.", url:"https://www.youtube.com/watch?v=8jx3xiaeruY" },
       { t:"16 - Efectos de Partículas 3D", d:"Partículas para elevar el impacto visual.", url:"https://www.youtube.com/watch?v=JoGWgePrkeA" },
       { t:"17 - Retoques de Composición", d:"Retoques finales de post y composición.", url:"https://www.youtube.com/watch?v=MIBiBZC7uZ4" },
@@ -667,7 +665,7 @@
 
     const FINAL_VIDEO = { t:"Resultado final", d:"Entrega final del curso.", url:"https://www.youtube.com/watch?v=bZlzz87AVo4" };
 
-    // ✅ Módulos (Look & Post 15–20; Entrega solo resultado final)
+    // Módulos: Look & Post incluye 15–20; Entrega solo Resultado final
     const modules = [
       { id:"m1", name:"Inicio del Workshop", items:[0,1,2,3] },
       { id:"m2", name:"Preparación de recursos", items:[4] },
@@ -708,7 +706,7 @@
     const homeOverlayBody = document.getElementById("homeOverlayBody");
     const closeHomeOverlay = document.getElementById("closeHomeOverlay");
 
-    const STORAGE_KEY = "aula_em_experto_v_final";
+    const STORAGE_KEY = "aula_em_experto_v1";
     const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
 
     function saveProgress(){
@@ -892,7 +890,7 @@
       showHomeOverlay("Descargas de recursos", `
         <h3>Descargas de recursos</h3>
         <p style="margin-bottom:12px;">
-          Accedé al <b>proyecto de After Effects</b> y a los <b>recursos gráficos</b> desde el link de Drive.
+          Abrí <b>Proyecto</b> y <b>Recursos gráficos</b> desde Drive:
         </p>
         <a class="btn solid" href="${DOWNLOADS_LINK}" target="_blank" rel="noopener">⬇ Abrir carpeta de descargas</a>
       `);
@@ -916,9 +914,6 @@
           <div style="margin-top:12px;">
             <button class="btn solid" type="submit">📩 Enviar comentario</button>
           </div>
-          <p style="margin-top:10px;color:var(--muted2);font-size:13px;line-height:1.5;">
-            Nota: FormSubmit es gratuito. La primera vez puede pedirte confirmar el mail (te llega un correo).
-          </p>
         </form>
       `);
     };
@@ -982,6 +977,11 @@
     q.addEventListener("input", () => {
       currentTerm = q.value;
       renderModules(currentTerm);
+    });
+
+    // Top actions
+    document.getElementById("openYT").addEventListener("click", (e)=>{
+      if(openYT.href === "#"){ e.preventDefault(); }
     });
 
     updateProgressUI();
