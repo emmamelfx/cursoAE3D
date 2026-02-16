@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Workshop · Entorno 3D en After Effects</title>
+  <title>CURSO DE AFTER EFFECTS EXPERTO</title>
   <style>
     :root{
       --bg:#0b0d12;
@@ -13,9 +13,9 @@
       --stroke:rgba(255,255,255,.10);
       --stroke2:rgba(255,255,255,.16);
       --text:#f4f6ff;
-      --muted:#aab2d1;
-      --muted2:#7d86a8;
-      --accent:#ff6a2a;      /* “brach vibe”: naranja/energía */
+      --muted:#c6cbe2;
+      --muted2:#8e97bb;
+      --accent:#ff6a2a;
       --accent2:#ff8452;
       --success:#22c55e;
       --shadow: 0 18px 50px rgba(0,0,0,.45);
@@ -41,7 +41,10 @@
         linear-gradient(180deg, var(--bg), var(--bg2));
     }
 
-    a{color:inherit}
+    /* Asegura que NO haya texto negro */
+    body, h1, h2, h3, p, span, b, small, div, button, a, input, label { color: var(--text); }
+    a{ text-decoration:none; }
+
     .container{max-width:var(--max); margin:0 auto; padding:18px 16px 28px;}
 
     /* Topbar */
@@ -64,13 +67,14 @@
       box-shadow: 0 16px 34px rgba(255,106,42,.28);
     }
     .brand .t{display:flex; flex-direction:column; line-height:1.12}
-    .brand .t b{font-size:13px; letter-spacing:.2px}
-    .brand .t span{font-size:12px; color:var(--muted2)}
+    /* +2px general */
+    .brand .t b{font-size:15px; letter-spacing:.2px}
+    .brand .t span{font-size:14px; color:var(--muted2)}
 
     .actions{display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;}
     .pill{
       display:inline-flex; align-items:center; gap:8px;
-      font-size:12px;
+      font-size:14px; /* +2px */
       padding:8px 10px;
       border:1px solid var(--stroke);
       background: rgba(255,255,255,.05);
@@ -81,14 +85,12 @@
     }
     .btn{
       display:inline-flex; align-items:center; gap:8px;
-      font-size:12px;
+      font-size:14px; /* +2px */
       padding:10px 12px;
       border-radius:999px;
       border:1px solid var(--stroke);
       background: rgba(255,255,255,.06);
-      color: var(--text);
       cursor:pointer;
-      text-decoration:none;
       box-shadow: var(--shadow2);
       transition: transform .08s ease, border-color .12s ease, background .12s ease;
       user-select:none;
@@ -102,8 +104,8 @@
     .btn.solid{
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       border-color: rgba(255,106,42,.35);
-      color:#101018;
-      font-weight: 700;
+      color:#101018; /* texto oscuro arriba del botón naranja, intencional */
+      font-weight: 800;
     }
 
     /* Layout */
@@ -123,7 +125,7 @@
       overflow:hidden;
     }
 
-    /* Hero */
+    /* HERO (tipos +3px acá) */
     .hero{
       padding: 18px 18px 16px;
       background:
@@ -134,7 +136,8 @@
     }
     .hero .kicker{
       display:inline-flex; align-items:center; gap:10px;
-      font-size:12px; color: var(--muted);
+      font-size:15px; /* (+3 vs original 12) */
+      color: var(--muted);
       padding: 6px 10px;
       border-radius:999px;
       border:1px solid var(--stroke);
@@ -142,16 +145,16 @@
     }
     h1{
       margin:10px 0 0;
-      font-size: 22px;
+      font-size: 25px; /* (+3 aprox) */
       letter-spacing: .2px;
       line-height:1.15;
     }
     .sub{
       margin:10px 0 0;
       color: var(--muted);
-      font-size: 13px;
-      line-height:1.6;
-      max-width: 78ch;
+      font-size: 16px; /* (+3 vs 13) */
+      line-height:1.7;
+      max-width: 92ch;
     }
     .hero-row{
       margin-top: 14px;
@@ -165,14 +168,15 @@
       display:flex; gap:10px; flex-wrap:wrap; align-items:center;
     }
     .kpi{
-      min-width: 170px;
+      min-width: 190px;
       padding: 10px 12px;
       border-radius: 14px;
       border:1px solid var(--stroke);
       background: rgba(255,255,255,.04);
     }
-    .kpi b{font-size:12px}
-    .kpi span{display:block; margin-top:2px; font-size:12px; color:var(--muted2)}
+    .kpi b{font-size:14px} /* +2 */
+    .kpi span{display:block; margin-top:2px; font-size:14px; color:var(--muted2)} /* +2 */
+
     .progressWrap{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
     .bar{
       width:min(420px, 100%);
@@ -189,7 +193,7 @@
       border-radius:999px;
       transition: width .25s ease;
     }
-    .barText{font-size:12px; color: var(--muted2); font-family: var(--mono);}
+    .barText{font-size:14px; color: var(--muted2); font-family: var(--mono);} /* +2 */
 
     /* Player */
     .playerWrap{padding:14px;}
@@ -209,8 +213,8 @@
       display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
       align-items:flex-start;
     }
-    .lessonMeta h2{margin:0; font-size:16px; letter-spacing:.2px}
-    .lessonMeta p{margin:8px 0 0; color: var(--muted); font-size:13px; line-height:1.55}
+    .lessonMeta h2{margin:0; font-size:18px; letter-spacing:.2px} /* +2 */
+    .lessonMeta p{margin:8px 0 0; color: var(--muted); font-size:15px; line-height:1.55} /* +2 */
     .navBtns{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end;}
 
     /* Sidebar */
@@ -219,22 +223,21 @@
       border-bottom: 1px solid var(--stroke);
       display:flex; flex-direction:column; gap:6px;
     }
-    .sideHead b{font-size:13px}
-    .sideHead span{font-size:12px; color: var(--muted2)}
+    .sideHead b{font-size:15px} /* +2 */
+    .sideHead span{font-size:14px; color: var(--muted2)} /* +2 */
+
     .search{padding: 12px 14px; border-bottom:1px solid var(--stroke); background: rgba(255,255,255,.03);}
     .search input{
       width:100%;
-      padding: 11px 12px;
+      padding: 12px 12px; /* + */
       border-radius: 14px;
       border: 1px solid var(--stroke);
       background: rgba(255,255,255,.04);
-      color: var(--text);
+      color: var(--text) !important;
       outline:none;
+      font-size: 14px; /* +2 */
     }
-    .search input:focus{
-      border-color: rgba(255,106,42,.35);
-      box-shadow: 0 0 0 4px rgba(255,106,42,.10);
-    }
+    .search input::placeholder{ color: rgba(198,203,226,.55); }
 
     .module{
       margin: 10px;
@@ -249,8 +252,8 @@
       cursor:pointer;
       user-select:none;
     }
-    .moduleHead b{font-size:12px}
-    .moduleHead span{font-size:12px; color: var(--muted2)}
+    .moduleHead b{font-size:14px} /* +2 */
+    .moduleHead span{font-size:14px; color: var(--muted2)} /* +2 */
     .moduleHead:hover{background: rgba(255,255,255,.04)}
     .moduleBody{padding: 0 8px 10px;}
 
@@ -276,11 +279,11 @@
       border-color: rgba(255,106,42,.22);
     }
     .badge{
-      width: 36px; height: 36px;
+      width: 38px; height: 38px; /* + */
       border-radius: 12px;
       display:grid; place-items:center;
       font-family: var(--mono);
-      font-size:12px;
+      font-size:14px; /* +2 */
       border:1px solid var(--stroke);
       background: rgba(255,255,255,.04);
       color: var(--muted);
@@ -290,24 +293,179 @@
       border-color: rgba(34,197,94,.28);
       background: rgba(34,197,94,.10);
       color: #bff2cf;
-      font-weight: 800;
+      font-weight: 900;
     }
-    .lt{margin:0; font-size:13px; font-weight:700; line-height:1.25;}
-    .ld{margin:4px 0 0; font-size:12px; color: var(--muted2); line-height:1.35;}
+    .lt{margin:0; font-size:15px; font-weight:800; line-height:1.25;} /* +2 */
+    .ld{margin:4px 0 0; font-size:14px; color: var(--muted2); line-height:1.35;} /* +2 */
 
     .note{
       padding: 12px 14px;
       border-top: 1px solid var(--stroke);
       color: var(--muted2);
-      font-size: 12px;
+      font-size: 14px; /* +2 */
       line-height:1.45;
       background: rgba(255,255,255,.03);
+    }
+
+    /* Sección tipo Crehana (debajo del hero) */
+    .tabsWrap{
+      padding: 14px 18px 18px;
+      border-top: 1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+    }
+    .tabs{
+      display:flex;
+      gap: 14px;
+      align-items:center;
+      border-bottom: 1px solid var(--stroke);
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+      flex-wrap:wrap;
+    }
+    .tab{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: transparent;
+      cursor:pointer;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .tab.active{
+      background: rgba(255,255,255,.05);
+      border-color: var(--stroke);
+      color: var(--text);
+    }
+    .tabDot{
+      width:10px; height:10px; border-radius:999px;
+      background: rgba(255,255,255,.18);
+    }
+    .tab.active .tabDot{
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 22px rgba(255,106,42,.22);
+    }
+
+    .sectionTitle{
+      margin: 0 0 12px;
+      font-size: 20px;
+      letter-spacing:.2px;
+    }
+
+    .infoGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .infoCard{
+      border-radius: 18px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      min-height: 210px;
+    }
+    .infoCardHead{
+      padding: 14px 14px 10px;
+      border-bottom: 1px solid var(--stroke);
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .infoCardHead b{font-size:16px}
+    .infoCardBody{padding: 14px}
+    .rows{display:flex; flex-direction:column; gap:10px;}
+    .row{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed rgba(255,255,255,.10);
+    }
+    .row:last-child{border-bottom:none; padding-bottom:0}
+    .row .k{color: var(--muted); font-size:14px}
+    .row .v{color: var(--text); font-size:14px; font-weight:800}
+
+    .prof{
+      display:flex; gap:12px; align-items:flex-start;
+    }
+    .avatar{
+      width:44px; height:44px; border-radius: 14px;
+      background: rgba(255,255,255,.07);
+      border:1px solid var(--stroke);
+      display:grid; place-items:center;
+      font-weight:900;
+      color: var(--text);
+    }
+    .prof b{font-size:16px}
+    .prof p{margin:6px 0 0; color: var(--muted); font-size:14px; line-height:1.55}
+    .linkBtn{
+      display:inline-flex; align-items:center; gap:10px;
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      font-size:14px;
+      cursor:pointer;
+    }
+    .ratingBig{
+      font-size: 44px;
+      font-weight: 900;
+      letter-spacing: .2px;
+      line-height:1;
+    }
+    .stars{
+      display:flex; gap:6px; align-items:center;
+      margin-top: 10px;
+      color: #ffd18b;
+      font-size: 16px;
+    }
+    .rateBtn{
+      margin-top: 14px;
+      display:inline-flex;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,106,42,.35);
+      background: rgba(255,106,42,.12);
+      color: #ffd9c8;
+      cursor:pointer;
+      font-size:14px;
+      font-weight: 800;
+    }
+
+    /* Clases y adjuntos */
+    .classesBox{
+      display:none;
+      margin-top: 14px;
+      border-radius: 18px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .classesBoxHead{
+      padding: 14px;
+      border-bottom: 1px solid var(--stroke);
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .classesBoxHead b{font-size:16px}
+    .classesBoxBody{padding: 14px}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 14px;
+      margin-right: 8px;
+      margin-bottom: 8px;
     }
 
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
       .brand{min-width:0}
       .kpi{min-width:150px}
+      .infoGrid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -318,7 +476,7 @@
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div class="t">
-          <b>Aula privada</b>
+          <b>CURSO DE AFTER EFFECTS EXPERTO</b>
           <span>Acceso por link · 19 videos / 20 clases</span>
         </div>
       </div>
@@ -337,12 +495,13 @@
 
       <!-- MAIN -->
       <main class="card">
+
+        <!-- HOME -->
         <section class="hero" id="homeSection">
           <div class="kicker">⚡ Workshop · After Effects · Entorno 3D</div>
-          <h1>Animación entorno 3D en After Effects</h1>
+          <h1>After Effects · Nivel Experto</h1>
           <p class="sub">
-            Mirá las clases desde acá y marcá tu avance. Importante: la <b>Clase 05 y 06</b> están dentro del mismo video,
-            por eso vas a ver <b>19 videos</b> para <b>20 clases</b>.
+            Hola! bienvenido al curso de After effects nivel experto, donde aprenderas todas las tecnicas avanzadas para mejorar tus skills como diseñador audiovisual, aprenderas todos sobre el entorno 3D para que tus diseños de motion graphics esten a la altura de las grandes agencias creativas. a tu derecha tendras la lista con todos los videos del curso, podras verlos las veces que quieras, recordá las tipografias de esta seccion deben tener 3px.
           </p>
 
           <div class="hero-row">
@@ -359,6 +518,117 @@
           </div>
         </section>
 
+        <!-- Estructura tipo Crehana -->
+        <section class="tabsWrap" id="crehanaSection">
+          <div class="tabs">
+            <button class="tab active" id="tabAbout" type="button"><span class="tabDot"></span> Sobre el curso</button>
+            <button class="tab" id="tabClasses" type="button"><span class="tabDot"></span> Clases y adjuntos</button>
+          </div>
+
+          <h2 class="sectionTitle" id="sectionTitle">Te damos la bienvenida al curso</h2>
+
+          <!-- SOBRE EL CURSO -->
+          <div id="aboutPanel">
+            <div class="infoGrid">
+              <!-- Sobre este curso -->
+              <div class="infoCard">
+                <div class="infoCardHead">
+                  <b>Sobre este curso</b>
+                </div>
+                <div class="infoCardBody">
+                  <div class="rows">
+                    <div class="row"><div class="k">Nivel</div><div class="v">Experto</div></div>
+                    <div class="row"><div class="k">Duración total de clases</div><div class="v">3h 40m aprox</div></div>
+                    <div class="row"><div class="k">Clases</div><div class="v">20</div></div>
+                    <div class="row"><div class="k">Videos</div><div class="v">19</div></div>
+                    <div class="row"><div class="k">Audio</div><div class="v">Español</div></div>
+                    <div class="row"><div class="k">Última actualización</div><div class="v">Febrero 2026</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Acerca del profesor -->
+              <div class="infoCard">
+                <div class="infoCardHead">
+                  <b>Acerca del profesor</b>
+                </div>
+                <div class="infoCardBody">
+                  <div class="prof">
+                    <div class="avatar">EM</div>
+                    <div>
+                      <b>Emmanuel Melgarejo</b>
+                      <div style="color:var(--muted2); font-size:14px; margin-top:2px;">Diseñador Audiovisual · Motion Graphics · VFX</div>
+                      <p>
+                        Lic. en Diseño Audiovisual. En este curso te llevo por un workflow real de entorno 3D en After Effects, con técnicas para lograr un look profesional, limpio y de alto impacto.
+                      </p>
+                      <button class="linkBtn" type="button" onclick="alert('Acá podés linkear tu Behance/Portfolio si querés.')">
+                        🔗 Conocer más del profesor
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Valoración -->
+              <div class="infoCard">
+                <div class="infoCardHead">
+                  <b>Valoración del curso</b>
+                </div>
+                <div class="infoCardBody">
+                  <div class="ratingBig">4.8</div>
+                  <div style="color:var(--muted2); font-size:14px; margin-top:6px;">Media total</div>
+                  <div class="stars" aria-label="5 estrellas">
+                    ★ ★ ★ ★ ☆
+                  </div>
+                  <button class="rateBtn" type="button" onclick="alert('Si querés, esto puede abrir un Google Form de feedback.')">
+                    ¡Quiero valorar este curso!
+                  </button>
+
+                  <div style="margin-top:14px; color:var(--muted2); font-size:14px; line-height:1.55;">
+                    Tip: cuando el alumno ve “4.8”, automáticamente siente “plataforma seria”. Psicología pura 😄
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CLASES Y ADJUNTOS -->
+          <div id="classesPanel" style="display:none;">
+            <div class="classesBox" style="display:block;">
+              <div class="classesBoxHead">
+                <b>Clases y adjuntos</b>
+                <span style="color:var(--muted2); font-size:14px;">Resumen del contenido</span>
+              </div>
+              <div class="classesBoxBody">
+                <div style="margin-bottom:10px; color:var(--muted); font-size:14px; line-height:1.55;">
+                  Módulos sugeridos (solo para organización visual, no afecta el curso):
+                </div>
+                <div>
+                  <span class="chip">Inicio del Workshop</span>
+                  <span class="chip">Recursos + Photoshop (05/06)</span>
+                  <span class="chip">AE + Cámara 3D</span>
+                  <span class="chip">Animación</span>
+                  <span class="chip">Lighting + Partículas</span>
+                  <span class="chip">Optimización + Export</span>
+                </div>
+
+                <div style="margin-top:14px; color:var(--muted); font-size:14px; line-height:1.55;">
+                  Adjuntos (opcional):
+                </div>
+                <div style="margin-top:10px;">
+                  <span class="chip">📎 Proyecto .aep (placeholder)</span>
+                  <span class="chip">📎 Recursos (placeholder)</span>
+                </div>
+
+                <div style="margin-top:14px; color:var(--muted2); font-size:14px;">
+                  Si no tenés adjuntos, eliminá esta parte y queda impecable igual.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PLAYER -->
         <section id="playerSection" style="display:none;">
           <div class="playerWrap">
             <div class="player">
@@ -403,6 +673,25 @@
   </div>
 
   <script>
+    // ====== Tabs (Sobre el curso / Clases y adjuntos) ======
+    const tabAbout = document.getElementById("tabAbout");
+    const tabClasses = document.getElementById("tabClasses");
+    const aboutPanel = document.getElementById("aboutPanel");
+    const classesPanel = document.getElementById("classesPanel");
+
+    tabAbout.onclick = () => {
+      tabAbout.classList.add("active");
+      tabClasses.classList.remove("active");
+      aboutPanel.style.display = "";
+      classesPanel.style.display = "none";
+    };
+    tabClasses.onclick = () => {
+      tabClasses.classList.add("active");
+      tabAbout.classList.remove("active");
+      classesPanel.style.display = "";
+      aboutPanel.style.display = "none";
+    };
+
     // ====== Tus 19 links (en el orden que pasaste) ======
     const urls = [
       "https://youtu.be/D1IC09GeKZs",
@@ -427,16 +716,12 @@
     ];
 
     // ====== 20 clases (05+06 comparten video) ======
-    // Mapeo: cada clase apunta a un índice de urls (0..18)
-    // Si alguna no coincide, cambiás el "u:" de esa clase.
     const lessons = [
       { t:"01 - Introducción", d:"Breve introducción al curso.", u:0 },
       { t:"02 - Retos de entorno 3D", d:"Arrancamos el workshop y el enfoque del entorno 3D.", u:1 },
       { t:"03 - Objetivos", d:"Qué vas a lograr y cómo vamos a trabajarlo.", u:2 },
       { t:"04 - Manos a la obra", d:"Setup y primeros pasos del proyecto.", u:3 },
-
       { t:"05 y 06 - Photoshop", d:"Preparación de recursos y ajustes (ambas clases en un solo video).", u:4 },
-
       { t:"07 - Interfaz express de AE", d:"Ajustes clave y setup inicial en After Effects.", u:5 },
       { t:"08 - Interfaz de AE 3D Cam", d:"Trabajo con cámara 3D y herramientas principales.", u:6 },
       { t:"09 - Import y Composición de la estructura 3D", d:"Importación y armado de la estructura en la comp.", u:7 },
@@ -453,7 +738,6 @@
       { t:"20 - Visualización y análisis", d:"Revisión final y análisis del resultado.", u:18 },
     ];
 
-    // ====== Módulos (para que parezca plataforma real) ======
     const modules = [
       { name:"Inicio del Workshop", items:[0,1,2,3] },
       { name:"Preparación de recursos", items:[4] },
@@ -490,8 +774,8 @@
     const sideSub = document.getElementById("sideSub");
 
     // ====== Progreso ======
-    const STORAGE_KEY = "aula_progress_brachstyle_v1";
-    const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); // {lessonIndex:true}
+    const STORAGE_KEY = "aula_progress_experto_v1";
+    const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
 
     function saveProgress(){
       localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
@@ -499,13 +783,10 @@
       renderModules(currentTerm);
       updateDoneButton();
     }
-
-    function completedCount(){
-      return Object.values(progress).filter(Boolean).length;
-    }
+    function completedCount(){ return Object.values(progress).filter(Boolean).length; }
 
     function updateProgressUI(){
-      const total = lessons.length;
+      const total = lessons.length; // 20 clases
       const done = completedCount();
       const pct = total ? Math.round((done/total)*100) : 0;
 
@@ -517,7 +798,6 @@
       sideSub.textContent = `${total} clases · ${pct}% completado`;
     }
 
-    // ====== Helpers ======
     function toEmbed(url){
       const u = new URL(url);
       const v = u.searchParams.get("v");
@@ -543,6 +823,8 @@
     function showPlayer(){
       homeSection.style.display = "none";
       playerSection.style.display = "";
+      // cuando entra al player, llevamos al usuario hacia arriba
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function updateDoneButton(){
@@ -573,8 +855,7 @@
       modulesWrap.innerHTML = "";
       const t = term.trim().toLowerCase();
 
-      modules.forEach((m, mi) => {
-        // filtrar por búsqueda
+      modules.forEach((m) => {
         const filteredItems = m.items.filter(i => {
           if(!t) return true;
           const l = lessons[i];
@@ -618,13 +899,11 @@
 
           btn.appendChild(badge);
           btn.appendChild(wrap);
-
           btn.onclick = () => playLesson(i);
 
           body.appendChild(btn);
         });
 
-        // collapse/expand
         let open = true;
         head.onclick = () => {
           open = !open;
@@ -637,7 +916,6 @@
         modulesWrap.appendChild(mod);
       });
 
-      // re-activar seleccionado
       if(currentLesson !== null){
         const btn = document.querySelector(`.lessonBtn[data-i="${currentLesson}"]`);
         if(btn) btn.classList.add("active");
@@ -675,5 +953,3 @@
   </script>
 </body>
 </html>
-
-
