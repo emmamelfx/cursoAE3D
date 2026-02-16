@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CURSO DE AFTER EFFECTS EXPERTO</title>
 
+  <!-- Favicon EM (SVG inline) -->
   <link rel="icon" type="image/svg+xml"
     href='data:image/svg+xml;utf8,
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
@@ -22,6 +23,7 @@
     :root{
       --bg:#0b0d12;
       --bg2:#0f1320;
+
       --stroke:rgba(255,255,255,.10);
       --stroke2:rgba(255,255,255,.20);
 
@@ -29,16 +31,21 @@
       --muted:#c6cbe2;
       --muted2:#8e97bb;
 
-      /* Colores logo EM */
+      /* EM */
       --accent:#44C4F2;
       --accent2:#766BF5;
 
       --shadow: 0 18px 50px rgba(0,0,0,.45);
       --shadow2: 0 10px 28px rgba(0,0,0,.35);
+
+      --r14:14px;
+      --r16:16px;
+      --r18:18px;
       --r20:20px;
+
       --max: 1240px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
     }
 
     *{box-sizing:border-box}
@@ -54,17 +61,13 @@
         linear-gradient(180deg, var(--bg), var(--bg2));
     }
 
-    body, h1, h2, h3, p, span, b, small, div, button, a, input, label, textarea { color: var(--text); }
-    a{ text-decoration:none; }
+    a{ text-decoration:none; color:inherit; }
 
-    .container{max-width:var(--max); margin:0 auto; padding:18px 16px 28px;}
-
-    /* Topbar */
     .topbar{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
       background: rgba(11,13,18,.68);
-      border-bottom:1px solid rgba(255,255,255,.10);
+      border-bottom:1px solid var(--stroke);
     }
     .topbar-inner{
       max-width:var(--max);
@@ -72,59 +75,59 @@
       padding:14px 16px;
       display:flex; align-items:center; justify-content:space-between; gap:12px;
     }
-
-    .brand{display:flex; align-items:center; gap:10px; min-width:240px;}
+    .brand{display:flex; align-items:center; gap:10px;}
     .logoWrap{
       width:42px; height:42px; border-radius:16px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 16px 34px rgba(68,196,242,.18);
       display:grid; place-items:center;
-      border: 1px solid rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: 0 16px 34px rgba(68,196,242,.18);
+      flex:0 0 auto;
     }
-    .logoWrap span{font-weight: 900; font-size: 18px; color:#fff; letter-spacing:.4px;}
-    .brand .t{display:flex; flex-direction:column; line-height:1.12}
-    .brand .t b{font-size:15px; letter-spacing:.2px}
-    .brand .t span{font-size:14px; color:var(--muted2)}
+    .logoWrap span{font-weight:900; letter-spacing:.4px; color:#fff;}
+    .brandTxt{display:flex; flex-direction:column; line-height:1.12}
+    .brandTxt b{font-size:15px}
+    .brandTxt span{font-size:14px; color:var(--muted2)}
 
-    .actions{display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;}
+    .actions{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; align-items:center;}
     .pill{
       display:inline-flex; align-items:center; gap:8px;
-      font-size:14px;
       padding:8px 10px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
       border-radius:999px;
-      color: var(--muted);
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
       box-shadow: var(--shadow2);
+      color: var(--muted);
+      font-size:14px;
       user-select:none;
     }
     .btn{
       display:inline-flex; align-items:center; gap:8px;
-      font-size:14px;
       padding:10px 12px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid var(--stroke);
       background: rgba(255,255,255,.06);
-      cursor:pointer;
       box-shadow: var(--shadow2);
-      transition: transform .08s ease, border-color .12s ease, background .12s ease;
-      user-select:none;
+      cursor:pointer;
       color:#fff;
+      font-size:14px;
+      transition: transform .08s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
     }
     .btn:hover{transform: translateY(-1px); border-color: var(--stroke2); background: rgba(255,255,255,.08)}
     .btn.accent{
       border-color: rgba(68,196,242,.35);
       background: linear-gradient(135deg, rgba(68,196,242,.22), rgba(118,107,245,.12));
-      color:#fff;
     }
     .btn.solid{
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
       border-color: rgba(68,196,242,.40);
-      color:#fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
       font-weight: 900;
+      color:#fff;
     }
 
-    /* Layout */
+    .container{max-width:var(--max); margin:0 auto; padding:18px 16px 28px;}
+
     .grid{
       display:grid;
       grid-template-columns: 1.25fr .75fr;
@@ -135,96 +138,210 @@
 
     .card{
       background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.10);
+      border: 1px solid var(--stroke);
       border-radius: var(--r20);
       box-shadow: var(--shadow);
       overflow:hidden;
       position:relative;
     }
 
-    /* HERO */
+    /* HOME header + tabs + blocks */
     .hero{
       padding: 18px 18px 16px;
       background:
         radial-gradient(900px 520px at 10% 0%, rgba(68,196,242,.16), transparent 55%),
         radial-gradient(900px 520px at 90% 0%, rgba(118,107,245,.14), transparent 55%),
         rgba(255,255,255,.04);
-      border-bottom: 1px solid rgba(255,255,255,.10);
+      border-bottom: 1px solid var(--stroke);
+      position: relative;
     }
-    .hero .kicker{
+
+    .kicker{
       display:inline-flex; align-items:center; gap:10px;
       font-size:15px;
       color: var(--muted);
       padding: 6px 10px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid var(--stroke);
       background: rgba(255,255,255,.04);
     }
-    .kickerIcon{width:18px; height:18px; display:inline-block;}
-    h1{margin:10px 0 0; font-size: 25px; letter-spacing: .2px; line-height:1.15;}
-    .sub{margin:10px 0 0; color: var(--muted); font-size: 16px; line-height:1.7; max-width: 92ch;}
+    .kickerIcon{width:18px;height:18px;display:inline-block}
 
-    .hero-row{
-      margin-top: 14px;
+    h1{margin:10px 0 0; font-size:25px; line-height:1.15;}
+    .sub{
+      margin:10px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height:1.7;
+      max-width: 92ch;
+    }
+
+    /* Tabs arriba del video */
+    .tabsRow{
+      margin-top:14px;
       display:flex;
-      gap: 12px;
+      gap:10px;
       flex-wrap:wrap;
       align-items:center;
-      justify-content:space-between;
     }
-    .kpis{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
-    .kpi{
-      min-width: 190px;
+    .tabBtn{
+      display:inline-flex; align-items:center; gap:10px;
       padding: 10px 12px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      cursor:pointer;
+      font-size: 14px;
+      color:#fff;
+      user-select:none;
     }
-    .kpi b{font-size:14px}
-    .kpi span{display:block; margin-top:2px; font-size:14px; color:var(--muted2)}
+    .tabBtn.primary{
+      border-color: rgba(68,196,242,.40);
+      background: linear-gradient(135deg, rgba(68,196,242,.18), rgba(118,107,245,.10));
+      font-weight: 900;
+    }
+    .tabBtn:hover{border-color: rgba(255,255,255,.26);}
 
-    .progressWrap{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
-    .bar{
-      width:min(420px, 100%);
-      height: 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
+    /* Overlay de tabs: encima del video, en la misma ubicación */
+    .homeOverlay{
+      position:absolute;
+      left:18px; right:18px;
+      top: 212px; /* se ajusta para caer arriba del video (debajo de tabs y texto) */
+      border-radius: var(--r18);
+      border: 1px solid rgba(68,196,242,.35);
+      background: rgba(10,12,18,.72);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 22px 60px rgba(0,0,0,.50);
+      display:none;
       overflow:hidden;
+      z-index: 20;
     }
-    .bar > div{
-      width:0%;
-      height:100%;
-      background: linear-gradient(90deg, var(--accent), #e5edff);
-      border-radius:999px;
-      transition: width .25s ease;
+    .homeOverlay.show{display:block;}
+    .homeOverlayHead{
+      padding: 12px 14px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
     }
-    .barText{font-size:14px; color: var(--muted2); font-family: var(--mono);}
+    .homeOverlayHead b{font-size:16px}
+    .closeBtn{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      border-radius: 999px;
+      padding: 8px 10px;
+      cursor:pointer;
+      font-weight: 900;
+      color:#fff;
+    }
+    .closeBtn:hover{border-color: rgba(255,255,255,.24)}
+    .homeOverlayBody{
+      padding: 14px;
+      max-height: 380px;
+      overflow:auto;
+    }
 
-    /* Video Home */
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(68,196,242,.28);
+      background: rgba(68,196,242,.10);
+      font-size: 14px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      cursor:pointer;
+      font-weight: 900;
+      color:#fff;
+    }
+    .chip:hover{border-color: rgba(68,196,242,.40);}
+
+    /* Bienvenida video */
     .homeVideoWrap{
       margin-top: 14px;
-      border-radius: 18px;
+      border-radius: var(--r18);
       overflow:hidden;
-      border: 1px solid rgba(255,255,255,.10);
+      border: 1px solid var(--stroke);
       background: rgba(0,0,0,.35);
       box-shadow: var(--shadow2);
+      position: relative;
+      z-index: 1;
     }
     .homeVideo{width:100%; aspect-ratio:16/9; background:#070911;}
     iframe{width:100%; height:100%; border:0}
 
-    /* Player */
+    /* 3 Bloques: 1 vertical + 2 horizontales */
+    .statsGrid{
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 12px;
+      align-items:stretch;
+    }
+    .statCard{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--r16);
+      padding: 12px 12px;
+      min-height: 120px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    /* vertical (sobre el curso) */
+    .statVertical{
+      grid-row: 1 / span 2;
+      min-height: 252px;
+      gap:10px;
+    }
+    .statTitle{font-size:14px;color:var(--muted2); letter-spacing:.2px}
+    .statLine{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      padding: 10px 0;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      font-size: 15px;
+    }
+    .statLine b{font-size:15px}
+    .statLine span{color:var(--muted)}
+    .statLine:last-child{border-bottom:0}
+
+    /* 2 horizontales */
+    .statHoriz{
+      min-height: 120px;
+    }
+    .hTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .profile{
+      display:flex; align-items:center; gap:10px;
+    }
+    .avatar{
+      width:40px; height:40px; border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(135deg, rgba(68,196,242,.18), rgba(118,107,245,.10));
+      display:grid; place-items:center;
+      font-weight:900;
+      color:#fff;
+    }
+    .profileTxt b{display:block; font-size:15px}
+    .profileTxt span{display:block; font-size:14px; color:var(--muted2)}
+    .statNote{margin-top:10px; font-size:14px; color:var(--muted); line-height:1.55}
+
+    /* Player section */
     .playerWrap{padding:14px;}
     .player{
       width:100%;
       aspect-ratio:16/9;
-      border-radius: 18px;
+      border-radius: var(--r18);
       overflow:hidden;
-      border: 1px solid rgba(255,255,255,.10);
+      border: 1px solid var(--stroke);
       background:#070911;
       box-shadow: var(--shadow2);
     }
-
     .lessonMeta{
       padding: 0 14px 14px;
       display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
@@ -237,18 +354,18 @@
     /* Sidebar */
     .sideHead{
       padding: 14px 14px 12px;
-      border-bottom: 1px solid rgba(255,255,255,.10);
+      border-bottom: 1px solid var(--stroke);
       display:flex; flex-direction:column; gap:6px;
     }
     .sideHead b{font-size:15px}
     .sideHead span{font-size:14px; color: var(--muted2)}
 
-    .search{padding: 12px 14px; border-bottom:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03);}
+    .search{padding: 12px 14px; border-bottom:1px solid var(--stroke); background: rgba(255,255,255,.03);}
     .search input{
       width:100%;
       padding: 12px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--r14);
+      border: 1px solid var(--stroke);
       background: rgba(255,255,255,.04);
       color: var(--text) !important;
       outline:none;
@@ -258,8 +375,8 @@
 
     .module{
       margin: 10px;
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--r16);
+      border:1px solid var(--stroke);
       background: rgba(255,255,255,.03);
       overflow:hidden;
     }
@@ -278,7 +395,7 @@
       text-align:left;
       display:flex; gap:10px; align-items:flex-start;
       padding: 10px 10px;
-      border-radius: 14px;
+      border-radius: var(--r14);
       border: 1px solid transparent;
       background: transparent;
       cursor:pointer;
@@ -295,7 +412,7 @@
       border-color: rgba(68,196,242,.22);
     }
 
-    /* Pedido: circulito SIN número. Degradado EM siempre */
+    /* ICONO: circulito sin número */
     .badge{
       width: 14px; height: 14px;
       border-radius: 999px;
@@ -304,80 +421,11 @@
       margin-top: 4px;
       flex:0 0 auto;
     }
-    /* Si está completada: agregamos un anillo suave (sin verde/rojo) */
-    .badge.done{
-      width: 14px; height: 14px;
-      box-shadow:
-        0 0 0 2px rgba(255,255,255,.18),
-        0 10px 22px rgba(68,196,242,.18);
-      opacity: .9;
-    }
 
     .lt{margin:0; font-size:15px; font-weight:900; line-height:1.25;}
     .ld{margin:4px 0 0; font-size:14px; color: var(--muted2); line-height:1.35;}
 
-    /* Overlay panel */
-    .overlay{
-      position:absolute;
-      inset: 14px;
-      border-radius: 18px;
-      border: 1px solid rgba(68,196,242,.35);
-      background: rgba(10,12,18,.72);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 22px 60px rgba(0,0,0,.50);
-      display:none;
-      overflow:hidden;
-      z-index: 20;
-    }
-    .overlay.show{display:block;}
-    .overlayHead{
-      padding: 12px 14px;
-      border-bottom: 1px solid rgba(255,255,255,.10);
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-    }
-    .overlayHead b{font-size:16px}
-    .overlayBody{padding: 14px; max-height: calc(100% - 54px); overflow:auto;}
-    .closeBtn{
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      border-radius: 999px;
-      padding: 8px 10px;
-      cursor:pointer;
-      font-weight: 900;
-    }
-    .closeBtn:hover{border-color: rgba(255,255,255,.24);}
-
-    .tabBtn{
-      display:inline-flex; align-items:center; gap:10px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      cursor:pointer;
-      font-size: 14px;
-      color: var(--muted);
-    }
-    .tabBtn.primary{
-      border-color: rgba(68,196,242,.40);
-      background: linear-gradient(135deg, rgba(68,196,242,.18), rgba(118,107,245,.10));
-      color:#fff;
-    }
-
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border:1px solid rgba(68,196,242,.28);
-      background: rgba(68,196,242,.10);
-      font-size: 14px;
-      margin-right: 8px;
-      margin-bottom: 8px;
-      cursor:pointer;
-      font-weight: 900;
-      color:#fff;
-    }
-    .chip:hover{border-color: rgba(68,196,242,.40);}
-
+    /* Form */
     .formGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -386,7 +434,7 @@
     .field input, .field textarea{
       width:100%;
       padding: 12px 12px;
-      border-radius: 14px;
+      border-radius: var(--r14);
       border: 1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
       outline:none;
@@ -399,9 +447,10 @@
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
       .brand{min-width:0}
-      .kpi{min-width:150px}
+      .statsGrid{grid-template-columns:1fr}
+      .statVertical{grid-row:auto; min-height:auto}
+      .homeOverlay{left:12px; right:12px; top: 256px;}
       .formGrid{ grid-template-columns: 1fr; }
-      .overlay{ inset: 10px; }
     }
   </style>
 </head>
@@ -411,7 +460,7 @@
     <div class="topbar-inner">
       <div class="brand">
         <div class="logoWrap" aria-hidden="true"><span>EM</span></div>
-        <div class="t">
+        <div class="brandTxt">
           <b>CURSO DE AFTER EFFECTS EXPERTO</b>
           <span>Acceso por link · 19 videos / 20 clases</span>
         </div>
@@ -419,7 +468,6 @@
 
       <div class="actions">
         <span class="pill" id="pillProgress">Progreso 0%</span>
-        <button class="btn accent" id="openPanelHome" type="button">📚 Panel</button>
         <button class="btn accent" id="goHome" type="button">🏠 Inicio</button>
         <a class="btn" id="openYT" href="#" target="_blank" rel="noopener">▶ Abrir en YouTube</a>
         <button class="btn solid" id="toggleDone" type="button">✅ Completar</button>
@@ -450,20 +498,24 @@
             Hola! bienvenido al curso de After effects nivel experto, donde aprenderas todas las tecnicas avanzadas para mejorar tus skills como diseñador audiovisual, aprenderas todos sobre el entorno 3D para que tus diseños de motion graphics esten a la altura de las grandes agencias creativas. A tu derecha tendras la lista con todos los videos del curso, podras verlos las veces que quieras.
           </p>
 
-          <div class="hero-row">
-            <div class="kpis">
-              <div class="kpi"><b id="kpiLessons">—</b><span>Contenido total</span></div>
-              <div class="kpi"><b id="kpiDone">—</b><span>Completadas</span></div>
-            </div>
-
-            <div class="progressWrap">
-              <div class="bar"><div id="progressFill"></div></div>
-              <span class="barText" id="progressText">0 / 0</span>
-              <button class="btn solid" id="startBtn" type="button">▶ Empezar</button>
-            </div>
+          <!-- TABS ARRIBA del video -->
+          <div class="tabsRow">
+            <button class="tabBtn" id="btnTopics" type="button">🧩 Grupo de temas</button>
+            <button class="tabBtn primary" id="btnDownloads" type="button"><b>Descargas de recursos:</b>&nbsp;Proyecto + recursos gráficos</button>
+            <button class="tabBtn primary" id="btnComments" type="button">💬 Comentarios</button>
           </div>
 
-          <div class="homeVideoWrap">
+          <!-- OVERLAY: aparece en el mismo lugar, por encima del video -->
+          <div class="homeOverlay" id="homeOverlay">
+            <div class="homeOverlayHead">
+              <b id="homeOverlayTitle">Panel</b>
+              <button class="closeBtn" id="closeHomeOverlay" type="button">✕</button>
+            </div>
+            <div class="homeOverlayBody" id="homeOverlayBody"></div>
+          </div>
+
+          <!-- VIDEO BIENVENIDA -->
+          <div class="homeVideoWrap" id="homeVideoWrap">
             <div class="homeVideo">
               <iframe
                 src="https://www.youtube.com/embed/ptSPBlNyoQ8?rel=0"
@@ -472,20 +524,64 @@
             </div>
           </div>
 
-          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-            <button class="tabBtn" id="btnTopics" type="button">🧩 Grupo de temas</button>
-            <button class="tabBtn primary" id="btnDownloads" type="button"><b>Descargas de recursos:</b>&nbsp;Proyecto + recursos gráficos</button>
-            <button class="tabBtn primary" id="btnComments" type="button">💬 Comentarios</button>
-          </div>
-        </section>
+          <!-- BLOQUES (1 vertical + 2 horizontales) -->
+          <div class="statsGrid">
+            <!-- Vertical -->
+            <div class="statCard statVertical">
+              <div>
+                <div class="statTitle">Sobre este curso</div>
 
-        <!-- Overlay -->
-        <section class="overlay" id="overlay">
-          <div class="overlayHead">
-            <b id="overlayTitle">Panel</b>
-            <button class="closeBtn" id="closeOverlay" type="button">✕</button>
+                <div class="statLine"><span>Duración total de clases</span><b>3h 40m aprox</b></div>
+                <div class="statLine"><span>Clases</span><b>20</b></div>
+                <div class="statLine"><span>Videos</span><b>19</b></div>
+                <div class="statLine"><span>Audio</span><b>Español</b></div>
+                <div class="statLine"><span>Última actualización</span><b>2026</b></div>
+              </div>
+
+              <div style="display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;">
+                <div style="display:flex; gap:10px; align-items:center;">
+                  <span class="pill" id="pillInline">0 / 20</span>
+                </div>
+                <button class="btn solid" id="startBtn" type="button">▶ Empezar</button>
+              </div>
+            </div>
+
+            <!-- Horizontal 1 -->
+            <div class="statCard statHoriz">
+              <div class="hTop">
+                <div class="profile">
+                  <div class="avatar">EM</div>
+                  <div class="profileTxt">
+                    <b>@emma_mel_</b>
+                    <span>Profesor</span>
+                  </div>
+                </div>
+                <span class="pill">After Effects · 3D</span>
+              </div>
+
+              <div class="statNote">
+                Diseñador audiovisual & Motion Graphics. En este workshop vas a mejorar tu técnica y tu criterio para que tu laburo se vea pro, prolijo y “de agencia”.
+              </div>
+            </div>
+
+            <!-- Horizontal 2 -->
+            <div class="statCard statHoriz">
+              <div class="hTop">
+                <div>
+                  <div class="statTitle">Valoración del curso</div>
+                  <div style="display:flex; align-items:baseline; gap:10px; margin-top:4px;">
+                    <div style="font-size:30px; font-weight:900;">4.8</div>
+                    <div style="color:var(--muted2); font-size:14px;">Media total</div>
+                  </div>
+                </div>
+                <button class="btn accent" type="button" id="rateBtn">⭐ Valorar</button>
+              </div>
+
+              <div class="statNote">
+                Si te sirvió, dejá un comentario o feedback. Eso me ayuda a mejorar el curso y a sumar más contenido.
+              </div>
+            </div>
           </div>
-          <div class="overlayBody" id="overlayBody"></div>
         </section>
 
         <!-- PLAYER -->
@@ -529,33 +625,11 @@
   </div>
 
   <script>
+    // Link de descargas
     const DOWNLOADS_LINK = "https://drive.google.com/drive/folders/1JwAskl-_V1mdrx0JIWpMMnkqJdgiq4yX?usp=drive_link";
 
-    // 19 videos reales
-    const urls = [
-      "https://youtu.be/D1IC09GeKZs",
-      "https://youtu.be/HVBjwflEPBA",
-      "https://youtu.be/4USqAIWAIqc",
-      "https://youtu.be/LaMZVjZ1se4",
-      "https://youtu.be/wyMZ_Equajc",
-      "https://youtu.be/Ghydv5lH-hU",
-      "https://youtu.be/Jwr5WONsrnw",
-      "https://youtu.be/kIUfed9wwzs",
-      "https://youtu.be/2eifWwbYoVU",
-      "https://youtu.be/YRVPlf9Q8b8",
-      "https://youtu.be/6iZKgA6W2XA",
-      "https://youtu.be/5Kf3hmlzw7s",
-      "https://youtu.be/OHG0WslMs8M",
-      "https://youtu.be/8jx3xiaeruY",
-      "https://youtu.be/JoGWgePrkeA",
-      "https://youtu.be/Kb5NjjzP8ZU",
-      "https://youtu.be/I4njR2qgrZI",
-      "https://youtu.be/Q5wg_VyTQ-o",
-      "https://youtu.be/ptSPBlNyoQ8" // (no se usa como clase; se usa SOLO en home, lo dejamos por si querés luego)
-    ];
-
-    // Clases 01..20 (20 clases / 19 videos: 05+06 juntos)
-    // Nota: el embed final (Resultado final) va aparte como módulo propio y usa bZlzz87AVo4
+    // Clases 1..20 (20 clases / 19 videos: 05+06 juntos)
+    // OJO: El video final bZlzz87AVo4 va en módulo "Entrega" como pediste.
     const lessons = [
       { t:"01 - Introducción", d:"Breve introducción al curso.", url:"https://youtu.be/D1IC09GeKZs" },
       { t:"02 - Retos de entorno 3D", d:"Arrancamos el workshop y el enfoque del entorno 3D.", url:"https://youtu.be/HVBjwflEPBA" },
@@ -575,34 +649,31 @@
       { t:"17 - Retoques de Composición", d:"Retoques finales de post y composición.", url:"https://youtu.be/Kb5NjjzP8ZU" },
       { t:"18 - Optimización del proyecto", d:"Orden, rendimiento y limpieza del proyecto.", url:"https://youtu.be/I4njR2qgrZI" },
       { t:"19 - Export Final", d:"Exportación final y entrega.", url:"https://youtu.be/Q5wg_VyTQ-o" },
-      { t:"20 - Visualización y análisis", d:"Cierre y análisis del resultado.", url:"https://youtu.be/ptSPBlNyoQ8" } // si querés usar otro, lo cambiamos
+      { t:"20 - Visualización y análisis", d:"Cierre y análisis del resultado.", url:"https://youtu.be/ptSPBlNyoQ8" } /* si tu 20 real es otro, lo cambias acá */
     ];
 
-    // ====== MÓDULOS (corrigido) ======
-    // Pedido: Look & Post incluye 15–16–17–18–19–20
+    // ====== MÓDULOS (como pediste ahora) ======
+    // Look & Post: videos 16 al 20 (clases 16..20)
+    // Entrega: solo el video final bZlzz87AVo4
     const modules = [
       { id:"m1", name:"Inicio del Workshop", items:[0,1,2,3] },
       { id:"m2", name:"Preparación de recursos", items:[4] },
       { id:"m3", name:"After Effects + Estructura 3D", items:[5,6,7] },
       { id:"m4", name:"Animación", items:[8,9,10,11,12,13] },
-      { id:"m5", name:"Look & Post", items:[14,15,16,17,18,19] } // 15..20 (0-based 14..19)
+      { id:"m5", name:"Look & Post", items:[14,15,16,17,18] }, // clases 16..20 => indices 14..18 (16,17,18,19,20)
+      { id:"m6", name:"Entrega", finalOnly:true } // módulo especial (solo video final)
     ];
 
-    // Pedido: Resultado final solo bZlzz87AVo4
-    const finalBlock = {
-      id:"final",
-      name:"Resultado final",
-      items:[ { t:"Resultado final", d:"Entrega final del curso.", url:"https://youtu.be/bZlzz87AVo4" } ]
-    };
+    const FINAL_VIDEO = { t:"Resultado final", d:"Entrega final del curso.", url:"https://youtu.be/bZlzz87AVo4" };
 
     // ====== DOM ======
-    const modulesWrap = document.getElementById("modules");
     const q = document.getElementById("q");
-    const frame = document.getElementById("frame");
+    const modulesWrap = document.getElementById("modules");
 
     const homeSection = document.getElementById("homeSection");
     const playerSection = document.getElementById("playerSection");
 
+    const frame = document.getElementById("frame");
     const lessonTitle = document.getElementById("lessonTitle");
     const lessonDesc = document.getElementById("lessonDesc");
 
@@ -614,26 +685,22 @@
     const goHome = document.getElementById("goHome");
     const toggleDone = document.getElementById("toggleDone");
 
-    const progressFill = document.getElementById("progressFill");
-    const progressText = document.getElementById("progressText");
     const pillProgress = document.getElementById("pillProgress");
-    const kpiLessons = document.getElementById("kpiLessons");
-    const kpiDone = document.getElementById("kpiDone");
+    const pillInline = document.getElementById("pillInline");
     const sideSub = document.getElementById("sideSub");
 
-    // overlay
-    const overlay = document.getElementById("overlay");
-    const overlayTitle = document.getElementById("overlayTitle");
-    const overlayBody = document.getElementById("overlayBody");
-    const closeOverlay = document.getElementById("closeOverlay");
-
+    // Home overlay tabs
     const btnTopics = document.getElementById("btnTopics");
     const btnDownloads = document.getElementById("btnDownloads");
     const btnComments = document.getElementById("btnComments");
-    const openPanelHome = document.getElementById("openPanelHome");
+
+    const homeOverlay = document.getElementById("homeOverlay");
+    const homeOverlayTitle = document.getElementById("homeOverlayTitle");
+    const homeOverlayBody = document.getElementById("homeOverlayBody");
+    const closeHomeOverlay = document.getElementById("closeHomeOverlay");
 
     // ====== Progreso (manual) ======
-    const STORAGE_KEY = "aula_em_experto_v4";
+    const STORAGE_KEY = "aula_em_experto_v5";
     const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
 
     function saveProgress(){
@@ -649,11 +716,8 @@
       const done = completedCount();
       const pct = total ? Math.round((done/total)*100) : 0;
 
-      progressFill.style.width = pct + "%";
-      progressText.textContent = `${done} / ${total}`;
       pillProgress.textContent = `Progreso ${pct}%`;
-      kpiLessons.textContent = `${total} clases`;
-      kpiDone.textContent = `${done} completadas`;
+      pillInline.textContent = `${done} / ${total}`;
       sideSub.textContent = `${total} clases · ${pct}% completado`;
     }
 
@@ -677,13 +741,14 @@
       openYT.href = "#";
       toggleDone.textContent = "✅ Completar";
       document.querySelectorAll(".lessonBtn").forEach(b => b.classList.remove("active"));
-      hideOverlay();
+      hideHomeOverlay();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function showPlayer(){
       homeSection.style.display = "none";
       playerSection.style.display = "";
-      hideOverlay();
+      hideHomeOverlay();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
@@ -711,15 +776,12 @@
     }
 
     function playFinal(){
-      // no cuenta como clase dentro del progreso (a pedido, es módulo aparte)
+      currentLesson = null; // no se marca completar acá
       showPlayer();
-      const url = finalBlock.items[0].url;
-      frame.src = toEmbed(url);
-      lessonTitle.textContent = "Resultado final";
-      lessonDesc.textContent = "Entrega final del curso.";
-      openYT.href = url;
-
-      currentLesson = null; // para que no marque completar sobre esto
+      frame.src = toEmbed(FINAL_VIDEO.url);
+      lessonTitle.textContent = FINAL_VIDEO.t;
+      lessonDesc.textContent = FINAL_VIDEO.d;
+      openYT.href = FINAL_VIDEO.url;
       toggleDone.textContent = "✅ Completar";
     }
 
@@ -728,13 +790,6 @@
       const t = term.trim().toLowerCase();
 
       function addModule(mod){
-        const filteredItems = mod.items.filter(i => {
-          if(!t) return true;
-          const l = lessons[i];
-          return (l.t || "").toLowerCase().includes(t) || (l.d || "").toLowerCase().includes(t);
-        });
-        if(t && filteredItems.length === 0) return;
-
         const modEl = document.createElement("div");
         modEl.className = "module";
         modEl.dataset.mid = mod.id;
@@ -743,11 +798,25 @@
         head.className = "moduleHead";
 
         const left = document.createElement("div");
-        left.innerHTML = `<b>${mod.name}</b><span style="display:block;margin-top:2px;">${filteredItems.length} clases</span>`;
+        let count = 0;
+
+        if(mod.finalOnly){
+          count = 1;
+          left.innerHTML = `<b>${mod.name}</b><span style="display:block;margin-top:2px;">${count} video</span>`;
+        } else {
+          const filtered = mod.items.filter(i => {
+            if(!t) return true;
+            const l = lessons[i];
+            return (l.t||"").toLowerCase().includes(t) || (l.d||"").toLowerCase().includes(t);
+          });
+          if(t && filtered.length === 0) return;
+          count = filtered.length;
+          left.innerHTML = `<b>${mod.name}</b><span style="display:block;margin-top:2px;">${count} clases</span>`;
+          mod._filtered = filtered;
+        }
 
         const right = document.createElement("span");
         right.textContent = "▼";
-        right.style.color = "var(--muted2)";
 
         head.appendChild(left);
         head.appendChild(right);
@@ -755,25 +824,37 @@
         const body = document.createElement("div");
         body.className = "moduleBody";
 
-        filteredItems.forEach((i) => {
-          const l = lessons[i];
+        if(mod.finalOnly){
           const btn = document.createElement("button");
           btn.className = "lessonBtn";
           btn.type = "button";
-          btn.dataset.i = i;
-
-          const badge = document.createElement("div");
-          badge.className = "badge" + (progress[i] ? " done" : "");
-
-          const wrap = document.createElement("div");
-          wrap.innerHTML = `<p class="lt">${l.t}</p><p class="ld">${l.d || " "}</p>`;
-
-          btn.appendChild(badge);
-          btn.appendChild(wrap);
-          btn.onclick = () => playLesson(i);
-
+          btn.innerHTML = `
+            <div class="badge"></div>
+            <div>
+              <p class="lt">Resultado final</p>
+              <p class="ld">Entrega final del curso.</p>
+            </div>
+          `;
+          btn.onclick = playFinal;
           body.appendChild(btn);
-        });
+        } else {
+          (mod._filtered || mod.items).forEach(i => {
+            const l = lessons[i];
+            const btn = document.createElement("button");
+            btn.className = "lessonBtn";
+            btn.type = "button";
+            btn.dataset.i = i;
+            btn.innerHTML = `
+              <div class="badge"></div>
+              <div>
+                <p class="lt">${l.t}</p>
+                <p class="ld">${l.d || " "}</p>
+              </div>
+            `;
+            btn.onclick = () => playLesson(i);
+            body.appendChild(btn);
+          });
+        }
 
         let open = true;
         head.onclick = () => {
@@ -789,52 +870,35 @@
 
       modules.forEach(addModule);
 
-      // Resultado final (separado)
-      const finalEl = document.createElement("div");
-      finalEl.className = "module";
-      finalEl.dataset.mid = "final";
-      finalEl.innerHTML = `
-        <div class="moduleHead">
-          <div>
-            <b>${finalBlock.name}</b>
-            <span style="display:block;margin-top:2px;">1 video</span>
-          </div>
-          <span style="color:var(--muted2)">▼</span>
-        </div>
-        <div class="moduleBody">
-          <button class="lessonBtn" type="button" id="finalBtn">
-            <div class="badge"></div>
-            <div>
-              <p class="lt">Resultado final</p>
-              <p class="ld">Entrega final del curso.</p>
-            </div>
-          </button>
-        </div>
-      `;
-      modulesWrap.appendChild(finalEl);
-      finalEl.querySelector("#finalBtn").onclick = playFinal;
+      // re-marcar activo si corresponde
+      if(currentLesson !== null){
+        const btn = document.querySelector(`.lessonBtn[data-i="${currentLesson}"]`);
+        if(btn) btn.classList.add("active");
+      }
     }
 
-    // ====== Overlay ======
-    function showOverlay(title, html){
-      overlayTitle.textContent = title;
-      overlayBody.innerHTML = html;
-      overlay.classList.add("show");
+    // ===== Home Overlay Tabs (encima del video, mismo lugar) =====
+    function showHomeOverlay(title, html){
+      homeOverlayTitle.textContent = title;
+      homeOverlayBody.innerHTML = html;
+      homeOverlay.classList.add("show");
     }
-    function hideOverlay(){ overlay.classList.remove("show"); }
-    closeOverlay.onclick = hideOverlay;
+    function hideHomeOverlay(){
+      homeOverlay.classList.remove("show");
+    }
+    closeHomeOverlay.onclick = hideHomeOverlay;
 
     btnDownloads.onclick = () => {
-      showOverlay("Descargas de recursos: Proyecto + recursos gráficos", `
+      showHomeOverlay("Descargas de recursos", `
         <div style="font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:12px;">
-          Accedé a la carpeta con el proyecto de After Effects y los recursos gráficos.
+          <b>Proyecto + recursos gráficos:</b> acceso directo a Drive.
         </div>
         <a class="btn solid" href="${DOWNLOADS_LINK}" target="_blank" rel="noopener">⬇ Abrir carpeta de descargas</a>
       `);
     };
 
     btnComments.onclick = () => {
-      showOverlay("Comentarios", `
+      showHomeOverlay("Comentarios", `
         <form action="https://formsubmit.co/emmamel.fx@gmail.com" method="POST">
           <input type="hidden" name="_subject" value="Nuevo comentario del curso (Aula privada)" />
           <input type="hidden" name="_captcha" value="false" />
@@ -851,55 +915,45 @@
       `);
     };
 
-    btnTopics.onclick = () => openTopicsOverlay();
-    openPanelHome.onclick = () => openTopicsOverlay();
-
-    function openTopicsOverlay(){
+    btnTopics.onclick = () => {
       const chips = [
         { label:"Inicio del Workshop", mid:"m1" },
         { label:"Preparación de recursos", mid:"m2" },
         { label:"AE + Estructura 3D", mid:"m3" },
         { label:"Animación", mid:"m4" },
         { label:"Look & Post", mid:"m5" },
-        { label:"Resultado final", mid:"final" },
+        { label:"Entrega", mid:"m6" }
       ];
-
       const chipsHtml = chips.map(c => `<button class="chip" type="button" data-mid="${c.mid}">${c.label}</button>`).join("");
-
-      showOverlay("Grupo de temas", `
+      showHomeOverlay("Grupo de temas", `
         <div style="font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:12px;">
           Elegí un tema y te llevo directo a ese bloque en la lista de la derecha.
         </div>
         <div>${chipsHtml}</div>
       `);
 
-      overlayBody.querySelectorAll("[data-mid]").forEach(btn=>{
+      homeOverlayBody.querySelectorAll("[data-mid]").forEach(btn=>{
         btn.addEventListener("click", () => {
           const mid = btn.getAttribute("data-mid");
           focusModule(mid);
-          hideOverlay();
+          hideHomeOverlay();
         });
       });
-    }
+    };
 
     function focusModule(mid){
       const target = document.querySelector(`.module[data-mid="${mid}"]`);
       if(!target) return;
-
-      // expandir si estaba cerrado
-      const body = target.querySelector('.moduleBody');
-      const chevron = target.querySelector('.moduleHead span:last-child');
+      const body = target.querySelector(".moduleBody");
       if(body && body.style.display === "none"){
-        target.querySelector('.moduleHead')?.click();
-        if(chevron) chevron.textContent = "▼";
+        target.querySelector(".moduleHead")?.click();
       }
-
       target.scrollIntoView({ behavior:"smooth", block:"start" });
       target.style.boxShadow = "0 0 0 2px rgba(68,196,242,.25), 0 18px 50px rgba(0,0,0,.35)";
       setTimeout(()=> target.style.boxShadow = "", 900);
     }
 
-    // ====== Events ======
+    // ===== Events =====
     goHome.onclick = showHome;
     startBtn.onclick = () => playLesson(0);
 
