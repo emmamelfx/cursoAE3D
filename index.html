@@ -22,8 +22,6 @@
     :root{
       --bg:#0b0d12;
       --bg2:#0f1320;
-      --surface:rgba(255,255,255,.06);
-      --surface2:rgba(255,255,255,.09);
       --stroke:rgba(255,255,255,.10);
       --stroke2:rgba(255,255,255,.20);
 
@@ -35,13 +33,8 @@
       --accent:#44C4F2;
       --accent2:#766BF5;
 
-      --ok:#30d158;
-      --softRed:#ff6b6b;
-
       --shadow: 0 18px 50px rgba(0,0,0,.45);
       --shadow2: 0 10px 28px rgba(0,0,0,.35);
-      --r12:12px;
-      --r16:16px;
       --r20:20px;
       --max: 1240px;
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
@@ -71,7 +64,7 @@
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
       background: rgba(11,13,18,.68);
-      border-bottom:1px solid var(--stroke);
+      border-bottom:1px solid rgba(255,255,255,.10);
     }
     .topbar-inner{
       max-width:var(--max);
@@ -98,7 +91,7 @@
       display:inline-flex; align-items:center; gap:8px;
       font-size:14px;
       padding:8px 10px;
-      border:1px solid var(--stroke);
+      border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.05);
       border-radius:999px;
       color: var(--muted);
@@ -110,7 +103,7 @@
       font-size:14px;
       padding:10px 12px;
       border-radius:999px;
-      border:1px solid var(--stroke);
+      border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.06);
       cursor:pointer;
       box-shadow: var(--shadow2);
@@ -122,12 +115,12 @@
     .btn.accent{
       border-color: rgba(68,196,242,.35);
       background: linear-gradient(135deg, rgba(68,196,242,.22), rgba(118,107,245,.12));
-      color: #fff;
+      color:#fff;
     }
     .btn.solid{
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       border-color: rgba(68,196,242,.40);
-      color:#fff; /* pedido: texto blanco sobre degradado */
+      color:#fff;
       font-weight: 900;
     }
 
@@ -142,7 +135,7 @@
 
     .card{
       background: rgba(255,255,255,.05);
-      border: 1px solid var(--stroke);
+      border: 1px solid rgba(255,255,255,.10);
       border-radius: var(--r20);
       box-shadow: var(--shadow);
       overflow:hidden;
@@ -156,7 +149,7 @@
         radial-gradient(900px 520px at 10% 0%, rgba(68,196,242,.16), transparent 55%),
         radial-gradient(900px 520px at 90% 0%, rgba(118,107,245,.14), transparent 55%),
         rgba(255,255,255,.04);
-      border-bottom: 1px solid var(--stroke);
+      border-bottom: 1px solid rgba(255,255,255,.10);
     }
     .hero .kicker{
       display:inline-flex; align-items:center; gap:10px;
@@ -164,7 +157,7 @@
       color: var(--muted);
       padding: 6px 10px;
       border-radius:999px;
-      border:1px solid var(--stroke);
+      border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
     }
     .kickerIcon{width:18px; height:18px; display:inline-block;}
@@ -184,7 +177,7 @@
       min-width: 190px;
       padding: 10px 12px;
       border-radius: 14px;
-      border:1px solid var(--stroke);
+      border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
     }
     .kpi b{font-size:14px}
@@ -195,7 +188,7 @@
       width:min(420px, 100%);
       height: 10px;
       border-radius:999px;
-      border:1px solid var(--stroke);
+      border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.05);
       overflow:hidden;
     }
@@ -213,7 +206,7 @@
       margin-top: 14px;
       border-radius: 18px;
       overflow:hidden;
-      border: 1px solid var(--stroke);
+      border: 1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.35);
       box-shadow: var(--shadow2);
     }
@@ -227,7 +220,7 @@
       aspect-ratio:16/9;
       border-radius: 18px;
       overflow:hidden;
-      border: 1px solid var(--stroke);
+      border: 1px solid rgba(255,255,255,.10);
       background:#070911;
       box-shadow: var(--shadow2);
     }
@@ -244,18 +237,18 @@
     /* Sidebar */
     .sideHead{
       padding: 14px 14px 12px;
-      border-bottom: 1px solid var(--stroke);
+      border-bottom: 1px solid rgba(255,255,255,.10);
       display:flex; flex-direction:column; gap:6px;
     }
     .sideHead b{font-size:15px}
     .sideHead span{font-size:14px; color: var(--muted2)}
 
-    .search{padding: 12px 14px; border-bottom:1px solid var(--stroke); background: rgba(255,255,255,.03);}
+    .search{padding: 12px 14px; border-bottom:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03);}
     .search input{
       width:100%;
       padding: 12px 12px;
       border-radius: 14px;
-      border: 1px solid var(--stroke);
+      border: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
       color: var(--text) !important;
       outline:none;
@@ -266,7 +259,7 @@
     .module{
       margin: 10px;
       border-radius: 16px;
-      border:1px solid var(--stroke);
+      border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       overflow:hidden;
     }
@@ -302,29 +295,28 @@
       border-color: rgba(68,196,242,.22);
     }
 
-    /* Pedido: circulo verde y si fue visto pasa a rojo suave */
+    /* Pedido: circulito SIN número. Degradado EM siempre */
     .badge{
-      width: 38px; height: 38px;
+      width: 14px; height: 14px;
       border-radius: 999px;
-      display:grid; place-items:center;
-      font-family: var(--mono);
-      font-size:14px;
-      border:1px solid rgba(48,209,88,.35);
-      background: rgba(48,209,88,.14); /* verde */
-      color: #d8ffe3;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 22px rgba(68,196,242,.18);
+      margin-top: 4px;
       flex:0 0 auto;
-      font-weight: 900;
     }
+    /* Si está completada: agregamos un anillo suave (sin verde/rojo) */
     .badge.done{
-      border-color: rgba(255,107,107,.32);
-      background: rgba(255,107,107,.16); /* rojito suave */
-      color: #ffe1e1;
+      width: 14px; height: 14px;
+      box-shadow:
+        0 0 0 2px rgba(255,255,255,.18),
+        0 10px 22px rgba(68,196,242,.18);
+      opacity: .9;
     }
 
     .lt{margin:0; font-size:15px; font-weight:900; line-height:1.25;}
     .ld{margin:4px 0 0; font-size:14px; color: var(--muted2); line-height:1.35;}
 
-    /* Overlay panel (encima del home) */
+    /* Overlay panel */
     .overlay{
       position:absolute;
       inset: 14px;
@@ -355,14 +347,6 @@
     }
     .closeBtn:hover{border-color: rgba(255,255,255,.24);}
 
-    /* Tabs en el main */
-    .tabsRow{
-      display:flex;
-      gap: 10px;
-      align-items:center;
-      flex-wrap:wrap;
-      margin-bottom: 12px;
-    }
     .tabBtn{
       display:inline-flex; align-items:center; gap:10px;
       padding: 10px 12px;
@@ -378,9 +362,7 @@
       background: linear-gradient(135deg, rgba(68,196,242,.18), rgba(118,107,245,.10));
       color:#fff;
     }
-    .tabBtn:hover{border-color: rgba(255,255,255,.24);}
 
-    /* Chips/temas */
     .chip{
       display:inline-flex; align-items:center; gap:8px;
       padding: 10px 12px;
@@ -392,10 +374,10 @@
       margin-bottom: 8px;
       cursor:pointer;
       font-weight: 900;
+      color:#fff;
     }
     .chip:hover{border-color: rgba(68,196,242,.40);}
 
-    /* Formularios */
     .formGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -481,7 +463,6 @@
             </div>
           </div>
 
-          <!-- Video bienvenida SOLO en Home -->
           <div class="homeVideoWrap">
             <div class="homeVideo">
               <iframe
@@ -498,7 +479,7 @@
           </div>
         </section>
 
-        <!-- Overlay (encima del home) -->
+        <!-- Overlay -->
         <section class="overlay" id="overlay">
           <div class="overlayHead">
             <b id="overlayTitle">Panel</b>
@@ -507,7 +488,7 @@
           <div class="overlayBody" id="overlayBody"></div>
         </section>
 
-        <!-- PLAYER (al elegir una clase el HOME desaparece) -->
+        <!-- PLAYER -->
         <section id="playerSection" style="display:none;">
           <div class="playerWrap">
             <div class="player">
@@ -548,10 +529,9 @@
   </div>
 
   <script>
-    // ====== Config Descargas ======
     const DOWNLOADS_LINK = "https://drive.google.com/drive/folders/1JwAskl-_V1mdrx0JIWpMMnkqJdgiq4yX?usp=drive_link";
 
-    // ====== Videos del curso (19 videos reales para 20 clases: 05+06 juntos) ======
+    // 19 videos reales
     const urls = [
       "https://youtu.be/D1IC09GeKZs",
       "https://youtu.be/HVBjwflEPBA",
@@ -571,43 +551,49 @@
       "https://youtu.be/Kb5NjjzP8ZU",
       "https://youtu.be/I4njR2qgrZI",
       "https://youtu.be/Q5wg_VyTQ-o",
-      "https://youtu.be/bZlzz87AVo4" // Resultado final
+      "https://youtu.be/ptSPBlNyoQ8" // (no se usa como clase; se usa SOLO en home, lo dejamos por si querés luego)
     ];
 
+    // Clases 01..20 (20 clases / 19 videos: 05+06 juntos)
+    // Nota: el embed final (Resultado final) va aparte como módulo propio y usa bZlzz87AVo4
     const lessons = [
-      { t:"01 - Introducción", d:"Breve introducción al curso.", u:0 },
-      { t:"02 - Retos de entorno 3D", d:"Arrancamos el workshop y el enfoque del entorno 3D.", u:1 },
-      { t:"03 - Objetivos", d:"Qué vas a lograr y cómo vamos a trabajarlo.", u:2 },
-      { t:"04 - Manos a la obra", d:"Setup y primeros pasos del proyecto.", u:3 },
-      { t:"05 y 06 - Photoshop", d:"Preparación de recursos y ajustes (ambas clases en un solo video).", u:4 },
-      { t:"07 - Interfaz express de AE", d:"Ajustes clave y setup inicial en After Effects.", u:5 },
-      { t:"08 - Interfaz de AE 3D Cam", d:"Trabajo con cámara 3D y herramientas principales.", u:6 },
-      { t:"09 - Import y Composición de la estructura 3D", d:"Importación y armado de la estructura en la comp.", u:7 },
-      { t:"10 - Animación de cámara 3D I", d:"Primer tramo de animación con cámara 3D.", u:8 },
-      { t:"11 - Animación de cámara 3D II", d:"Continuación: refinamos timing y movimientos.", u:9 },
-      { t:"12 - Animación interna", d:"Microanimaciones y vida dentro del entorno.", u:10 },
-      { t:"13 - Animación de títulos", d:"Diseño y animación de títulos integrados.", u:11 },
-      { t:"14 - Composición y Timing", d:"Ajustes globales de comp y ritmo.", u:12 },
-      { t:"15 - Efectos de lighting", d:"Look final: profundidad, atmósfera e iluminación.", u:13 },
-      { t:"16 - Efectos de Partículas 3D", d:"Partículas para elevar el impacto visual.", u:14 },
-      { t:"17 - Retoques de Composición", d:"Retoques finales de post y composición.", u:15 },
-      { t:"18 - Optimización del proyecto", d:"Orden, rendimiento y limpieza del proyecto.", u:16 },
-      { t:"19 - Export Final", d:"Exportación final y entrega.", u:17 },
-      { t:"20 - Visualización y análisis", d:"Cierre y análisis del resultado.", u:18 }
+      { t:"01 - Introducción", d:"Breve introducción al curso.", url:"https://youtu.be/D1IC09GeKZs" },
+      { t:"02 - Retos de entorno 3D", d:"Arrancamos el workshop y el enfoque del entorno 3D.", url:"https://youtu.be/HVBjwflEPBA" },
+      { t:"03 - Objetivos", d:"Qué vas a lograr y cómo vamos a trabajarlo.", url:"https://youtu.be/4USqAIWAIqc" },
+      { t:"04 - Manos a la obra", d:"Setup y primeros pasos del proyecto.", url:"https://youtu.be/LaMZVjZ1se4" },
+      { t:"05 y 06 - Photoshop", d:"Preparación de recursos y ajustes (ambas clases en un solo video).", url:"https://youtu.be/wyMZ_Equajc" },
+      { t:"07 - Interfaz express de AE", d:"Ajustes clave y setup inicial en After Effects.", url:"https://youtu.be/Ghydv5lH-hU" },
+      { t:"08 - Interfaz de AE 3D Cam", d:"Trabajo con cámara 3D y herramientas principales.", url:"https://youtu.be/Jwr5WONsrnw" },
+      { t:"09 - Import y Composición de la estructura 3D", d:"Importación y armado de la estructura en la comp.", url:"https://youtu.be/kIUfed9wwzs" },
+      { t:"10 - Animación de cámara 3D I", d:"Primer tramo de animación con cámara 3D.", url:"https://youtu.be/2eifWwbYoVU" },
+      { t:"11 - Animación de cámara 3D II", d:"Continuación: refinamos timing y movimientos.", url:"https://youtu.be/YRVPlf9Q8b8" },
+      { t:"12 - Animación interna", d:"Microanimaciones y vida dentro del entorno.", url:"https://youtu.be/6iZKgA6W2XA" },
+      { t:"13 - Animación de títulos", d:"Diseño y animación de títulos integrados.", url:"https://youtu.be/5Kf3hmlzw7s" },
+      { t:"14 - Composición y Timing", d:"Ajustes globales de comp y ritmo.", url:"https://youtu.be/OHG0WslMs8M" },
+      { t:"15 - Efectos de lighting", d:"Look final: profundidad, atmósfera e iluminación.", url:"https://youtu.be/8jx3xiaeruY" },
+      { t:"16 - Efectos de Partículas 3D", d:"Partículas para elevar el impacto visual.", url:"https://youtu.be/JoGWgePrkeA" },
+      { t:"17 - Retoques de Composición", d:"Retoques finales de post y composición.", url:"https://youtu.be/Kb5NjjzP8ZU" },
+      { t:"18 - Optimización del proyecto", d:"Orden, rendimiento y limpieza del proyecto.", url:"https://youtu.be/I4njR2qgrZI" },
+      { t:"19 - Export Final", d:"Exportación final y entrega.", url:"https://youtu.be/Q5wg_VyTQ-o" },
+      { t:"20 - Visualización y análisis", d:"Cierre y análisis del resultado.", url:"https://youtu.be/ptSPBlNyoQ8" } // si querés usar otro, lo cambiamos
     ];
 
-    // Módulos corregidos (Look & Post incluye 15/16/17, Entrega incluye 18/19)
+    // ====== MÓDULOS (corrigido) ======
+    // Pedido: Look & Post incluye 15–16–17–18–19–20
     const modules = [
       { id:"m1", name:"Inicio del Workshop", items:[0,1,2,3] },
       { id:"m2", name:"Preparación de recursos", items:[4] },
       { id:"m3", name:"After Effects + Estructura 3D", items:[5,6,7] },
       { id:"m4", name:"Animación", items:[8,9,10,11,12,13] },
-      { id:"m5", name:"Look & Post", items:[14,15,16] },    // 15-17 (0-based 14-16)
-      { id:"m6", name:"Entrega", items:[17,18] },           // 18-19 (0-based 17-18)
+      { id:"m5", name:"Look & Post", items:[14,15,16,17,18,19] } // 15..20 (0-based 14..19)
     ];
 
-    // Resultado final: separada
-    const finalBlock = { id:"final", name:"Resultado final", items:[19] };
+    // Pedido: Resultado final solo bZlzz87AVo4
+    const finalBlock = {
+      id:"final",
+      name:"Resultado final",
+      items:[ { t:"Resultado final", d:"Entrega final del curso.", url:"https://youtu.be/bZlzz87AVo4" } ]
+    };
 
     // ====== DOM ======
     const modulesWrap = document.getElementById("modules");
@@ -635,7 +621,7 @@
     const kpiDone = document.getElementById("kpiDone");
     const sideSub = document.getElementById("sideSub");
 
-    // overlay controls
+    // overlay
     const overlay = document.getElementById("overlay");
     const overlayTitle = document.getElementById("overlayTitle");
     const overlayBody = document.getElementById("overlayBody");
@@ -647,7 +633,7 @@
     const openPanelHome = document.getElementById("openPanelHome");
 
     // ====== Progreso (manual) ======
-    const STORAGE_KEY = "aula_em_experto_v3";
+    const STORAGE_KEY = "aula_em_experto_v4";
     const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
 
     function saveProgress(){
@@ -695,7 +681,6 @@
     }
 
     function showPlayer(){
-      // al entrar a una clase: ocultamos home (incluye video bienvenida)
       homeSection.style.display = "none";
       playerSection.style.display = "";
       hideOverlay();
@@ -713,17 +698,29 @@
       currentLesson = i;
       showPlayer();
 
-      const url = urls[l.u];
-      frame.src = toEmbed(url);
+      frame.src = toEmbed(l.url);
       lessonTitle.textContent = l.t;
       lessonDesc.textContent = l.d || " ";
-      openYT.href = url;
+      openYT.href = l.url;
 
       document.querySelectorAll(".lessonBtn").forEach(b => b.classList.remove("active"));
       const btn = document.querySelector(`.lessonBtn[data-i="${i}"]`);
       if(btn) btn.classList.add("active");
 
       updateDoneButton();
+    }
+
+    function playFinal(){
+      // no cuenta como clase dentro del progreso (a pedido, es módulo aparte)
+      showPlayer();
+      const url = finalBlock.items[0].url;
+      frame.src = toEmbed(url);
+      lessonTitle.textContent = "Resultado final";
+      lessonDesc.textContent = "Entrega final del curso.";
+      openYT.href = url;
+
+      currentLesson = null; // para que no marque completar sobre esto
+      toggleDone.textContent = "✅ Completar";
     }
 
     function renderModules(term=""){
@@ -757,7 +754,6 @@
 
         const body = document.createElement("div");
         body.className = "moduleBody";
-        body.dataset.body = "1";
 
         filteredItems.forEach((i) => {
           const l = lessons[i];
@@ -768,7 +764,6 @@
 
           const badge = document.createElement("div");
           badge.className = "badge" + (progress[i] ? " done" : "");
-          badge.textContent = String(i+1).padStart(2,"0");
 
           const wrap = document.createElement("div");
           wrap.innerHTML = `<p class="lt">${l.t}</p><p class="ld">${l.d || " "}</p>`;
@@ -793,12 +788,31 @@
       }
 
       modules.forEach(addModule);
-      addModule(finalBlock);
 
-      if(currentLesson !== null){
-        const btn = document.querySelector(`.lessonBtn[data-i="${currentLesson}"]`);
-        if(btn) btn.classList.add("active");
-      }
+      // Resultado final (separado)
+      const finalEl = document.createElement("div");
+      finalEl.className = "module";
+      finalEl.dataset.mid = "final";
+      finalEl.innerHTML = `
+        <div class="moduleHead">
+          <div>
+            <b>${finalBlock.name}</b>
+            <span style="display:block;margin-top:2px;">1 video</span>
+          </div>
+          <span style="color:var(--muted2)">▼</span>
+        </div>
+        <div class="moduleBody">
+          <button class="lessonBtn" type="button" id="finalBtn">
+            <div class="badge"></div>
+            <div>
+              <p class="lt">Resultado final</p>
+              <p class="ld">Entrega final del curso.</p>
+            </div>
+          </button>
+        </div>
+      `;
+      modulesWrap.appendChild(finalEl);
+      finalEl.querySelector("#finalBtn").onclick = playFinal;
     }
 
     // ====== Overlay ======
@@ -807,12 +821,9 @@
       overlayBody.innerHTML = html;
       overlay.classList.add("show");
     }
-    function hideOverlay(){
-      overlay.classList.remove("show");
-    }
+    function hideOverlay(){ overlay.classList.remove("show"); }
     closeOverlay.onclick = hideOverlay;
 
-    // acciones overlay
     btnDownloads.onclick = () => {
       showOverlay("Descargas de recursos: Proyecto + recursos gráficos", `
         <div style="font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:12px;">
@@ -840,9 +851,7 @@
       `);
     };
 
-    // Grupo de temas: chips que hacen scroll/expand al módulo derecho
     btnTopics.onclick = () => openTopicsOverlay();
-
     openPanelHome.onclick = () => openTopicsOverlay();
 
     function openTopicsOverlay(){
@@ -852,7 +861,6 @@
         { label:"AE + Estructura 3D", mid:"m3" },
         { label:"Animación", mid:"m4" },
         { label:"Look & Post", mid:"m5" },
-        { label:"Entrega", mid:"m6" },
         { label:"Resultado final", mid:"final" },
       ];
 
@@ -878,16 +886,15 @@
       const target = document.querySelector(`.module[data-mid="${mid}"]`);
       if(!target) return;
 
-      // expandir body si estaba cerrado (miramos si está oculto)
+      // expandir si estaba cerrado
       const body = target.querySelector('.moduleBody');
+      const chevron = target.querySelector('.moduleHead span:last-child');
       if(body && body.style.display === "none"){
-        // click en header para abrir
         target.querySelector('.moduleHead')?.click();
+        if(chevron) chevron.textContent = "▼";
       }
 
-      // scroll hacia el módulo
       target.scrollIntoView({ behavior:"smooth", block:"start" });
-      // mini highlight
       target.style.boxShadow = "0 0 0 2px rgba(68,196,242,.25), 0 18px 50px rgba(0,0,0,.35)";
       setTimeout(()=> target.style.boxShadow = "", 900);
     }
@@ -916,7 +923,7 @@
       renderModules(currentTerm);
     });
 
-    // ====== Init ======
+    // Init
     updateProgressUI();
     renderModules("");
     showHome();
