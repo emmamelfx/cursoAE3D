@@ -3,494 +3,488 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Curso — Aula Privada</title>
+  <title>Aula · Curso Privado</title>
   <style>
     :root{
-      --bg:#0b0b0f;
-      --panel:#0f1117;
-      --card:#11131b;
-      --stroke:#232636;
-      --stroke2:#2e334a;
-      --text:#e9ecff;
-      --muted:#a7acc7;
-      --muted2:#7d83a6;
-      --brand:#7c5cff;
-      --brand2:#22c55e;
+      --bg:#f6f7fb;
+      --surface:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --muted2:#94a3b8;
+      --stroke:#e5e7eb;
+      --stroke2:#dbe2ea;
+      --accent:#6d28d9;
+      --accent2:#7c3aed;
+      --accentSoft: rgba(109,40,217,.10);
+      --success:#16a34a;
       --danger:#ef4444;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius: 16px;
-      --radius2: 22px;
+      --shadow: 0 12px 28px rgba(15, 23, 42, .08);
+      --shadow2: 0 8px 18px rgba(15, 23, 42, .06);
+      --r12:12px;
+      --r16:16px;
+      --r20:20px;
+      --max: 1180px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background: radial-gradient(1100px 700px at 20% -10%, rgba(124,92,255,.22), transparent 60%),
-                  radial-gradient(900px 600px at 80% 10%, rgba(34,197,94,.12), transparent 55%),
-                  var(--bg);
-      color:var(--text);
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 520px at 15% -10%, rgba(109,40,217,.18), transparent 60%),
+        radial-gradient(900px 520px at 85% -10%, rgba(124,58,237,.14), transparent 60%),
+        var(--bg);
     }
 
-    /* Topbar */
     .topbar{
-      position:sticky; top:0; z-index:50;
-      background: rgba(11,11,15,.78);
+      position: sticky;
+      top: 0;
+      z-index: 50;
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(35,38,54,.8);
+      background: rgba(246,247,251,.78);
+      border-bottom: 1px solid rgba(229,231,235,.85);
     }
     .topbar-inner{
-      max-width: 1200px;
-      margin:0 auto;
+      max-width: var(--max);
+      margin: 0 auto;
       padding: 14px 16px;
       display:flex;
-      gap:12px;
       align-items:center;
       justify-content:space-between;
+      gap: 12px;
     }
     .brand{
-      display:flex; align-items:center; gap:10px;
-      min-width: 220px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 240px;
     }
     .logo{
-      width:34px;height:34px;border-radius:12px;
-      background: linear-gradient(135deg, rgba(124,92,255,1), rgba(34,197,94,.95));
-      box-shadow: 0 10px 30px rgba(124,92,255,.25);
+      width: 36px; height: 36px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), #9f67ff);
+      box-shadow: 0 12px 26px rgba(109,40,217,.25);
     }
-    .brand h1{
-      font-size:14px; margin:0; line-height:1.1;
-      letter-spacing:.2px;
-    }
-    .brand span{display:block; font-size:12px; color:var(--muted2); margin-top:2px}
+    .brand .t{display:flex; flex-direction:column; line-height:1.15;}
+    .brand .t b{font-size: 13px; letter-spacing:.2px}
+    .brand .t span{font-size: 12px; color: var(--muted)}
     .actions{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-      justify-content:flex-end;
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;
     }
     .pill{
       display:inline-flex; align-items:center; gap:8px;
-      padding: 8px 12px;
+      font-size:12px;
+      padding: 8px 10px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.85);
       border-radius: 999px;
-      border:1px solid rgba(35,38,54,.9);
-      background: rgba(15,17,23,.65);
       color: var(--muted);
-      font-size: 12px;
+      box-shadow: var(--shadow2);
+      user-select:none;
     }
     .btn{
       display:inline-flex; align-items:center; gap:8px;
+      font-size:12px;
       padding: 10px 12px;
       border-radius: 999px;
-      border:1px solid rgba(35,38,54,.95);
-      background: rgba(17,19,27,.85);
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.92);
       color: var(--text);
-      font-size: 12px;
       cursor:pointer;
       text-decoration:none;
-      transition: transform .08s ease, border-color .12s ease, background .12s ease;
+      box-shadow: var(--shadow2);
+      transition: transform .08s ease, border-color .12s ease, box-shadow .12s ease;
       user-select:none;
     }
-    .btn:hover{border-color: rgba(46,51,74,1); transform: translateY(-1px)}
+    .btn:hover{transform: translateY(-1px); border-color: var(--stroke2); box-shadow: var(--shadow)}
     .btn.primary{
-      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(124,92,255,.65));
-      border-color: rgba(124,92,255,.85);
+      border-color: rgba(109,40,217,.25);
+      background: linear-gradient(135deg, rgba(109,40,217,.10), rgba(109,40,217,.04));
+      color: var(--accent);
     }
-    .btn.success{
-      background: linear-gradient(135deg, rgba(34,197,94,.95), rgba(34,197,94,.55));
-      border-color: rgba(34,197,94,.75);
+    .btn.accent{
+      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      border-color: rgba(109,40,217,.35);
+      color:white;
+    }
+    .btn.disabled{
+      opacity:.55;
+      cursor:not-allowed;
+      transform:none !important;
     }
 
-    /* Layout */
     .container{
-      max-width: 1200px;
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 16px;
+      padding: 18px 16px 26px;
     }
-    .layout{
+    .grid{
       display:grid;
-      grid-template-columns: 360px 1fr;
+      grid-template-columns: 1.25fr .75fr;
       gap: 16px;
-      align-items: start;
-    }
-
-    /* Sidebar */
-    .sidebar{
-      border:1px solid rgba(35,38,54,.9);
-      background: rgba(15,17,23,.72);
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position: sticky;
-      top: 78px;
-      max-height: calc(100vh - 96px);
-      display:flex;
-      flex-direction:column;
-    }
-    .sidebar-head{
-      padding: 14px 14px 12px;
-      border-bottom:1px solid rgba(35,38,54,.8);
-      background: rgba(17,19,27,.55);
-    }
-    .course-title{
-      margin:0;
-      font-size: 14px;
-      letter-spacing:.2px;
-    }
-    .course-sub{
-      margin: 6px 0 0;
-      color: var(--muted2);
-      font-size: 12px;
-      line-height:1.35;
-    }
-    .search{
-      padding: 12px 14px;
-      border-bottom:1px solid rgba(35,38,54,.8);
-      background: rgba(15,17,23,.5);
-    }
-    .search input{
-      width:100%;
-      padding: 11px 12px;
-      border-radius: 14px;
-      border:1px solid rgba(35,38,54,.95);
-      background: rgba(17,19,27,.85);
-      color: var(--text);
-      outline:none;
-    }
-    .search input:focus{border-color: rgba(124,92,255,.75)}
-    .list{
-      padding: 10px 10px 12px;
-      overflow:auto;
-    }
-    .lesson{
-      width:100%;
-      text-align:left;
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      padding: 10px 10px;
-      border-radius: 14px;
-      border:1px solid transparent;
-      background: transparent;
-      color: var(--text);
-      cursor:pointer;
-      transition: background .12s ease, border-color .12s ease, transform .06s ease;
-      margin-bottom: 6px;
-    }
-    .lesson:hover{
-      background: rgba(17,19,27,.7);
-      border-color: rgba(35,38,54,.9);
-      transform: translateY(-1px);
-    }
-    .lesson.active{
-      background: rgba(124,92,255,.14);
-      border-color: rgba(124,92,255,.38);
-    }
-    .dot{
-      width: 18px; height: 18px; border-radius: 999px;
-      border:1px solid rgba(46,51,74,1);
-      background: rgba(17,19,27,.8);
-      display:grid; place-items:center;
-      flex: 0 0 auto;
-      margin-top: 2px;
-      color: var(--muted2);
-      font-size: 11px;
-    }
-    .dot.done{
-      border-color: rgba(34,197,94,.65);
-      background: rgba(34,197,94,.18);
-      color: rgba(34,197,94,1);
-    }
-    .ltext{flex:1}
-    .ltitle{
-      font-size: 13px;
-      font-weight: 650;
-      margin: 0;
-      line-height:1.25;
-    }
-    .ldesc{
-      margin: 4px 0 0;
-      font-size: 12px;
-      color: var(--muted2);
-      line-height:1.35;
-    }
-
-    /* Main */
-    .main{
-      display:flex;
-      flex-direction:column;
-      gap: 16px;
-      min-width: 0;
+      align-items:start;
     }
 
     .card{
-      border:1px solid rgba(35,38,54,.9);
-      background: rgba(15,17,23,.72);
-      border-radius: var(--radius2);
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(229,231,235,.9);
+      border-radius: var(--r20);
       box-shadow: var(--shadow);
       overflow:hidden;
     }
 
     .hero{
-      padding: 18px;
+      padding: 18px 18px 16px;
       background:
-        radial-gradient(900px 500px at 0% 0%, rgba(124,92,255,.18), transparent 55%),
-        radial-gradient(800px 500px at 100% 0%, rgba(34,197,94,.10), transparent 55%),
-        rgba(15,17,23,.72);
-      border-bottom: 1px solid rgba(35,38,54,.8);
+        radial-gradient(900px 420px at 10% 0%, rgba(109,40,217,.12), transparent 55%),
+        radial-gradient(900px 420px at 90% 0%, rgba(124,58,237,.10), transparent 55%),
+        rgba(255,255,255,.92);
+      border-bottom: 1px solid rgba(229,231,235,.9);
     }
-    .hero h2{
-      margin:0;
-      font-size: 18px;
-      letter-spacing:.2px;
-    }
-    .hero p{
-      margin: 8px 0 0;
-      color: var(--muted);
-      line-height:1.5;
-      font-size: 13px;
-      max-width: 68ch;
-    }
-    .hero .mini{
-      margin-top: 12px;
+    .hero h1{margin:0;font-size:18px;letter-spacing:.2px;}
+    .hero p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.55;max-width:74ch;}
+    .hero-row{
+      margin-top: 14px;
       display:flex;
-      gap:10px;
+      gap: 12px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .metrics{
+      display:flex;
+      gap: 10px;
       flex-wrap:wrap;
       align-items:center;
     }
-    .progressbar{
-      width: min(460px, 100%);
+    .kpi{
+      display:flex;
+      flex-direction:column;
+      gap: 2px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(229,231,235,.95);
+      min-width: 160px;
+    }
+    .kpi b{font-size:12px}
+    .kpi span{font-size:12px; color: var(--muted)}
+    .progressWrap{
+      display:flex; align-items:center; gap: 10px; flex-wrap:wrap;
+    }
+    .bar{
+      width: min(420px, 100%);
       height: 10px;
       border-radius: 999px;
-      border:1px solid rgba(35,38,54,.95);
-      background: rgba(17,19,27,.85);
+      border: 1px solid rgba(229,231,235,.95);
+      background: rgba(148,163,184,.18);
       overflow:hidden;
     }
-    .progressbar > div{
+    .bar > div{
       height:100%;
       width:0%;
-      background: linear-gradient(90deg, rgba(124,92,255,1), rgba(34,197,94,1));
+      background: linear-gradient(90deg, var(--accent), #8b5cf6);
       border-radius: 999px;
       transition: width .25s ease;
     }
-
-    .player-wrap{
-      padding: 14px;
+    .barText{
+      font-size:12px;
+      color: var(--muted);
+      font-family: var(--mono);
     }
+
+    .playerWrap{padding: 14px 14px 12px;}
     .player{
       width:100%;
       aspect-ratio: 16/9;
-      border-radius: 18px;
+      border-radius: 16px;
       overflow:hidden;
-      border:1px solid rgba(35,38,54,.9);
-      background:#000;
+      border: 1px solid rgba(229,231,235,.95);
+      background: #0b1020;
+      box-shadow: var(--shadow2);
     }
     iframe{width:100%; height:100%; border:0}
-
-    .lesson-meta{
+    .lessonMeta{
       padding: 0 14px 14px;
       display:flex;
-      gap:10px;
       align-items:flex-start;
       justify-content:space-between;
+      gap: 12px;
       flex-wrap:wrap;
     }
-    .lesson-meta .left{
-      min-width: 240px;
-      flex: 1 1 auto;
-    }
-    .lesson-meta h3{
-      margin: 2px 0 0;
-      font-size: 16px;
-      letter-spacing:.2px;
-    }
-    .lesson-meta p{
-      margin: 8px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height:1.5;
-      max-width: 72ch;
-    }
-    .lesson-meta .right{
+    .lessonMeta .left{flex: 1 1 320px; min-width: 260px;}
+    .lessonMeta h2{margin:2px 0 0;font-size:16px;letter-spacing:.2px;}
+    .lessonMeta p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.55;}
+    .navBtns{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end;}
+
+    .sideHead{
+      padding: 14px 14px 12px;
+      border-bottom: 1px solid rgba(229,231,235,.9);
       display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
+      flex-direction:column;
+      gap: 6px;
     }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .box{
-      padding: 14px;
-      border-top: 1px solid rgba(35,38,54,.8);
-    }
-    .box h4{margin:0; font-size: 13px; color: var(--text)}
-    .box p{margin:8px 0 0; color: var(--muted); font-size: 13px; line-height:1.5}
-    .hint{
-      display:flex; gap:10px; align-items:flex-start;
+    .sideHead b{font-size: 13px}
+    .sideHead span{font-size:12px; color: var(--muted)}
+    .search{
       padding: 12px 14px;
-      border-top: 1px solid rgba(35,38,54,.8);
-      color: var(--muted);
-      font-size: 13px;
-      line-height:1.45;
+      border-bottom: 1px solid rgba(229,231,235,.9);
+      background: rgba(255,255,255,.92);
     }
-    .hint b{color: var(--text)}
-    .kbd{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 12px;
-      padding: 2px 6px;
-      border-radius: 8px;
-      border:1px solid rgba(35,38,54,.95);
-      background: rgba(17,19,27,.85);
-      color: var(--muted);
+    .search input{
+      width:100%;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(229,231,235,.95);
+      background: rgba(246,247,251,.9);
+      outline:none;
+      color: var(--text);
+    }
+    .search input:focus{border-color: rgba(109,40,217,.35); box-shadow: 0 0 0 4px rgba(109,40,217,.08)}
+    .list{
+      padding: 10px 10px 12px;
+      overflow:auto;
+      max-height: calc(100vh - 170px);
     }
 
-    /* Mobile */
+    .lessonBtn{
+      width:100%;
+      text-align:left;
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      padding: 10px 10px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      background: transparent;
+      cursor:pointer;
+      transition: background .12s ease, border-color .12s ease, transform .08s ease;
+      margin-bottom: 6px;
+    }
+    .lessonBtn:hover{
+      background: rgba(109,40,217,.06);
+      border-color: rgba(109,40,217,.10);
+      transform: translateY(-1px);
+    }
+    .lessonBtn.active{
+      background: rgba(109,40,217,.10);
+      border-color: rgba(109,40,217,.18);
+    }
+    .lessonBtn.locked{
+      opacity: .55;
+      cursor: not-allowed;
+      transform:none !important;
+    }
+    .lessonBtn.locked:hover{
+      background: transparent;
+      border-color: transparent;
+    }
+
+    .badgeNum{
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid rgba(229,231,235,.95);
+      background: rgba(255,255,255,.95);
+      flex: 0 0 auto;
+    }
+    .badgeNum.done{
+      color: var(--success);
+      border-color: rgba(22,163,74,.25);
+      background: rgba(22,163,74,.08);
+    }
+    .badgeNum.locked{
+      color: var(--danger);
+      border-color: rgba(239,68,68,.25);
+      background: rgba(239,68,68,.06);
+      font-weight: 700;
+    }
+
+    .lt{margin:0;font-size:13px;font-weight:650;line-height:1.25;}
+    .ld{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.35;}
+
+    .note{
+      padding: 12px 14px;
+      border-top: 1px solid rgba(229,231,235,.9);
+      color: var(--muted);
+      font-size: 12px;
+      line-height:1.45;
+      background: rgba(255,255,255,.92);
+    }
+
     @media (max-width: 980px){
-      .layout{grid-template-columns: 1fr}
-      .sidebar{position: relative; top:0; max-height: none}
       .grid{grid-template-columns: 1fr}
-      .brand{min-width: 0}
+      .list{max-height: none}
+      .brand{min-width:0}
+      .kpi{min-width: 150px}
     }
   </style>
 </head>
 
 <body>
-  <!-- Topbar -->
   <div class="topbar">
     <div class="topbar-inner">
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
-        <div>
-          <h1>Aula Privada</h1>
-          <span>Acceso por link · Videos no listados</span>
+        <div class="t">
+          <b>Aula privada</b>
+          <span>Acceso por link · videos no listados</span>
         </div>
       </div>
 
       <div class="actions">
-        <span class="pill" id="pillProgress">Progreso: 0%</span>
-        <button class="btn" id="goHome" type="button">🏠 Home</button>
+        <span class="pill" id="pillProgress">Progreso 0%</span>
+        <button class="btn primary" id="goHome" type="button">🏠 Inicio</button>
         <a class="btn" id="openYT" href="#" target="_blank" rel="noopener">▶ Abrir en YouTube</a>
-        <button class="btn success" id="toggleDone" type="button">✅ Marcar completada</button>
+        <button class="btn accent" id="toggleDone" type="button">✅ Completar</button>
       </div>
     </div>
   </div>
 
   <div class="container">
-    <div class="layout">
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <div class="sidebar-head">
-          <p class="course-title" id="courseName">Curso de After Effects</p>
-          <p class="course-sub" id="courseSub">20 clases cortas, directas al grano. Enfoque práctico y ordenado por capítulos.</p>
-        </div>
+    <div class="grid">
 
-        <div class="search">
-          <input id="q" type="search" placeholder="Buscar en el currículum… (ej: cámara, 3D, etc.)" />
-        </div>
-
-        <div class="list" id="menu"></div>
-      </aside>
-
-      <!-- Main -->
-      <main class="main">
-        <!-- Home / Welcome -->
-        <section class="card" id="homeCard">
+      <!-- MAIN -->
+      <main class="card">
+        <!-- HOME -->
+        <section id="homeSection">
           <div class="hero">
-            <h2>Bienvenido/a al curso 👋</h2>
-            <p>
-              Acá tenés el curso completo en formato “aula”: currículum a la izquierda, reproductor y contenido a la derecha.
-              Podés avanzar a tu ritmo y marcar clases como completadas (queda guardado en tu navegador).
+            <h1 id="courseTitle">Workshop Animación entorno 3D en After Effects</h1>
+            <p id="courseDesc">
+              Bienvenido/a. Tenés el curso completo en formato aula: reproducí las clases desde acá y marcá tu avance.
+              El progreso queda guardado en este navegador.
             </p>
 
-            <div class="mini">
-              <div class="progressbar" aria-label="Barra de progreso">
-                <div id="progressFill"></div>
+            <div class="hero-row">
+              <div class="metrics">
+                <div class="kpi">
+                  <b id="kpiLessons">— clases</b>
+                  <span>Contenido total</span>
+                </div>
+                <div class="kpi">
+                  <b id="kpiDone">— completadas</b>
+                  <span>Tu avance</span>
+                </div>
               </div>
-              <span class="pill" id="progressText">0 / 0 completadas</span>
-              <button class="btn primary" id="startBtn" type="button">▶ Empezar por la Clase 01</button>
+
+              <div class="progressWrap">
+                <div class="bar" aria-label="Progreso del curso">
+                  <div id="progressFill"></div>
+                </div>
+                <span class="barText" id="progressText">0 / 0</span>
+                <button class="btn accent" id="startBtn" type="button">▶ Empezar</button>
+              </div>
             </div>
           </div>
 
-          <div class="grid">
-            <div class="box">
-              <h4>Cómo usar esta aula</h4>
-              <p>Elegí una clase del currículum, mirala y marcala como completada. Si cerrás la pestaña, el progreso queda guardado.</p>
-            </div>
-            <div class="box">
-              <h4>Tip para verlo sin trabas</h4>
-              <p>Si un video no carga, revisá que esté en modo <b>No listado</b> (no “Privado”). No listado funciona perfecto para cursos con link.</p>
-            </div>
-          </div>
+          <div style="padding:14px;">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:14px;">
+              <div class="card" style="box-shadow:var(--shadow2); border-radius:var(--r16);">
+                <div style="padding:14px; border-bottom:1px solid rgba(229,231,235,.9);">
+                  <b style="font-size:13px;">Cómo usar esta aula</b>
+                  <div style="margin-top:6px; color:var(--muted); font-size:13px; line-height:1.55;">
+                    Elegí una clase del currículum (derecha), mirala y marcala como completada.
+                    Podés volver cuando quieras y retomar donde quedaste.
+                  </div>
+                </div>
+                <div style="padding:14px; color:var(--muted); font-size:12px; line-height:1.45;">
+                  Tip: si querés cambiar velocidad/calidad, usá “Abrir en YouTube”.
+                </div>
+              </div>
 
-          <div class="hint">
-            <div>💡</div>
-            <div>
-              Atajo útil: <span class="kbd">Ctrl</span> + <span class="kbd">F</span> para buscar rápido en la lista (o usá la búsqueda del currículum).
+              <div class="card" style="box-shadow:var(--shadow2); border-radius:var(--r16);">
+                <div style="padding:14px; border-bottom:1px solid rgba(229,231,235,.9);">
+                  <b style="font-size:13px;">Acceso y privacidad</b>
+                  <div style="margin-top:6px; color:var(--muted); font-size:13px; line-height:1.55;">
+                    Los videos están en modo <b>No listado</b>: no aparecen en búsquedas ni en el canal.
+                    El acceso es por link.
+                  </div>
+                </div>
+                <div style="padding:14px; color:var(--muted); font-size:12px; line-height:1.45;">
+                  Si un video no carga, revisá que no esté en “Privado” o que el embed esté bloqueado.
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- Player / Lesson -->
-        <section class="card" id="lessonCard" style="display:none;">
-          <div class="player-wrap">
+        <!-- PLAYER -->
+        <section id="playerSection" style="display:none;">
+          <div class="playerWrap">
             <div class="player">
-              <iframe id="frame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe id="frame"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
             </div>
           </div>
 
-          <div class="lesson-meta">
+          <div class="lessonMeta">
             <div class="left">
-              <h3 id="lessonTitle">Elegí una clase</h3>
-              <p id="lessonDesc">Seleccioná una clase del currículum para empezar.</p>
+              <h2 id="lessonTitle">Elegí una clase</h2>
+              <p id="lessonDesc">Seleccioná una clase del currículum para comenzar.</p>
             </div>
-            <div class="right">
+            <div class="navBtns">
               <button class="btn" id="prevBtn" type="button">⬅ Anterior</button>
               <button class="btn" id="nextBtn" type="button">Siguiente ➡</button>
             </div>
           </div>
-
-          <div class="hint">
-            <div>📌</div>
-            <div>
-              Consejo: mirá las clases en orden. Si querés repetir una parte, abrí el video en YouTube para ajustar velocidad/calidad.
-            </div>
-          </div>
         </section>
       </main>
+
+      <!-- SIDEBAR -->
+      <aside class="card" style="position:sticky; top:78px;">
+        <div class="sideHead">
+          <b>Currículum</b>
+          <span id="sideSub">Clases del curso</span>
+        </div>
+
+        <div class="search">
+          <input id="q" type="search" placeholder="Buscar… (ej: cámara, 3D, etc.)" />
+        </div>
+
+        <div class="list" id="menu"></div>
+
+        <div class="note">
+          Progreso guardado localmente en tu navegador. Si abrís desde otro dispositivo, el progreso no se sincroniza.
+        </div>
+      </aside>
+
     </div>
   </div>
 
   <script>
-    // ====== CONFIG RÁPIDA (editá si querés) ======
-    const COURSE = {
-      name: "Curso de After Effects",
-      subtitle: "Aula privada · Acceso por link · Videos no listados",
-    };
-
-    // ====== CLASES (tus links, en el orden que pasaste) ======
-    // Nota: me pasaste 19 links. Si falta la clase 20, agregala al final.
+    // ====== CLASES (títulos de tu captura + links que me pasaste) ======
+    // Tenés 20 clases, pero me pasaste 19 links.
+    // La clase 20 queda como "link pendiente": cuando tengas ese link, lo pegás en url y listo.
     const lessons = [
-      { title: "Clase 01", url: "https://youtu.be/D1IC09GeKZs", desc: "" },
-      { title: "Clase 02", url: "https://youtu.be/HVBjwflEPBA", desc: "" },
-      { title: "Clase 03", url: "https://youtu.be/4USqAIWAIqc", desc: "" },
-      { title: "Clase 04", url: "https://youtu.be/LaMZVjZ1se4", desc: "" },
-      { title: "Clase 05", url: "https://youtu.be/wyMZ_Equajc", desc: "" },
-      { title: "Clase 06", url: "https://youtu.be/Ghydv5lH-hU", desc: "" },
-      { title: "Clase 07", url: "https://youtu.be/Jwr5WONsrnw", desc: "" },
-      { title: "Clase 08", url: "https://youtu.be/kIUfed9wwzs", desc: "" },
-      { title: "Clase 09", url: "https://youtu.be/2eifWwbYoVU", desc: "" },
-      { title: "Clase 10", url: "https://youtu.be/YRVPlf9Q8b8", desc: "" },
-      { title: "Clase 11", url: "https://youtu.be/6iZKgA6W2XA", desc: "" },
-      { title: "Clase 12", url: "https://youtu.be/5Kf3hmlzw7s", desc: "" },
-      { title: "Clase 13", url: "https://youtu.be/OHG0WslMs8M", desc: "" },
-      { title: "Clase 14", url: "https://youtu.be/8jx3xiaeruY", desc: "" },
-      { title: "Clase 15", url: "https://youtu.be/JoGWgePrkeA", desc: "" },
-      { title: "Clase 16", url: "https://youtu.be/JoGWgePrkeA", desc: "" }, // repetido tal como lo enviaste
-      { title: "Clase 17", url: "https://youtu.be/Kb5NjjzP8ZU", desc: "" },
-      { title: "Clase 18", url: "https://youtu.be/I4njR2qgrZI", desc: "" },
-      { title: "Clase 19", url: "https://youtu.be/Q5wg_VyTQ-o", desc: "" },
+      { title: "01 - Introducción", url: "https://youtu.be/D1IC09GeKZs", desc: "Breve introducción al curso." },
+      { title: "02 - Retos de entorno 3D", url: "https://youtu.be/HVBjwflEPBA", desc: "Arrancamos el workshop y el enfoque del entorno 3D." },
+      { title: "03 - Objetivos", url: "https://youtu.be/4USqAIWAIqc", desc: "Objetivos del curso y qué vas a lograr." },
+      { title: "04 - Manos a la obra", url: "https://youtu.be/LaMZVjZ1se4", desc: "Preparación y primeros pasos del proyecto." },
+      { title: "05 y 06 - Photoshop", url: "https://youtu.be/wyMZ_Equajc", desc: "Recursos, preparación y ajustes en Photoshop." },
+      { title: "07 - Interfaz express de AE", url: "https://youtu.be/Ghydv5lH-hU", desc: "Interfaz, ajustes clave y setup inicial en After Effects." },
+      { title: "08 - Interfaz de AE 3D Cam", url: "https://youtu.be/Jwr5WONsrnw", desc: "Trabajo con cámara 3D y opciones principales." },
+      { title: "09 - Import y Composición de la estructura 3D", url: "https://youtu.be/kIUfed9wwzs", desc: "Importación y armado de la estructura dentro de la comp." },
+      { title: "10 - Animación de cámara 3D I", url: "https://youtu.be/2eifWwbYoVU", desc: "Primer tramo de animación con cámara 3D." },
+      { title: "11 - Animación de cámara 3D II", url: "https://youtu.be/YRVPlf9Q8b8", desc: "Continuación: refinamos movimientos y timing." },
+      { title: "12 - Animación interna", url: "https://youtu.be/6iZKgA6W2XA", desc: "Detalles internos: vida al escenario y microanimaciones." },
+      { title: "13 - Animación de títulos", url: "https://youtu.be/5Kf3hmlzw7s", desc: "Diseño y animación de títulos integrados a la escena." },
+      { title: "14 - Composición y Timing", url: "https://youtu.be/OHG0WslMs8M", desc: "Ajustes de composición y ritmo general del video." },
+      { title: "15 - Efectos de lighting", url: "https://youtu.be/8jx3xiaeruY", desc: "Iluminación y look final: profundidad y atmósfera." },
+      { title: "16 - Efectos de Partículas 3D", url: "https://youtu.be/JoGWgePrkeA", desc: "Partículas para elevar el impacto visual." },
+      { title: "17 - Retoques de Composición", url: "https://youtu.be/Kb5NjjzP8ZU", desc: "Retoques finales de postproducción." },
+      { title: "18 - Optimización del proyecto", url: "https://youtu.be/I4njR2qgrZI", desc: "Optimización: orden, rendimiento y limpieza del proyecto." },
+      { title: "19 - Export Final", url: "https://youtu.be/Q5wg_VyTQ-o", desc: "Exportación final y entrega." },
+      { title: "20 - Visualización y análisis", url: "", desc: "Link pendiente (pegalo acá cuando lo tengas)." },
     ];
 
     // ====== DOM ======
@@ -498,43 +492,36 @@
     const q = document.getElementById("q");
     const frame = document.getElementById("frame");
 
-    const courseName = document.getElementById("courseName");
-    const courseSub = document.getElementById("courseSub");
-
-    const homeCard = document.getElementById("homeCard");
-    const lessonCard = document.getElementById("lessonCard");
-
-    const goHome = document.getElementById("goHome");
-    const startBtn = document.getElementById("startBtn");
-    const openYT = document.getElementById("openYT");
-    const toggleDone = document.getElementById("toggleDone");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
+    const homeSection = document.getElementById("homeSection");
+    const playerSection = document.getElementById("playerSection");
 
     const lessonTitle = document.getElementById("lessonTitle");
     const lessonDesc = document.getElementById("lessonDesc");
 
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const startBtn = document.getElementById("startBtn");
+
+    const openYT = document.getElementById("openYT");
+    const goHome = document.getElementById("goHome");
+    const toggleDone = document.getElementById("toggleDone");
+
     const progressFill = document.getElementById("progressFill");
     const progressText = document.getElementById("progressText");
     const pillProgress = document.getElementById("pillProgress");
+    const kpiLessons = document.getElementById("kpiLessons");
+    const kpiDone = document.getElementById("kpiDone");
+    const sideSub = document.getElementById("sideSub");
 
-    // ====== HELPERS ======
-    const STORAGE_KEY = "course_progress_v1";
-    const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); // {index: true}
+    // ====== PROGRESO ======
+    const STORAGE_KEY = "aula_progress_v3";
+    const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); // {index:true}
 
     function saveProgress(){
       localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
       updateProgressUI();
       renderMenu(currentList);
-    }
-
-    function toEmbed(url){
-      const u = new URL(url);
-      const v = u.searchParams.get("v");
-      if (v) return `https://www.youtube.com/embed/${v}?rel=0`;
-      const parts = u.pathname.split("/").filter(Boolean); // youtu.be/xxxx
-      if (parts.length) return `https://www.youtube.com/embed/${parts[0]}?rel=0`;
-      return "";
+      updateDoneButton();
     }
 
     function completedCount(){
@@ -542,48 +529,70 @@
     }
 
     function updateProgressUI(){
-      const total = lessons.length;
-      const done = completedCount();
+      const total = lessons.filter(l => !!l.url).length; // solo clases con link
+      const done = Object.entries(progress).filter(([k,v]) => v && lessons[Number(k)] && lessons[Number(k)].url).length;
       const pct = total ? Math.round((done/total)*100) : 0;
+
       progressFill.style.width = pct + "%";
-      progressText.textContent = `${done} / ${total} completadas`;
-      pillProgress.textContent = `Progreso: ${pct}%`;
+      progressText.textContent = `${done} / ${total}`;
+      pillProgress.textContent = `Progreso ${pct}%`;
+      kpiLessons.textContent = `${total} clases`;
+      kpiDone.textContent = `${done} completadas`;
+      sideSub.textContent = `${total} clases · ${pct}% completado`;
     }
+
+    function toEmbed(url){
+      const u = new URL(url);
+      const v = u.searchParams.get("v");
+      if (v) return `https://www.youtube.com/embed/${v}?rel=0`;
+      const parts = u.pathname.split("/").filter(Boolean);
+      if (parts.length) return `https://www.youtube.com/embed/${parts[0]}?rel=0`;
+      return "";
+    }
+
+    // ====== UI STATE ======
+    let currentIndex = null;
+    let currentList = lessons;
 
     function showHome(){
-      homeCard.style.display = "";
-      lessonCard.style.display = "none";
-      openYT.href = "#";
-      toggleDone.textContent = "✅ Marcar completada";
+      homeSection.style.display = "";
+      playerSection.style.display = "none";
       currentIndex = null;
-      document.querySelectorAll(".lesson").forEach(b => b.classList.remove("active"));
+      openYT.href = "#";
+      toggleDone.textContent = "✅ Completar";
+      document.querySelectorAll(".lessonBtn").forEach(b => b.classList.remove("active"));
+      frame.src = "";
     }
 
-    function showLesson(){
-      homeCard.style.display = "none";
-      lessonCard.style.display = "";
+    function showPlayer(){
+      homeSection.style.display = "none";
+      playerSection.style.display = "";
     }
 
     function setActive(btn){
-      document.querySelectorAll(".lesson").forEach(b => b.classList.remove("active"));
-      if (btn) btn.classList.add("active");
+      document.querySelectorAll(".lessonBtn").forEach(b => b.classList.remove("active"));
+      if(btn) btn.classList.add("active");
     }
 
     function updateDoneButton(){
-      if (currentIndex === null) {
-        toggleDone.textContent = "✅ Marcar completada";
-        return;
-      }
+      if (currentIndex === null) { toggleDone.textContent = "✅ Completar"; return; }
+      const l = lessons[currentIndex];
+      if (!l || !l.url) { toggleDone.textContent = "✅ Completar"; return; }
       const isDone = !!progress[currentIndex];
-      toggleDone.textContent = isDone ? "↩ Marcar como pendiente" : "✅ Marcar completada";
+      toggleDone.textContent = isDone ? "↩ Marcar pendiente" : "✅ Marcar completada";
     }
 
     function playIndex(index){
       const l = lessons[index];
-      if (!l) return;
+      if(!l) return;
+
+      if(!l.url){
+        alert("Este capítulo todavía no tiene link cargado. Pegá el link en el array 'lessons' (Clase 20).");
+        return;
+      }
 
       currentIndex = index;
-      showLesson();
+      showPlayer();
 
       frame.src = toEmbed(l.url);
       lessonTitle.textContent = l.title;
@@ -591,47 +600,44 @@
 
       openYT.href = l.url;
 
-      // activar botón en lista (si existe)
-      const btn = document.querySelector(`.lesson[data-index="${index}"]`);
+      const btn = document.querySelector(`.lessonBtn[data-index="${index}"]`);
       setActive(btn);
 
       updateDoneButton();
     }
 
-    // ====== MENU RENDER ======
-    let currentIndex = null;
-    let currentList = lessons;
-
     function renderMenu(list){
       menu.innerHTML = "";
-      list.forEach((l, i) => {
-        // Nota: el index real es el de lessons; si filtramos, lo buscamos
+      list.forEach((l, idxInList) => {
         const realIndex = lessons.indexOf(l);
 
         const btn = document.createElement("button");
-        btn.className = "lesson";
+        btn.className = "lessonBtn" + (!l.url ? " locked" : "");
         btn.type = "button";
         btn.dataset.index = realIndex;
 
-        const dot = document.createElement("div");
-        dot.className = "dot" + (progress[realIndex] ? " done" : "");
-        dot.textContent = progress[realIndex] ? "✓" : (String(realIndex+1).padStart(2,"0"));
+        const badge = document.createElement("div");
+        if (!l.url){
+          badge.className = "badgeNum locked";
+          badge.textContent = "!";
+        } else {
+          badge.className = "badgeNum" + (progress[realIndex] ? " done" : "");
+          badge.textContent = progress[realIndex] ? "✓" : String(realIndex+1).padStart(2,"0");
+        }
 
         const wrap = document.createElement("div");
-        wrap.className = "ltext";
-
         const t = document.createElement("p");
-        t.className = "ltitle";
+        t.className = "lt";
         t.textContent = l.title;
 
         const d = document.createElement("p");
-        d.className = "ldesc";
-        d.textContent = l.desc || " ";
+        d.className = "ld";
+        d.textContent = l.url ? (l.desc || " ") : "Link pendiente";
 
         wrap.appendChild(t);
         wrap.appendChild(d);
 
-        btn.appendChild(dot);
+        btn.appendChild(badge);
         btn.appendChild(wrap);
 
         btn.onclick = () => playIndex(realIndex);
@@ -639,39 +645,44 @@
         menu.appendChild(btn);
       });
 
-      // re-marcar activo si estamos en una clase
       if (currentIndex !== null) {
-        const activeBtn = document.querySelector(`.lesson[data-index="${currentIndex}"]`);
+        const activeBtn = document.querySelector(`.lessonBtn[data-index="${currentIndex}"]`);
         setActive(activeBtn);
       }
     }
 
-    // ====== NAV ======
+    // ====== EVENTS ======
     goHome.onclick = showHome;
 
-    startBtn.onclick = () => playIndex(0);
-
-    toggleDone.onclick = () => {
-      if (currentIndex === null) return;
-      progress[currentIndex] = !progress[currentIndex];
-      saveProgress();
-      updateDoneButton();
+    startBtn.onclick = () => {
+      const first = lessons.findIndex(l => !!l.url);
+      if (first >= 0) playIndex(first);
     };
 
     prevBtn.onclick = () => {
       if (currentIndex === null) return;
-      playIndex(Math.max(0, currentIndex - 1));
+      let i = currentIndex - 1;
+      while (i >= 0 && !lessons[i].url) i--;
+      if (i >= 0) playIndex(i);
     };
 
     nextBtn.onclick = () => {
       if (currentIndex === null) return;
-      playIndex(Math.min(lessons.length - 1, currentIndex + 1));
+      let i = currentIndex + 1;
+      while (i < lessons.length && !lessons[i].url) i++;
+      if (i < lessons.length) playIndex(i);
     };
 
-    // ====== SEARCH ======
+    toggleDone.onclick = () => {
+      if (currentIndex === null) return;
+      if (!lessons[currentIndex] || !lessons[currentIndex].url) return;
+      progress[currentIndex] = !progress[currentIndex];
+      saveProgress();
+    };
+
     q.addEventListener("input", () => {
       const term = q.value.trim().toLowerCase();
-      if (!term) {
+      if(!term){
         currentList = lessons;
         renderMenu(currentList);
         return;
@@ -684,14 +695,10 @@
     });
 
     // ====== INIT ======
-    courseName.textContent = COURSE.name;
-    courseSub.textContent = COURSE.subtitle;
-
     updateProgressUI();
     renderMenu(lessons);
     showHome();
   </script>
 </body>
 </html>
-
 
