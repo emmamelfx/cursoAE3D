@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Curso (Acceso privado)</title>
+  <style>
+    body{font-family:system-ui,Arial;margin:0;background:#0b0b0f;color:#fff}
+    header{padding:16px 20px;border-bottom:1px solid #222}
+    .wrap{display:grid;grid-template-columns:320px 1fr;min-height:calc(100vh - 58px)}
+    aside{border-right:1px solid #222;padding:12px;overflow:auto}
+    main{padding:16px}
+    button{width:100%;text-align:left;background:#111;border:1px solid #222;color:#fff;
+      padding:10px 12px;border-radius:10px;margin:6px 0;cursor:pointer}
+    button:hover{border-color:#444}
+    .player{aspect-ratio:16/9;width:100%;border:1px solid #222;border-radius:14px;overflow:hidden;background:#000}
+    .muted{color:#aaa;font-size:14px;margin-top:10px}
+    @media (max-width:900px){.wrap{grid-template-columns:1fr} aside{border-right:0;border-bottom:1px solid #222}}
+  </style>
+</head>
+<body>
+  <header><b>Curso</b> · Acceso privado</header>
+  <div class="wrap">
+    <aside id="menu"></aside>
+    <main>
+      <div class="player"><iframe id="frame" width="100%" height="100%" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe></div>
+      <div class="muted" id="caption">Elegí una clase del menú.</div>
+    </main>
+  </div>
+
+  <script src="lessons.js"></script>
+  <script>
+    function toEmbed(url){
+      const u = new URL(url);
+      const v = u.searchParams.get("v");
+      if(v) return `https://www.youtube.com/embed/${v}?rel=0`;
+      // youtu.be/xxxx
+      const parts = u.pathname.split("/").filter(Boolean);
+      if(parts.length) return `https://www.youtube.com/embed/${parts[0]}?rel=0`;
+      return "";
+    }
+
+    const menu = document.getElementById("menu");
+    const frame = document.getElementById("frame");
+    const caption = document.getElementById("caption");
+
+    lessons.forEach((l, i) => {
+      const btn = document.createElement("button");
+      btn.textContent = l.title;
+      btn.onclick = () => {
+        frame.src = toEmbed(l.url);
+        caption.textContent = l.title;
+      };
+      menu.appendChild(btn);
+      if(i===0){ btn.click(); }
+    });
+  </script>
+</body>
+</html>
