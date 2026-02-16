@@ -6,56 +6,197 @@
   <title>Curso (Acceso privado)</title>
   <style>
     body{font-family:system-ui,Arial;margin:0;background:#0b0b0f;color:#fff}
-    header{padding:16px 20px;border-bottom:1px solid #222}
+    header{padding:16px 20px;border-bottom:1px solid #222;display:flex;gap:10px;align-items:center;justify-content:space-between}
+    header .left{display:flex;gap:10px;align-items:center}
+    header .badge{font-size:12px;color:#aaa;border:1px solid #222;padding:4px 10px;border-radius:999px;background:#111}
     .wrap{display:grid;grid-template-columns:320px 1fr;min-height:calc(100vh - 58px)}
     aside{border-right:1px solid #222;padding:12px;overflow:auto}
     main{padding:16px}
-    button{width:100%;text-align:left;background:#111;border:1px solid #222;color:#fff;
-      padding:10px 12px;border-radius:10px;margin:6px 0;cursor:pointer}
-    button:hover{border-color:#444}
+    .topbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+    input[type="search"]{
+      width:min(520px,100%);background:#111;border:1px solid #222;color:#fff;
+      padding:10px 12px;border-radius:12px;outline:none
+    }
+    input[type="search"]:focus{border-color:#444}
+    button.lesson{
+      width:100%;text-align:left;background:#111;border:1px solid #222;color:#fff;
+      padding:10px 12px;border-radius:10px;margin:6px 0;cursor:pointer;
+      display:flex;gap:10px;align-items:flex-start
+    }
+    button.lesson:hover{border-color:#444}
+    button.lesson.active{border-color:#666}
+    .num{min-width:56px;font-size:12px;color:#aaa;margin-top:2px}
+    .txt{flex:1}
+    .title{font-weight:600}
+    .desc{color:#aaa;font-size:12px;margin-top:4px;line-height:1.35}
     .player{aspect-ratio:16/9;width:100%;border:1px solid #222;border-radius:14px;overflow:hidden;background:#000}
-    .muted{color:#aaa;font-size:14px;margin-top:10px}
-    @media (max-width:900px){.wrap{grid-template-columns:1fr} aside{border-right:0;border-bottom:1px solid #222}}
+    .muted{color:#aaa;font-size:14px;margin-top:10px;line-height:1.4}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+    a.btn{
+      display:inline-block;text-decoration:none;color:#fff;background:#111;border:1px solid #222;
+      padding:10px 12px;border-radius:12px
+    }
+    a.btn:hover{border-color:#444}
+    @media (max-width:900px){
+      .wrap{grid-template-columns:1fr}
+      aside{border-right:0;border-bottom:1px solid #222}
+      header{position:sticky;top:0;background:#0b0b0f;z-index:10}
+    }
   </style>
 </head>
 <body>
-  <header><b>Curso</b> · Acceso privado</header>
+  <header>
+    <div class="left">
+      <b>Curso</b>
+      <span class="badge">Acceso privado</span>
+    </div>
+    <span class="badge" id="count">0 clases</span>
+  </header>
+
   <div class="wrap">
-    <aside id="menu"></aside>
+    <aside>
+      <div class="topbar">
+        <input id="q" type="search" placeholder="Buscar clase (ej: cámara, 3D, etc.)" />
+      </div>
+      <div id="menu"></div>
+    </aside>
+
     <main>
-      <div class="player"><iframe id="frame" width="100%" height="100%" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe></div>
+      <div class="player">
+        <iframe id="frame" width="100%" height="100%" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+
       <div class="muted" id="caption">Elegí una clase del menú.</div>
+
+      <div class="row">
+        <a class="btn" id="openYT" href="#" target="_blank" rel="noopener">Abrir en YouTube</a>
+        <a class="btn" id="copyLink" href="#">Copiar link</a>
+      </div>
     </main>
   </div>
 
-  <script src="lessons.js"></script>
+  <!-- Si querés mantener lessons.js separado, dejalo. Si preferís todo en 1 archivo, abajo ya está embebido. -->
   <script>
-    function toEmbed(url){
-      const u = new URL(url);
-      const v = u.searchParams.get("v");
-      if(v) return `https://www.youtube.com/embed/${v}?rel=0`;
-      // youtu.be/xxxx
-      const parts = u.pathname.split("/").filter(Boolean);
-      if(parts.length) return `https://www.youtube.com/embed/${parts[0]}?rel=0`;
-      return "";
-    }
+    // ====== PEGÁ ACÁ TUS CLASES (ya están cargadas con tus links) ======
+    const lessons = [
+      { title: "Clase 01", url: "https://youtu.be/D1IC09GeKZs", desc: "" },
+      { title: "Clase 02", url: "https://youtu.be/HVBjwflEPBA", desc: "" },
+      { title: "Clase 03", url: "https://youtu.be/4USqAIWAIqc", desc: "" },
+      { title: "Clase 04", url: "https://youtu.be/LaMZVjZ1se4", desc: "" },
+      { title: "Clase 05", url: "https://youtu.be/wyMZ_Equajc", desc: "" },
+      { title: "Clase 06", url: "https://youtu.be/Ghydv5lH-hU", desc: "" },
+      { title: "Clase 07", url: "https://youtu.be/Jwr5WONsrnw", desc: "" },
+      { title: "Clase 08", url: "https://youtu.be/kIUfed9wwzs", desc: "" },
+      { title: "Clase 09", url: "https://youtu.be/2eifWwbYoVU", desc: "" },
+      { title: "Clase 10", url: "https://youtu.be/YRVPlf9Q8b8", desc: "" },
+      { title: "Clase 11", url: "https://youtu.be/6iZKgA6W2XA", desc: "" },
+      { title: "Clase 12", url: "https://youtu.be/5Kf3hmlzw7s", desc: "" },
+      { title: "Clase 13", url: "https://youtu.be/OHG0WslMs8M", desc: "" },
+      { title: "Clase 14", url: "https://youtu.be/8jx3xiaeruY", desc: "" },
+      { title: "Clase 15", url: "https://youtu.be/JoGWgePrkeA", desc: "" },
+      { title: "Clase 16", url: "https://youtu.be/JoGWgePrkeA", desc: "" }, // repetido tal como lo enviaste
+      { title: "Clase 17", url: "https://youtu.be/Kb5NjjzP8ZU", desc: "" },
+      { title: "Clase 18", url: "https://youtu.be/I4njR2qgrZI", desc: "" },
+      { title: "Clase 19", url: "https://youtu.be/Q5wg_VyTQ-o", desc: "" },
+    ];
 
+    // ====== LÓGICA ======
     const menu = document.getElementById("menu");
     const frame = document.getElementById("frame");
     const caption = document.getElementById("caption");
+    const openYT = document.getElementById("openYT");
+    const copyLink = document.getElementById("copyLink");
+    const q = document.getElementById("q");
+    const count = document.getElementById("count");
 
-    lessons.forEach((l, i) => {
-      const btn = document.createElement("button");
-      btn.textContent = l.title;
-      btn.onclick = () => {
-        frame.src = toEmbed(l.url);
-        caption.textContent = l.title;
+    count.textContent = `${lessons.length} ${lessons.length === 1 ? "clase" : "clases"}`;
+
+    function toEmbed(url){
+      const u = new URL(url);
+      const v = u.searchParams.get("v");
+      if (v) return `https://www.youtube.com/embed/${v}?rel=0`;
+      const parts = u.pathname.split("/").filter(Boolean); // youtu.be/xxxx
+      if (parts.length) return `https://www.youtube.com/embed/${parts[0]}?rel=0`;
+      return "";
+    }
+
+    function setActive(btn){
+      document.querySelectorAll("button.lesson").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    }
+
+    function playLesson(lesson, btn){
+      frame.src = toEmbed(lesson.url);
+      caption.textContent = lesson.desc
+        ? `${lesson.title} — ${lesson.desc}`
+        : lesson.title;
+
+      openYT.href = lesson.url;
+
+      copyLink.onclick = async (e) => {
+        e.preventDefault();
+        try {
+          await navigator.clipboard.writeText(lesson.url);
+          copyLink.textContent = "Link copiado ✅";
+          setTimeout(() => copyLink.textContent = "Copiar link", 1200);
+        } catch {
+          // fallback: abre el link si el navegador bloquea clipboard
+          window.open(lesson.url, "_blank", "noopener");
+        }
       };
-      menu.appendChild(btn);
-      if(i===0){ btn.click(); }
+
+      if (btn) setActive(btn);
+    }
+
+    function render(list){
+      menu.innerHTML = "";
+      list.forEach((l, i) => {
+        const btn = document.createElement("button");
+        btn.className = "lesson";
+
+        const num = document.createElement("div");
+        num.className = "num";
+        num.textContent = String(i + 1).padStart(2, "0");
+
+        const txt = document.createElement("div");
+        txt.className = "txt";
+
+        const t = document.createElement("div");
+        t.className = "title";
+        t.textContent = l.title;
+
+        const d = document.createElement("div");
+        d.className = "desc";
+        d.textContent = l.desc || " ";
+
+        txt.appendChild(t);
+        txt.appendChild(d);
+
+        btn.appendChild(num);
+        btn.appendChild(txt);
+
+        btn.onclick = () => playLesson(l, btn);
+
+        menu.appendChild(btn);
+
+        if (i === 0) playLesson(l, btn);
+      });
+    }
+
+    // Búsqueda por título/desc
+    q.addEventListener("input", () => {
+      const term = q.value.trim().toLowerCase();
+      if (!term) return render(lessons);
+      const filtered = lessons.filter(l =>
+        (l.title || "").toLowerCase().includes(term) ||
+        (l.desc || "").toLowerCase().includes(term)
+      );
+      render(filtered.length ? filtered : lessons);
     });
+
+    render(lessons);
   </script>
 </body>
 </html>
