@@ -43,72 +43,126 @@
     a{color:inherit;text-decoration:none}
     iframe{width:100%;height:100%;border:0}
 
-    .topbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);
-      background:rgba(11,13,18,.68);border-bottom:1px solid var(--stroke)}
-    .topbar-inner{max-width:var(--max);margin:0 auto;padding:14px 16px;
-      display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:blur(10px);
+      background:rgba(11,13,18,.68);
+      border-bottom:1px solid var(--stroke)
+    }
+    .topbar-inner{
+      max-width:var(--max);margin:0 auto;padding:14px 16px;
+      display:flex;align-items:center;justify-content:space-between;gap:12px
+    }
     .brand{display:flex;align-items:center;gap:10px}
-    .logo{width:42px;height:42px;border-radius:16px;
+    .logo{
+      width:42px;height:42px;border-radius:16px;
       background:linear-gradient(135deg,var(--a),var(--b));
       display:grid;place-items:center;border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 16px 34px rgba(68,196,242,.18)}
+      box-shadow:0 16px 34px rgba(68,196,242,.18)
+    }
     .logo span{font-weight:900;color:#fff}
     .brandTxt{display:flex;flex-direction:column;line-height:1.12}
     .brandTxt b{font-size:15px}
     .brandTxt span{font-size:14px;color:var(--muted2)}
+
     .actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
-    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:999px;
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:999px;
       border:1px solid var(--stroke);background:rgba(255,255,255,.05);box-shadow:var(--shadow2);
-      color:var(--muted);font-size:14px}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;
+      color:var(--muted);font-size:14px
+    }
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;
       border:1px solid var(--stroke);background:rgba(255,255,255,.06);box-shadow:var(--shadow2);
-      cursor:pointer;color:#fff;font-size:14px;transition:.12s}
+      cursor:pointer;color:#fff;font-size:14px;transition:.12s
+    }
     .btn:hover{transform:translateY(-1px);border-color:var(--stroke2);background:rgba(255,255,255,.08)}
     .btn.solid{border-color:rgba(68,196,242,.40);background:linear-gradient(135deg,var(--a),var(--b));font-weight:900}
     .btn.accent{border-color:rgba(68,196,242,.35);background:linear-gradient(135deg,rgba(68,196,242,.22),rgba(118,107,245,.12))}
+
     .container{max-width:var(--max);margin:0 auto;padding:18px 16px 28px}
     .grid{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;align-items:start;margin-top:16px}
-    .card{background:rgba(255,255,255,.05);border:1px solid var(--stroke);border-radius:var(--r20);
-      box-shadow:var(--shadow);overflow:hidden;position:relative}
+    .card{
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--stroke);
+      border-radius:var(--r20);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative
+    }
 
     /* Sidebar */
-    .sidebar{position:sticky;top:78px;height:calc(100vh - 92px);display:flex;flex-direction:column;overflow:hidden}
+    .sidebar{
+      position:sticky;top:78px;height:calc(100vh - 92px);
+      display:flex;flex-direction:column;overflow:hidden
+    }
     .sideHead{padding:14px;border-bottom:1px solid var(--stroke);display:flex;flex-direction:column;gap:6px}
     .sideHead b{font-size:15px}
     .sideHead span{font-size:14px;color:var(--muted2)}
     .search{padding:12px 14px;border-bottom:1px solid var(--stroke);background:rgba(255,255,255,.03)}
-    .search input{width:100%;padding:12px;border-radius:var(--r14);border:1px solid var(--stroke);
-      background:rgba(255,255,255,.04);color:var(--text);outline:none;font-size:14px}
-    #modules{padding:10px 10px 14px;overflow:auto;flex:1 1 auto}
-    .module{margin:10px 0;border-radius:var(--r16);border:1px solid var(--stroke);background:rgba(255,255,255,.03);overflow:hidden}
-    .moduleHead{padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;
-      cursor:pointer;user-select:none;color:var(--text);
-      background:rgba(12,14,20,.90);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
-    .moduleHead b{font-size:14px}
-    .moduleHead span{font-size:14px;color:var(--muted2)}
-    .moduleBody{padding:0 8px 10px}
+    .search input{
+      width:100%;padding:12px;border-radius:var(--r14);
+      border:1px solid var(--stroke);background:rgba(255,255,255,.04);
+      color:var(--text);outline:none;font-size:14px
+    }
+    #list{
+      padding:10px 10px 14px;overflow:auto;flex:1 1 auto;
+      scrollbar-width: thin;
+    }
+    #list::-webkit-scrollbar{width:10px}
+    #list::-webkit-scrollbar-thumb{
+      background: rgba(255,255,255,.12);
+      border-radius: 999px;
+      border: 2px solid rgba(0,0,0,0);
+      background-clip: padding-box;
+    }
+
+    .group{
+      margin:10px 0;border-radius:var(--r16);
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.03);
+      overflow:hidden
+    }
+    .groupHead{
+      padding:10px 12px;
+      background:rgba(12,14,20,.90);
+      border-bottom:1px solid rgba(255,255,255,.06);
+      position:sticky; top:0; z-index:5;
+      backdrop-filter: blur(8px);
+    }
+    .groupHead b{font-size:14px}
+    .groupHead span{display:block;margin-top:2px;font-size:14px;color:var(--muted2)}
+
+    /* Lista: texto SIEMPRE blanco */
     .lessonBtn{
       width:100%;text-align:left;display:flex;gap:10px;align-items:flex-start;
       padding:10px;border-radius:var(--r14);border:1px solid transparent;background:transparent;
-      cursor:pointer;transition:.12s;margin-top:6px;color:var(--text) !important;
+      cursor:pointer;transition:.12s;margin:6px 8px 0;color:var(--text) !important;
     }
     .lessonBtn *{color:var(--text) !important}
     .lessonBtn:hover{background:rgba(68,196,242,.10);border-color:rgba(68,196,242,.18);transform:translateY(-1px)}
     .lessonBtn.active{background:rgba(68,196,242,.14);border-color:rgba(68,196,242,.22)}
-    .badge{width:14px;height:14px;border-radius:999px;background:linear-gradient(135deg,var(--a),var(--b));
-      box-shadow:0 10px 22px rgba(68,196,242,.18);margin-top:4px;flex:0 0 auto}
+    .badge{
+      width:14px;height:14px;border-radius:999px;
+      background:linear-gradient(135deg,var(--a),var(--b));
+      box-shadow:0 10px 22px rgba(68,196,242,.18);
+      margin-top:4px;flex:0 0 auto
+    }
     .lt{margin:0;font-size:15px;font-weight:900;line-height:1.25}
     .ld{margin:4px 0 0;font-size:14px;color:var(--muted2) !important;line-height:1.35}
 
     /* Main */
-    .hero{padding:18px;border-bottom:1px solid var(--stroke);
+    .hero{
+      padding:18px;border-bottom:1px solid var(--stroke);
       background:
         radial-gradient(900px 520px at 10% 0%, rgba(68,196,242,.16), transparent 55%),
         radial-gradient(900px 520px at 90% 0%, rgba(118,107,245,.14), transparent 55%),
         rgba(255,255,255,.04);
     }
-    .kicker{display:inline-flex;align-items:center;gap:10px;font-size:15px;color:var(--muted);
-      padding:6px 10px;border-radius:999px;border:1px solid var(--stroke);background:rgba(255,255,255,.04)}
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;font-size:15px;color:var(--muted);
+      padding:6px 10px;border-radius:999px;border:1px solid var(--stroke);background:rgba(255,255,255,.04)
+    }
     .titleRow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:10px}
     h1{margin:0;font-size:25px;line-height:1.15}
     .sub{margin:10px 0 0;color:var(--muted);font-size:16px;line-height:1.7;max-width:92ch}
@@ -117,18 +171,15 @@
       border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);cursor:pointer;font-size:14px;color:#fff}
     .tabBtn.primary{border-color:rgba(68,196,242,.40);background:linear-gradient(135deg,rgba(68,196,242,.18),rgba(118,107,245,.10));font-weight:900}
 
-    .homeVideoWrap{margin-top:14px;border-radius:var(--r18);overflow:hidden;border:1px solid var(--stroke);
-      background:rgba(0,0,0,.35);box-shadow:var(--shadow2)}
+    .homeVideoWrap{margin-top:14px;border-radius:var(--r18);overflow:hidden;border:1px solid var(--stroke);background:rgba(0,0,0,.35);box-shadow:var(--shadow2)}
     .homeVideo{width:100%;aspect-ratio:16/9;background:#070911}
 
-    .presentation{margin-top:14px;border-radius:var(--r18);border:1px solid var(--stroke);
-      background:rgba(255,255,255,.04);padding:14px}
+    .presentation{margin-top:14px;border-radius:var(--r18);border:1px solid var(--stroke);background:rgba(255,255,255,.04);padding:14px}
     .presentation h2{margin:0 0 10px;font-size:18px}
     .presentation p{margin:0;font-size:14px;color:var(--muted);line-height:1.75}
 
     .playerWrap{padding:14px}
-    .player{width:100%;aspect-ratio:16/9;border-radius:var(--r18);overflow:hidden;border:1px solid var(--stroke);
-      background:#070911;box-shadow:var(--shadow2)}
+    .player{width:100%;aspect-ratio:16/9;border-radius:var(--r18);overflow:hidden;border:1px solid var(--stroke);background:#070911;box-shadow:var(--shadow2)}
     .lessonMeta{padding:0 14px 14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     .lessonMeta h2{margin:0;font-size:18px}
     .lessonMeta p{margin:8px 0 0;color:var(--muted);font-size:15px;line-height:1.55}
@@ -136,7 +187,7 @@
     @media (max-width:980px){
       .grid{grid-template-columns:1fr}
       .sidebar{position:relative;top:auto;height:auto}
-      #modules{max-height:55vh}
+      #list{max-height:55vh}
     }
   </style>
 </head>
@@ -163,10 +214,8 @@
   <div class="container">
     <div class="grid">
       <main class="card">
-        <!-- HOME -->
         <section class="hero" id="homeSection">
           <div class="kicker">🎬 Workshop · After Effects · Entorno 3D</div>
-
           <div class="titleRow">
             <h1>After Effects · Nivel Experto</h1>
             <button class="btn solid" id="startBtn" type="button">▶ Empezar</button>
@@ -177,15 +226,17 @@
           </p>
 
           <div class="tabsRow">
-            <button class="tabBtn" type="button" onclick="window.open('https://drive.google.com/drive/folders/1JwAskl-_V1mdrx0JIWpMMnkqJdgiq4yX?usp=drive_link','_blank')">
+            <button class="tabBtn primary" type="button"
+              onclick="window.open('https://drive.google.com/drive/folders/1JwAskl-_V1mdrx0JIWpMMnkqJdgiq4yX?usp=drive_link','_blank')">
               Descargas de recursos
             </button>
-            <button class="tabBtn primary" type="button" onclick="alert('Comentarios: si querés mail 100% gratis y sin líos, lo mejor es FormSubmit (ya lo armamos antes). Si querés que quede en la web con envío a mail, lo agrego en 2 minutos.')">
+            <button class="tabBtn" type="button"
+              onclick="window.open('mailto:emmamel.fx@gmail.com?subject=Comentario%20del%20curso&body=Hola%20Ema%2C%20te%20dejo%20este%20comentario%3A%20','_blank')">
               💬 Comentarios
             </button>
           </div>
 
-          <div class="homeVideoWrap" id="homeVideoWrap">
+          <div class="homeVideoWrap">
             <div class="homeVideo">
               <iframe src="https://www.youtube.com/embed/ptSPBlNyoQ8?rel=0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -206,7 +257,6 @@
           </div>
         </section>
 
-        <!-- PLAYER -->
         <section id="playerSection" style="display:none;">
           <div class="playerWrap">
             <div class="player">
@@ -228,23 +278,23 @@
         </section>
       </main>
 
-      <!-- SIDEBAR -->
       <aside class="card sidebar">
         <div class="sideHead">
           <b>Clases</b>
-          <span id="sideSub">21 videos listados (incluye Resultado final)</span>
+          <span id="sideSub">Lista completa (incluye 16–20 + Resultado final)</span>
         </div>
 
         <div class="search">
           <input id="q" type="search" placeholder="Buscar… (ej: cámara, 3D, export, partículas)" />
         </div>
 
-        <div id="modules"></div>
+        <div id="list"></div>
       </aside>
     </div>
   </div>
 
   <script>
+    // 20 clases (05/06 juntas) + Resultado final = 21 “videos” si contás bienvenida aparte en el header.
     const lessons = [
       { t:"01 - Introducción", d:"Breve introducción al curso.", url:"https://youtu.be/D1IC09GeKZs" },
       { t:"02 - Retos de entorno 3D", d:"Arrancamos el workshop y el enfoque del entorno 3D.", url:"https://youtu.be/HVBjwflEPBA" },
@@ -260,45 +310,44 @@
       { t:"13 - Animación de títulos", d:"Diseño y animación de títulos integrados.", url:"https://youtu.be/5Kf3hmlzw7s" },
       { t:"14 - Composición y Timing", d:"Ajustes globales de comp y ritmo.", url:"https://youtu.be/OHG0WslMs8M" },
       { t:"15 - Efectos de lighting", d:"Look final: profundidad, atmósfera e iluminación.", url:"https://www.youtube.com/watch?v=8jx3xiaeruY" },
+
+      // ✅ ACÁ ESTÁN LOS QUE TE FALTABAN (16–20) CON TUS LINKS
       { t:"16 - Efectos de Partículas 3D", d:"Partículas para elevar el impacto visual.", url:"https://www.youtube.com/watch?v=JoGWgePrkeA" },
       { t:"17 - Retoques de Composición", d:"Retoques finales de post y composición.", url:"https://www.youtube.com/watch?v=MIBiBZC7uZ4" },
       { t:"18 - Optimización del proyecto", d:"Orden, rendimiento y limpieza del proyecto.", url:"https://www.youtube.com/watch?v=Kb5NjjzP8ZU" },
       { t:"19 - Export Final", d:"Exportación final y entrega.", url:"https://www.youtube.com/watch?v=I4njR2qgrZI" },
       { t:"20 - Visualización y análisis", d:"Cierre y análisis del resultado.", url:"https://www.youtube.com/watch?v=sLxfVUPDj0o" },
-      { t:"Resultado final", d:"Entrega final del curso.", url:"https://www.youtube.com/watch?v=bZlzz87AVo4", final:true }
     ];
 
-    const modules = [
-      { name:"Inicio del Workshop", items:[0,1,2,3] },
-      { name:"Preparación de recursos", items:[4] },
-      { name:"After Effects + Estructura 3D", items:[5,6,7] },
-      { name:"Animación", items:[8,9,10,11,12,13] },
-      { name:"Look & Post", items:[14,15,16,17,18,19] },   // 15–20 ✅
-      { name:"Entrega", items:[20] }                       // solo Resultado final ✅
+    const finalVideo = { t:"Resultado final", d:"Entrega final del curso.", url:"https://www.youtube.com/watch?v=bZlzz87AVo4" };
+
+    const groups = [
+      { name:"Inicio del Workshop", idx:[0,1,2,3] },
+      { name:"Preparación de recursos", idx:[4] },
+      { name:"After Effects + Estructura 3D", idx:[5,6,7] },
+      { name:"Animación", idx:[8,9,10,11,12,13] },
+      { name:"Look & Post", idx:[14,15,16,17,18] }, // 15–20 ✅ (índices 14..18)
+      { name:"Entrega", final:true }
     ];
 
     const q = document.getElementById("q");
-    const modulesWrap = document.getElementById("modules");
-
+    const list = document.getElementById("list");
     const homeSection = document.getElementById("homeSection");
     const playerSection = document.getElementById("playerSection");
-
     const frame = document.getElementById("frame");
     const lessonTitle = document.getElementById("lessonTitle");
     const lessonDesc = document.getElementById("lessonDesc");
-
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    const startBtn = document.getElementById("startBtn");
-
     const openYT = document.getElementById("openYT");
     const goHome = document.getElementById("goHome");
+    const startBtn = document.getElementById("startBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
     const toggleDone = document.getElementById("toggleDone");
     const pillProgress = document.getElementById("pillProgress");
-    const sideSub = document.getElementById("sideSub");
 
-    const STORAGE_KEY = "aula_em_experto_done_v2";
-    const doneMap = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    const STORAGE_KEY = "em_experto_done_v3";
+    const done = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    let current = null; // índice de lessons, o "final" string
 
     function toEmbed(url){
       const u = new URL(url);
@@ -309,20 +358,10 @@
       return "";
     }
 
-    let currentIndex = null;
-
-    function updateProgress(){
-      const totalClases = 20;
-      const done = Object.keys(doneMap).filter(k => doneMap[k]).length;
-      const pct = Math.round((done/totalClases)*100);
-      pillProgress.textContent = `Progreso ${isFinite(pct)?pct:0}%`;
-      sideSub.textContent = `Lista completa: ${lessons.length} videos (incluye Resultado final)`;
-    }
-
     function showHome(){
       homeSection.style.display = "";
       playerSection.style.display = "none";
-      currentIndex = null;
+      current = null;
       frame.src = "";
       openYT.href = "#";
       toggleDone.textContent = "✅ Completar";
@@ -335,50 +374,89 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function play(i){
-      currentIndex = i;
+    function updateProgress(){
+      const total = 20;
+      const doneCount = Object.values(done).filter(Boolean).length;
+      const pct = Math.round((doneCount/total)*100);
+      pillProgress.textContent = `Progreso ${isFinite(pct)?pct:0}%`;
+    }
+
+    function setActiveButton(key){
+      document.querySelectorAll(".lessonBtn").forEach(b => b.classList.remove("active"));
+      const btn = document.querySelector(`.lessonBtn[data-key="${key}"]`);
+      if(btn) btn.classList.add("active");
+    }
+
+    function playLesson(i){
       const l = lessons[i];
+      current = i;
       showPlayer();
       frame.src = toEmbed(l.url);
       lessonTitle.textContent = l.t;
       lessonDesc.textContent = l.d || "";
       openYT.href = l.url;
+      setActiveButton(`L${i}`);
+      toggleDone.textContent = done[i] ? "↩ Marcar pendiente" : "✅ Marcar completada";
+    }
 
-      document.querySelectorAll(".lessonBtn").forEach(b => b.classList.remove("active"));
-      const btn = document.querySelector(`.lessonBtn[data-i="${i}"]`);
-      if(btn) btn.classList.add("active");
-
-      toggleDone.textContent = l.final ? "✅ Completar" : (doneMap[i] ? "↩ Marcar pendiente" : "✅ Marcar completada");
+    function playFinal(){
+      current = "final";
+      showPlayer();
+      frame.src = toEmbed(finalVideo.url);
+      lessonTitle.textContent = finalVideo.t;
+      lessonDesc.textContent = finalVideo.d || "";
+      openYT.href = finalVideo.url;
+      setActiveButton("FINAL");
+      toggleDone.textContent = "✅ Completar";
     }
 
     function render(term=""){
-      modulesWrap.innerHTML = "";
       const t = term.trim().toLowerCase();
+      list.innerHTML = "";
 
-      modules.forEach((m) => {
-        // NO ocultar módulos: siempre renderizamos, solo filtramos items si hay búsqueda
-        const items = m.items.filter(i => {
+      groups.forEach(g => {
+        const box = document.createElement("div");
+        box.className = "group";
+
+        const head = document.createElement("div");
+        head.className = "groupHead";
+
+        if(g.final){
+          head.innerHTML = `<b>${g.name}</b><span>1 video</span>`;
+          const bodyBtn = document.createElement("button");
+          bodyBtn.className = "lessonBtn";
+          bodyBtn.type = "button";
+          bodyBtn.dataset.key = "FINAL";
+          bodyBtn.innerHTML = `
+            <div class="badge"></div>
+            <div>
+              <p class="lt">${finalVideo.t}</p>
+              <p class="ld">${finalVideo.d}</p>
+            </div>
+          `;
+          bodyBtn.onclick = playFinal;
+
+          box.appendChild(head);
+          box.appendChild(bodyBtn);
+          list.appendChild(box);
+          return;
+        }
+
+        const filteredIdx = g.idx.filter(i => {
           if(!t) return true;
           const l = lessons[i];
           return (l.t||"").toLowerCase().includes(t) || (l.d||"").toLowerCase().includes(t);
         });
 
-        const mod = document.createElement("div");
-        mod.className = "module";
+        head.innerHTML = `<b>${g.name}</b><span>${filteredIdx.length} items</span>`;
+        box.appendChild(head);
 
-        const head = document.createElement("div");
-        head.className = "moduleHead";
-        head.innerHTML = `<div><b>${m.name}</b><span style="display:block;margin-top:2px">${items.length} items</span></div><span>▼</span>`;
-
-        const body = document.createElement("div");
-        body.className = "moduleBody";
-
-        items.forEach(i => {
+        filteredIdx.forEach(i => {
           const l = lessons[i];
           const btn = document.createElement("button");
-          btn.type = "button";
           btn.className = "lessonBtn";
-          btn.dataset.i = i;
+          btn.type = "button";
+          btn.dataset.key = `L${i}`;
           btn.innerHTML = `
             <div class="badge"></div>
             <div>
@@ -386,60 +464,46 @@
               <p class="ld">${l.d || ""}</p>
             </div>
           `;
-          btn.onclick = () => play(i);
-          body.appendChild(btn);
+          btn.onclick = () => playLesson(i);
+          box.appendChild(btn);
         });
 
-        let open = true;
-        head.onclick = () => {
-          open = !open;
-          body.style.display = open ? "" : "none";
-          head.querySelector("span:last-child").textContent = open ? "▼" : "▶";
-        };
-
-        mod.appendChild(head);
-        mod.appendChild(body);
-        modulesWrap.appendChild(mod);
+        list.appendChild(box);
       });
 
-      if(currentIndex !== null){
-        const btn = document.querySelector(`.lessonBtn[data-i="${currentIndex}"]`);
-        if(btn) btn.classList.add("active");
-      }
+      // re-selección si estabas en un video
+      if(current === "final") setActiveButton("FINAL");
+      if(typeof current === "number") setActiveButton(`L${current}`);
     }
 
     q.addEventListener("input", () => render(q.value));
 
-    startBtn.onclick = () => play(0);
+    startBtn.onclick = () => playLesson(0);
     goHome.onclick = showHome;
 
     prevBtn.onclick = () => {
-      if(currentIndex === null) return;
-      play(Math.max(0, currentIndex - 1));
+      if(typeof current !== "number") return;
+      playLesson(Math.max(0, current - 1));
     };
     nextBtn.onclick = () => {
-      if(currentIndex === null) return;
-      play(Math.min(lessons.length - 1, currentIndex + 1));
+      if(typeof current !== "number") return;
+      playLesson(Math.min(lessons.length - 1, current + 1));
     };
 
     toggleDone.onclick = () => {
-      if(currentIndex === null) return;
-      const l = lessons[currentIndex];
-      if(l.final) return;
-      doneMap[currentIndex] = !doneMap[currentIndex];
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(doneMap));
+      if(typeof current !== "number") return;
+      done[current] = !done[current];
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(done));
       updateProgress();
-      render(q.value);
-      toggleDone.textContent = doneMap[currentIndex] ? "↩ Marcar pendiente" : "✅ Marcar completada";
+      toggleDone.textContent = done[current] ? "↩ Marcar pendiente" : "✅ Marcar completada";
     };
 
     updateProgress();
     render("");
     showHome();
 
-    // sanity check visible en consola:
-    console.log("Total videos:", lessons.length, "Look&Post items:", modules[4].items.length, "Entrega items:", modules[5].items.length);
+    // Debug real: te imprime en consola que SI hay 16–20
+    console.log("Total lessons:", lessons.length, "Último:", lessons[lessons.length-1].t);
   </script>
 </body>
 </html>
-
