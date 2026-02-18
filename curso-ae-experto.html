@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>After Effects Experto · Entorno 3D</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --ink: #0a0a0f;
+  --ink2: #111118;
+  --surface: #141420;
+  --surface2: #1a1a2a;
+  --border: rgba(255,255,255,.07);
+  --border2: rgba(255,255,255,.13);
+  --txt: #f0f0f8;
+  --muted: #9090a8;
+  --muted2: #5a5a72;
+  --cyan: #00e5c8;
+  --violet: #8b5cf6;
+  --pink: #e040fb;
+  --accent-glow: rgba(0,229,200,.15);
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --max: 1280px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--ink);
+  color: var(--txt);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: .028;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* ── NAV ──────────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(20px) saturate(1.4);
+  background: rgba(10,10,15,.75);
+}
+.nav-inner {
+  max-width: var(--max); margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.brand {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-display);
+}
+.logo-mark {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  display: grid; place-items: center;
+  font-weight: 900; font-size: 13px; color: #fff;
+  letter-spacing: .5px;
+  flex-shrink: 0;
+}
+.brand-label { line-height: 1.15; }
+.brand-label strong { font-size: 14px; font-weight: 800; display: block; letter-spacing: -.2px; }
+.brand-label span { font-size: 12px; color: var(--muted); font-weight: 400; }
+
+.nav-right {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end;
+}
+
+.progress-chip {
+  font-family: var(--font-display);
+  font-size: 12px; font-weight: 700;
+  padding: 5px 12px; border-radius: 999px;
+  border: 1px solid rgba(0,229,200,.25);
+  background: rgba(0,229,200,.08);
+  color: var(--cyan);
+  letter-spacing: .5px;
+  transition: .3s;
+}
+
+.btn {
+  font-family: var(--font-body);
+  font-size: 13px; font-weight: 500;
+  padding: 8px 16px; border-radius: 8px;
+  border: 1px solid var(--border2);
+  background: rgba(255,255,255,.05);
+  color: var(--txt); cursor: pointer;
+  transition: .15s; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 6px;
+  text-decoration: none;
+}
+.btn:hover { background: rgba(255,255,255,.09); transform: translateY(-1px); }
+.btn-cta {
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  border-color: transparent; color: #fff; font-weight: 700;
+}
+.btn-cta:hover { opacity: .9; transform: translateY(-1px); }
+
+/* ── LAYOUT ──────────────────────────────────────── */
+.shell {
+  max-width: var(--max); margin: 0 auto;
+  padding: 24px 24px 48px;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 20px;
+  align-items: start;
+}
+
+/* ── SIDEBAR ─────────────────────────────────────── */
+.sidebar {
+  position: sticky; top: 84px;
+  height: calc(100vh - 100px);
+  display: flex; flex-direction: column;
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.sidebar-head {
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.sidebar-head h2 {
+  font-family: var(--font-display);
+  font-size: 16px; font-weight: 800;
+  letter-spacing: -.3px;
+}
+.sidebar-head p { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+.search-wrap {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.search-wrap input {
+  width: 100%; padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border2);
+  background: rgba(255,255,255,.04);
+  color: var(--txt); font-family: var(--font-body);
+  font-size: 13px; outline: none;
+  transition: border-color .2s;
+}
+.search-wrap input:focus { border-color: rgba(0,229,200,.35); }
+.search-wrap input::placeholder { color: var(--muted2); }
+
+.lesson-list {
+  flex: 1; overflow-y: auto;
+  padding: 10px 10px 16px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,.1) transparent;
+}
+.lesson-list::-webkit-scrollbar { width: 4px; }
+.lesson-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1); border-radius: 99px; }
+
+.group-block {
+  margin-bottom: 8px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.group-label {
+  padding: 9px 14px;
+  background: rgba(255,255,255,.03);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 5;
+  backdrop-filter: blur(10px);
+  display: flex; align-items: baseline; gap: 8px;
+}
+.group-label span {
+  font-family: var(--font-display);
+  font-size: 11px; font-weight: 800;
+  letter-spacing: .8px; text-transform: uppercase;
+  color: var(--muted);
+}
+.group-label em {
+  font-style: normal; font-size: 11px; color: var(--muted2);
+}
+
+.lesson-item {
+  width: 100%; text-align: left;
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 11px 14px;
+  background: transparent; border: none;
+  color: var(--txt); cursor: pointer;
+  font-family: var(--font-body);
+  transition: background .12s;
+  position: relative;
+}
+.lesson-item::after {
+  content: ''; position: absolute;
+  left: 0; top: 0; bottom: 0; width: 2px;
+  background: linear-gradient(180deg, var(--cyan), var(--violet));
+  opacity: 0; transition: opacity .2s;
+  border-radius: 0 2px 2px 0;
+}
+.lesson-item:hover { background: rgba(255,255,255,.04); }
+.lesson-item.active { background: rgba(0,229,200,.07); }
+.lesson-item.active::after { opacity: 1; }
+.lesson-item + .lesson-item { border-top: 1px solid var(--border); }
+
+.lesson-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--muted2);
+  flex-shrink: 0; margin-top: 5px;
+  transition: background .2s;
+}
+.lesson-item.active .lesson-dot,
+.lesson-item.done .lesson-dot {
+  background: var(--cyan);
+  box-shadow: 0 0 8px rgba(0,229,200,.5);
+}
+.lesson-item.done .lesson-dot { background: var(--violet); }
+
+.lesson-text { flex: 1; }
+.lesson-name {
+  font-size: 13px; font-weight: 500; line-height: 1.35;
+  color: var(--txt);
+}
+.lesson-item.active .lesson-name { color: var(--cyan); font-weight: 600; }
+.lesson-desc {
+  font-size: 11.5px; color: var(--muted);
+  margin-top: 2px; line-height: 1.4;
+}
+.lesson-check {
+  font-size: 11px; flex-shrink: 0; margin-top: 3px;
+  opacity: 0; transition: opacity .2s;
+}
+.lesson-item.done .lesson-check { opacity: 1; }
+
+/* ── MAIN CONTENT ────────────────────────────────── */
+.main-card {
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* HOME */
+.home-header {
+  padding: 36px 36px 28px;
+  background:
+    radial-gradient(ellipse 80% 60% at 0% 0%, rgba(0,229,200,.12), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 100% 0%, rgba(139,92,246,.14), transparent 55%);
+  border-bottom: 1px solid var(--border);
+}
+
+.tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-display);
+  font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+  color: var(--cyan);
+  padding: 5px 12px; border-radius: 999px;
+  border: 1px solid rgba(0,229,200,.25);
+  background: rgba(0,229,200,.06);
+}
+
+.home-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 900; line-height: 1.05;
+  letter-spacing: -1.5px;
+  margin-top: 16px;
+}
+.home-title span {
+  background: linear-gradient(90deg, var(--cyan), var(--violet));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.home-sub {
+  margin-top: 14px;
+  font-size: 15px; font-weight: 300;
+  color: var(--muted); line-height: 1.75;
+  max-width: 65ch;
+}
+
+.home-actions {
+  margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+}
+
+.home-intro-vid {
+  margin: 24px 36px 0;
+  border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--border2);
+  background: #000;
+  box-shadow: 0 20px 60px rgba(0,0,0,.6);
+}
+.home-intro-vid iframe {
+  width: 100%; aspect-ratio: 16/9; display: block; border: none;
+}
+
+.home-body {
+  padding: 28px 36px 36px;
+}
+
+.section-label {
+  font-family: var(--font-display);
+  font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 16px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.about-card {
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255,255,255,.02);
+  transition: border-color .2s, background .2s;
+}
+.about-card:hover {
+  border-color: var(--border2);
+  background: rgba(255,255,255,.04);
+}
+.about-card-icon { font-size: 22px; margin-bottom: 8px; }
+.about-card-title { font-family: var(--font-display); font-size: 14px; font-weight: 700; margin-bottom: 5px; }
+.about-card-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+.about-text {
+  font-size: 15px; color: var(--muted); line-height: 1.8; font-weight: 300;
+  margin-bottom: 24px;
+}
+.about-text strong { color: var(--txt); font-weight: 500; }
+
+.divider {
+  border: none; border-top: 1px solid var(--border); margin: 24px 0;
+}
+
+.resources-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* PLAYER */
+.player-section { display: none; }
+
+.player-wrap {
+  padding: 16px;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(0,229,200,.06), transparent 60%);
+}
+.player-frame {
+  width: 100%; aspect-ratio: 16/9;
+  border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--border2);
+  background: #000;
+  box-shadow: 0 16px 48px rgba(0,0,0,.5);
+}
+.player-frame iframe { width: 100%; height: 100%; border: none; display: block; }
+
+.player-info {
+  padding: 20px 24px 24px;
+  border-top: 1px solid var(--border);
+}
+
+.player-number {
+  font-family: var(--font-display);
+  font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 6px;
+}
+.player-title {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 800; letter-spacing: -.5px; line-height: 1.2;
+}
+.player-desc {
+  margin-top: 8px; font-size: 14px; color: var(--muted); line-height: 1.6; font-weight: 300;
+}
+
+.player-controls {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+  margin-top: 20px; padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.controls-nav { display: flex; gap: 8px; }
+.controls-right { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.btn-done {
+  border-color: rgba(0,229,200,.3);
+  color: var(--cyan);
+}
+.btn-done:hover { background: rgba(0,229,200,.08); }
+.btn-done.marked {
+  background: rgba(0,229,200,.1);
+  border-color: rgba(0,229,200,.4);
+}
+
+/* ── ANIMATIONS ──────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-in {
+  animation: fadeUp .4s cubic-bezier(.22,1,.36,1) both;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media (max-width: 900px) {
+  .shell { grid-template-columns: 1fr; gap: 16px; padding: 16px; }
+  .sidebar { position: relative; top: 0; height: auto; }
+  .lesson-list { max-height: 50vh; }
+  .home-header { padding: 24px 20px 20px; }
+  .home-intro-vid { margin: 20px 20px 0; }
+  .home-body { padding: 20px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .player-info { padding: 16px 20px 20px; }
+}
+@media (max-width: 480px) {
+  .nav-right .btn:not(.btn-cta) { display: none; }
+  .brand-label span { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="logo-mark">AE</div>
+      <div class="brand-label">
+        <strong>After Effects Experto</strong>
+        <span>Entorno 3D · 20 clases</span>
+      </div>
+    </div>
+    <div class="nav-right">
+      <span class="progress-chip" id="pillProgress">0% completado</span>
+      <button class="btn" id="goHome" type="button">← Inicio</button>
+      <a class="btn" id="openYT" href="#" target="_blank" rel="noopener">▶ YouTube</a>
+      <button class="btn btn-cta" id="toggleDone" type="button">Marcar completada</button>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" style="order:2">
+    <div class="sidebar-head">
+      <h2>Contenido del curso</h2>
+      <p>20 clases · Entorno 3D en After Effects</p>
+    </div>
+    <div class="search-wrap">
+      <input id="q" type="search" placeholder="Buscar clase…"/>
+    </div>
+    <div class="lesson-list" id="list"></div>
+  </aside>
+
+  <!-- MAIN -->
+  <main style="order:1">
+
+    <!-- HOME -->
+    <div class="main-card" id="homeCard">
+
+      <div class="home-header animate-in">
+        <div class="tag">🎬 Workshop · Motion Graphics</div>
+
+        <h1 class="home-title">
+          After Effects<br><span>Nivel Experto</span>
+        </h1>
+
+        <p class="home-sub">
+          Dominá el entorno 3D en After Effects y llevá tus motion graphics al nivel de las grandes agencias creativas. Veinte clases, técnicas reales, resultados profesionales.
+        </p>
+
+        <div class="home-actions">
+          <button class="btn btn-cta" id="startBtn" type="button">▶ Comenzar curso</button>
+          <button class="btn" type="button"
+            onclick="window.open('https://drive.google.com/drive/folders/1JwAskl-_V1mdrx0JIWpMMnkqJdgiq4yX?usp=drive_link','_blank')">
+            ↓ Descargar recursos
+          </button>
+          <button class="btn" type="button"
+            onclick="window.open('mailto:emmamel.fx@gmail.com?subject=Comentario%20del%20curso&body=Hola%20Ema%2C%20te%20dejo%20este%20comentario%3A%20','_blank')">
+            💬 Comentarios
+          </button>
+        </div>
+      </div>
+
+      <div class="home-intro-vid">
+        <iframe src="https://www.youtube.com/embed/ptSPBlNyoQ8?rel=0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="home-body">
+
+        <div class="about-grid">
+          <div class="about-card">
+            <div class="about-card-icon">🧠</div>
+            <div class="about-card-title">Para todos los niveles</div>
+            <div class="about-card-desc">Desde cero hasta técnicas avanzadas. El ritmo se adapta a tu experiencia.</div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">🎥</div>
+            <div class="about-card-title">Entorno 3D completo</div>
+            <div class="about-card-desc">Cámara 3D, partículas, iluminación y composición de nivel profesional.</div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">🔁</div>
+            <div class="about-card-title">Acceso de por vida</div>
+            <div class="about-card-desc">Volvé a ver las clases cuando quieras, sin límite de tiempo.</div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">📦</div>
+            <div class="about-card-title">Recursos incluidos</div>
+            <div class="about-card-desc">Archivos de proyecto, assets y materiales listos para descargar.</div>
+          </div>
+        </div>
+
+        <p class="about-text">
+          Este taller fue diseñado para convertirte en un artista versátil, listo para trabajar en estudio o de manera freelance. A lo largo de las clases vas a aprender a dominar la <strong>cámara 3D</strong>, crear animaciones internas, diseñar títulos integrados y aplicar efectos de partículas e iluminación que elevan cualquier producción audiovisual.
+          <br><br>
+          Si soñás con crear gráficos en movimiento para <strong>videojuegos, comerciales, películas o web</strong>, este es el punto de partida.
+        </p>
+
+        <hr class="divider"/>
+        <div class="section-label">Resultado final</div>
+
+        <div style="border-radius: 10px; overflow: hidden; border: 1px solid var(--border2); background:#000; margin-bottom: 24px;">
+          <iframe style="width:100%;aspect-ratio:16/9;display:block;border:none;"
+            src="https://www.youtube.com/embed/bZlzz87AVo4?rel=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PLAYER -->
+    <div class="main-card player-section animate-in" id="playerCard">
+
+      <div class="player-wrap">
+        <div class="player-frame">
+          <iframe id="frame"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="player-info">
+        <div class="player-number" id="playerNumber">Clase</div>
+        <h2 class="player-title" id="lessonTitle">—</h2>
+        <p class="player-desc" id="lessonDesc">—</p>
+
+        <div class="player-controls">
+          <div class="controls-nav">
+            <button class="btn" id="prevBtn" type="button">← Anterior</button>
+            <button class="btn" id="nextBtn" type="button">Siguiente →</button>
+          </div>
+          <div class="controls-right">
+            <button class="btn btn-done" id="toggleDone2" type="button">✓ Marcar completada</button>
+            <a class="btn" id="openYT2" href="#" target="_blank" rel="noopener">▶ Ver en YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+const lessons = [
+  { t:"01 · Introducción", d:"Breve introducción al curso y presentación del instructor.", url:"https://youtu.be/D1IC09GeKZs" },
+  { t:"02 · Refs de entornos 3D", d:"Arrancamos el workshop y el enfoque del entorno 3D.", url:"https://youtu.be/HVBjwflEPBA" },
+  { t:"03 · Objetivos", d:"Qué vas a lograr y cómo vamos a trabajarlo.", url:"https://youtu.be/4USqAIWAIqc" },
+  { t:"04 · Manos a la obra", d:"Setup y primeros pasos del proyecto.", url:"https://youtu.be/LaMZVjZ1se4" },
+  { t:"05 y 06 · Photoshop", d:"Preparación de recursos y ajustes en Photoshop (ambas clases en un video).", url:"https://youtu.be/wyMZ_Equajc" },
+  { t:"07 · Interfaz express de AE", d:"Ajustes clave y setup inicial en After Effects.", url:"https://youtu.be/Ghydv5lH-hU" },
+  { t:"08 · Interfaz AE 3D Cam", d:"Trabajo con cámara 3D y herramientas principales.", url:"https://youtu.be/Jwr5WONsrnw" },
+  { t:"09 · Import y Composición 3D", d:"Importación y armado de la estructura en la composición.", url:"https://youtu.be/kIUfed9wwzs" },
+  { t:"10 · Animación de cámara I", d:"Primer tramo de animación con cámara 3D.", url:"https://youtu.be/2eifWwbYoVU" },
+  { t:"11 · Animación de cámara II", d:"Continuación: refinamos timing y movimientos.", url:"https://youtu.be/YRVPlf9Q8b8" },
+  { t:"12 · Animación interna", d:"Microanimaciones y vida dentro del entorno.", url:"https://youtu.be/6iZKgA6W2XA" },
+  { t:"13 · Animación de títulos", d:"Diseño y animación de títulos integrados.", url:"https://youtu.be/5Kf3hmlzw7s" },
+  { t:"14 · Composición y Timing", d:"Ajustes globales de composición y ritmo.", url:"https://youtu.be/OHG0WslMs8M" },
+  { t:"15 · Efectos de lighting", d:"Look final: profundidad, atmósfera e iluminación.", url:"https://www.youtube.com/watch?v=8jx3xiaeruY" },
+  { t:"16 · Partículas 3D", d:"Partículas para elevar el impacto visual.", url:"https://www.youtube.com/watch?v=JoGWgePrkeA" },
+  { t:"17 · Retoques de composición", d:"Retoques finales de post y composición.", url:"https://www.youtube.com/watch?v=MIBiBZC7uZ4" },
+  { t:"18 · Optimización del proyecto", d:"Orden, rendimiento y limpieza del proyecto.", url:"https://www.youtube.com/watch?v=Kb5NjjzP8ZU" },
+  { t:"19 · Export final", d:"Exportación final y entrega del proyecto.", url:"https://www.youtube.com/watch?v=I4njR2qgrZI" },
+  { t:"20 · Visualización y análisis", d:"Cierre y análisis del resultado final.", url:"https://www.youtube.com/watch?v=sLxfVUPDj0o" },
+];
+
+const groups = [
+  { label:"Inicio del workshop", idx:[0,1,2,3] },
+  { label:"Preparación de recursos", idx:[4] },
+  { label:"After Effects · Estructura 3D", idx:[5,6,7] },
+  { label:"Animación", idx:[8,9,10,11,12] },
+  { label:"Look & Post", idx:[13,14,15,16,17,18] },
+];
+
+const STORAGE_KEY = "ae_experto_v4";
+const done = JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}");
+let current = null;
+
+// Elements
+const homeCard    = document.getElementById("homeCard");
+const playerCard  = document.getElementById("playerCard");
+const frame       = document.getElementById("frame");
+const lessonTitle = document.getElementById("lessonTitle");
+const lessonDesc  = document.getElementById("lessonDesc");
+const playerNum   = document.getElementById("playerNumber");
+const openYT      = document.getElementById("openYT");
+const openYT2     = document.getElementById("openYT2");
+const goHome      = document.getElementById("goHome");
+const startBtn    = document.getElementById("startBtn");
+const prevBtn     = document.getElementById("prevBtn");
+const nextBtn     = document.getElementById("nextBtn");
+const toggleDone  = document.getElementById("toggleDone");
+const toggleDone2 = document.getElementById("toggleDone2");
+const pillProgress= document.getElementById("pillProgress");
+const qInput      = document.getElementById("q");
+const listEl      = document.getElementById("list");
+
+function toEmbed(url){
+  try {
+    const u = new URL(url);
+    const v = u.searchParams.get("v");
+    if(v) return `https://www.youtube.com/embed/${v}?rel=0&autoplay=1`;
+    const parts = u.pathname.split("/").filter(Boolean);
+    if(parts.length) return `https://www.youtube.com/embed/${parts[0]}?rel=0&autoplay=1`;
+  } catch(e){}
+  return "";
+}
+
+function updateProgress(){
+  const count = Object.values(done).filter(Boolean).length;
+  const pct = Math.round((count / lessons.length)*100);
+  pillProgress.textContent = `${pct}% completado`;
+}
+
+function setActiveItem(key){
+  document.querySelectorAll(".lesson-item").forEach(el=>{
+    el.classList.remove("active");
+    if(el.dataset.key === String(key)) el.classList.add("active");
+  });
+}
+
+function updateDoneState(){
+  if(typeof current !== "number") return;
+  const isDone = !!done[current];
+  [toggleDone, toggleDone2].forEach(btn=>{
+    btn.textContent = isDone ? "↩ Marcar pendiente" : "✓ Marcar completada";
+    btn.classList.toggle("marked", isDone);
+  });
+  document.querySelectorAll(".lesson-item").forEach(el=>{
+    const key = parseInt(el.dataset.key);
+    el.classList.toggle("done", !!done[key]);
+    const check = el.querySelector(".lesson-check");
+    if(check) check.textContent = done[key] ? "✓" : "";
+  });
+}
+
+function showHome(){
+  homeCard.style.display = "";
+  playerCard.style.display = "none";
+  current = null;
+  frame.src = "";
+  openYT.href = "#";
+  setActiveItem(-1);
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function showPlayer(){
+  homeCard.style.display = "none";
+  playerCard.style.display = "";
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function playLesson(i){
+  current = i;
+  const l = lessons[i];
+  showPlayer();
+  frame.src = toEmbed(l.url);
+  lessonTitle.textContent = l.t;
+  lessonDesc.textContent = l.d;
+  playerNum.textContent = `Clase ${i+1} de ${lessons.length}`;
+  openYT.href = l.url;
+  openYT2.href = l.url;
+  setActiveItem(i);
+  updateDoneState();
+}
+
+function renderList(term=""){
+  const q = term.trim().toLowerCase();
+  listEl.innerHTML = "";
+
+  groups.forEach(g=>{
+    const filtered = g.idx.filter(i=>{
+      if(!q) return true;
+      return lessons[i].t.toLowerCase().includes(q) || lessons[i].d.toLowerCase().includes(q);
+    });
+    if(!filtered.length) return;
+
+    const block = document.createElement("div");
+    block.className = "group-block";
+
+    const lbl = document.createElement("div");
+    lbl.className = "group-label";
+    lbl.innerHTML = `<span>${g.label}</span><em>${filtered.length} clase${filtered.length>1?"s":""}</em>`;
+    block.appendChild(lbl);
+
+    filtered.forEach(i=>{
+      const l = lessons[i];
+      const item = document.createElement("button");
+      item.type = "button";
+      item.className = "lesson-item" + (done[i]?" done":"");
+      item.dataset.key = i;
+      item.innerHTML = `
+        <div class="lesson-dot"></div>
+        <div class="lesson-text">
+          <div class="lesson-name">${l.t}</div>
+          <div class="lesson-desc">${l.d}</div>
+        </div>
+        <div class="lesson-check">${done[i]?"✓":""}</div>
+      `;
+      item.onclick = ()=>playLesson(i);
+      block.appendChild(item);
+    });
+
+    listEl.appendChild(block);
+  });
+}
+
+// Events
+goHome.onclick    = showHome;
+startBtn.onclick  = ()=>playLesson(0);
+qInput.addEventListener("input", ()=>renderList(qInput.value));
+
+prevBtn.onclick = ()=>{
+  if(typeof current === "number") playLesson(Math.max(0, current-1));
+};
+nextBtn.onclick = ()=>{
+  if(typeof current === "number") playLesson(Math.min(lessons.length-1, current+1));
+};
+
+function markToggle(){
+  if(typeof current !== "number") return;
+  done[current] = !done[current];
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(done));
+  updateProgress();
+  updateDoneState();
+  renderList(qInput.value);
+  setActiveItem(current);
+}
+toggleDone.onclick  = markToggle;
+toggleDone2.onclick = markToggle;
+
+// Init
+updateProgress();
+renderList();
+showHome();
+</script>
+</body>
+</html>
