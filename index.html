@@ -269,16 +269,12 @@ nav {
   border: 1px solid var(--border2); border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 16px 48px rgba(0,0,0,.6);
-  /* Forzamos que el iframe sea visible con height explícito */
-  position: relative;
-}
-.player-video-wrap::before {
-  content: ''; display: block; padding-top: 56.25%; /* 16:9 ratio */
 }
 .player-video-wrap iframe {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%;
-  border: none; display: block;
+  width: 100%;
+  height: 500px;
+  border: none;
+  display: block;
 }
 
 .player-info {
