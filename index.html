@@ -5,625 +5,492 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>After Effects Experto · Entorno 3D</title>
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='g' cx='40%25' cy='35%25' r='65%25'%3E%3Cstop offset='0' stop-color='%2300e5c8'/%3E%3Cstop offset='1' stop-color='%238b5cf6'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='50' fill='url(%23g)'/%3E%3Ctext x='50%25' y='56%25' font-family='Arial' font-size='42' font-weight='900' fill='white' text-anchor='middle'%3EEM%3C/text%3E%3C/svg%3E"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='g' cx='40%25' cy='35%25' r='65%25'%3E%3Cstop offset='0' stop-color='%2300e5c8'/%3E%3Cstop offset='1' stop-color='%238b5cf6'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='50' fill='url(%23g)'/%3E%3Ctext x='50%25' y='58%25' font-family='Arial' font-size='40' font-weight='900' fill='white' text-anchor='middle'%3EEM%3C/text%3E%3C/svg%3E"/>
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 
 <style>
-:root {
-  --ink: #090910;
-  --ink2: #0f0f1a;
-  --surface: #13131f;
-  --border: rgba(255,255,255,.07);
-  --border2: rgba(255,255,255,.13);
-  --txt: #f0f0f8;
-  --muted: #c8c8d8;
-  --muted2: #4a4a6a;
-  --cyan: #00e5c8;
-  --violet: #8b5cf6;
-  --font-d: 'Poppins', sans-serif;
-  --font-b: 'DM Sans', sans-serif;
-  --max: 1280px;
+:root{
+  --bg:#090910; --bg2:#0f0f1a; --surface:#13131f;
+  --border:rgba(255,255,255,.07); --border2:rgba(255,255,255,.13);
+  --txt:#f0f0f8; --muted:#c8c8d8; --muted2:#4a4a6a;
+  --cyan:#00e5c8; --violet:#8b5cf6;
+  --fd:'Poppins',sans-serif; --fb:'DM Sans',sans-serif;
+  --max:1280px;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: var(--font-b); background: var(--ink); color: var(--txt); min-height: 100vh; overflow-x: hidden; }
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--fb);color:var(--txt);background:var(--bg);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+iframe{width:100%;height:100%;border:0}
 
 /* NAV */
-nav {
-  position: sticky; top: 0; z-index: 200;
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(20px) saturate(1.5);
-  background: rgba(9,9,16,.82);
-}
-.nav-inner {
-  max-width: var(--max); margin: 0 auto;
-  padding: 0 20px; height: 62px;
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
-}
-.brand { display: flex; align-items: center; gap: 10px; }
-.logo-mark {
-  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
-  background: radial-gradient(circle at 40% 35%, var(--cyan), var(--violet));
-  display: grid; place-items: center;
-}
-.logo-mark span { font-family: var(--font-d); font-weight: 900; font-size: 13px; color: #fff; }
-.brand-label strong { font-family: var(--font-d); font-size: 13px; font-weight: 700; display: block; }
-.brand-label small { font-size: 11px; color: var(--muted); }
-.nav-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
-.chip {
-  font-family: var(--font-d); font-size: 11px; font-weight: 700;
-  padding: 4px 12px; border-radius: 999px;
-  border: 1px solid rgba(0,229,200,.25); background: rgba(0,229,200,.08); color: var(--cyan);
-}
-.btn {
-  font-family: var(--font-b); font-size: 12px; font-weight: 500;
-  padding: 7px 15px; border-radius: 8px;
-  border: 1px solid var(--border2); background: rgba(255,255,255,.05);
-  color: #fff; cursor: pointer; transition: .15s; white-space: nowrap;
-  display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
-}
-.btn:hover { background: rgba(255,255,255,.09); transform: translateY(-1px); }
-.btn-cta { background: linear-gradient(135deg, var(--cyan), var(--violet)); border-color: transparent; font-weight: 700; }
-.btn-cta:hover { opacity: .88; transform: translateY(-1px); }
-.btn-home { font-weight: 700; letter-spacing: .3px; }
-.btn-done { border-color: rgba(0,229,200,.25); }
-.btn-done.marked { background: rgba(0,229,200,.12); border-color: rgba(0,229,200,.4); }
+.topbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:rgba(9,9,16,.82);border-bottom:1px solid var(--border)}
+.topbar-inner{max-width:var(--max);margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 40% 35%,var(--cyan),var(--violet));display:grid;place-items:center;flex-shrink:0}
+.logo span{font-family:var(--fd);font-weight:900;font-size:13px;color:#fff}
+.brandTxt strong{font-family:var(--fd);font-size:13px;font-weight:700;display:block}
+.brandTxt small{font-size:11px;color:var(--muted)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
+.chip{font-family:var(--fd);font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px;border:1px solid rgba(0,229,200,.25);background:rgba(0,229,200,.08);color:var(--cyan)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 15px;border-radius:8px;border:1px solid var(--border2);background:rgba(255,255,255,.05);cursor:pointer;color:#fff;font-family:var(--fb);font-size:12px;font-weight:500;transition:.12s;white-space:nowrap}
+.btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.09)}
+.btn.solid{background:linear-gradient(135deg,var(--cyan),var(--violet));border-color:transparent;font-weight:700}
+.btn.solid:hover{opacity:.88}
 
-/* SHELL */
-.shell {
-  max-width: var(--max); margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 20px;
-  padding: 20px 20px 48px;
-  align-items: start;
-}
+/* LAYOUT */
+.container{max-width:var(--max);margin:0 auto;padding:20px 20px 48px}
+.grid{display:grid;grid-template-columns:1.3fr .7fr;gap:20px;align-items:start;margin-top:0}
 
 /* SIDEBAR */
-.sidebar {
-  position: sticky; top: 82px;
-  height: calc(100vh - 98px);
-  display: flex; flex-direction: column;
-  background: var(--ink2);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
-}
-.sidebar-head { padding: 16px 18px 12px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
-.sidebar-head h2 { font-family: var(--font-d); font-size: 15px; font-weight: 700; }
-.sidebar-head p { font-size: 13px; color: var(--muted); margin-top: 2px; }
-.search-box { padding: 12px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
-.search-box input {
-  width: 100%; padding: 10px 14px; border-radius: 8px;
-  border: 1px solid var(--border2); background: rgba(255,255,255,.04);
-  color: var(--txt); font-family: var(--font-b); font-size: 13px; outline: none;
-  transition: border-color .2s;
-}
-.search-box input:focus { border-color: rgba(0,229,200,.35); }
-.search-box input::placeholder { color: var(--muted2); }
-.lesson-list {
-  flex: 1; overflow-y: auto; padding: 8px 8px 16px;
-  scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.08) transparent;
-}
-.lesson-list::-webkit-scrollbar { width: 4px; }
-.lesson-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1); border-radius: 99px; }
-.group { margin-bottom: 6px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-.group-head {
-  padding: 8px 12px; background: rgba(255,255,255,.03);
-  border-bottom: 1px solid var(--border);
-  position: sticky; top: 0; z-index: 5; backdrop-filter: blur(10px);
-  display: flex; align-items: baseline; gap: 8px;
-}
-.group-head span { font-family: var(--font-d); font-size: 11px; font-weight: 700; letter-spacing: .7px; text-transform: uppercase; color: var(--muted); }
-.group-head em { font-style: normal; font-size: 11px; color: var(--muted2); }
-.lesson-btn {
-  width: 100%; text-align: left; display: flex; align-items: flex-start; gap: 10px;
-  padding: 11px 12px; background: transparent; border: none;
-  color: var(--txt); cursor: pointer; font-family: var(--font-b);
-  transition: background .12s; position: relative;
-}
-.lesson-btn::after {
-  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
-  background: linear-gradient(180deg, var(--cyan), var(--violet));
-  opacity: 0; transition: opacity .2s;
-}
-.lesson-btn:hover { background: rgba(255,255,255,.04); }
-.lesson-btn.active { background: rgba(0,229,200,.07); }
-.lesson-btn.active::after { opacity: 1; }
-.lesson-btn + .lesson-btn { border-top: 1px solid var(--border); }
-.dot {
-  width: 8px; height: 8px; border-radius: 50%; background: var(--muted2);
-  flex-shrink: 0; margin-top: 5px; transition: background .2s;
-}
-.lesson-btn.active .dot { background: var(--cyan); box-shadow: 0 0 8px rgba(0,229,200,.5); }
-.lesson-btn.done .dot { background: var(--violet); }
-.lt { flex: 1; }
-.ln { font-size: 13px; font-weight: 500; line-height: 1.35; color: var(--txt); }
-.lesson-btn.active .ln { color: var(--cyan); font-weight: 600; }
-.ld { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
-.lc { font-size: 11px; color: var(--violet); flex-shrink: 0; margin-top: 4px; opacity: 0; transition: opacity .2s; }
-.lesson-btn.done .lc { opacity: 1; }
+.sidebar{position:sticky;top:78px;height:calc(100vh - 94px);display:flex;flex-direction:column;background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.sideHead{padding:16px 18px 12px;border-bottom:1px solid var(--border)}
+.sideHead strong{font-family:var(--fd);font-size:15px;font-weight:700;display:block}
+.sideHead small{font-size:13px;color:var(--muted)}
+.search{padding:12px 14px;border-bottom:1px solid var(--border)}
+.search input{width:100%;padding:10px 14px;border-radius:8px;border:1px solid var(--border2);background:rgba(255,255,255,.04);color:var(--txt);font-family:var(--fb);font-size:13px;outline:none;transition:border-color .2s}
+.search input:focus{border-color:rgba(0,229,200,.35)}
+.search input::placeholder{color:var(--muted2)}
+#list{padding:8px 8px 16px;overflow:auto;flex:1 1 auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.08) transparent}
+#list::-webkit-scrollbar{width:4px}
+#list::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:99px}
+
+.group{margin-bottom:6px;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.groupHead{padding:8px 12px;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.06);position:sticky;top:0;z-index:5;backdrop-filter:blur(8px);display:flex;align-items:baseline;gap:8px}
+.groupHead span{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:var(--muted)}
+.groupHead em{font-style:normal;font-size:11px;color:var(--muted2)}
+
+.lessonBtn{width:100%;text-align:left;display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border-radius:0;border:none;background:transparent;cursor:pointer;transition:.12s;color:var(--txt);font-family:var(--fb);position:relative}
+.lessonBtn::after{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--cyan),var(--violet));opacity:0;transition:opacity .2s}
+.lessonBtn:hover{background:rgba(255,255,255,.04)}
+.lessonBtn.active{background:rgba(0,229,200,.07)}
+.lessonBtn.active::after{opacity:1}
+.lessonBtn+.lessonBtn{border-top:1px solid var(--border)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--muted2);flex-shrink:0;margin-top:5px;transition:background .2s}
+.lessonBtn.active .dot{background:var(--cyan);box-shadow:0 0 8px rgba(0,229,200,.5)}
+.lessonBtn.done .dot{background:var(--violet)}
+.lt2{flex:1}
+.ln{font-size:13px;font-weight:500;line-height:1.35;color:var(--txt)}
+.lessonBtn.active .ln{color:var(--cyan);font-weight:600}
+.ld{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}
+.lc{font-size:11px;color:var(--violet);flex-shrink:0;margin-top:4px;opacity:0;transition:opacity .2s}
+.lessonBtn.done .lc{opacity:1}
 
 /* MAIN CARD */
-.card { background: var(--ink2); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden}
 
 /* HOME */
-.home-hero {
-  padding: 30px 32px 26px;
-  background:
-    radial-gradient(ellipse 70% 55% at 0% 0%, rgba(0,229,200,.13), transparent 55%),
-    radial-gradient(ellipse 60% 50% at 100% 0%, rgba(139,92,246,.14), transparent 55%),
-    var(--surface);
-  border-bottom: 1px solid var(--border);
+.hero{padding:30px 32px 26px;background:radial-gradient(ellipse 70% 55% at 0% 0%,rgba(0,229,200,.13),transparent 55%),radial-gradient(ellipse 60% 50% at 100% 0%,rgba(139,92,246,.14),transparent 55%),var(--surface);border-bottom:1px solid var(--border)}
+.tag2{display:inline-flex;align-items:center;font-family:var(--fd);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--cyan);padding:4px 12px;border-radius:999px;border:1px solid rgba(0,229,200,.25);background:rgba(0,229,200,.06)}
+h1{font-family:var(--fd);font-size:clamp(26px,3.2vw,42px);font-weight:900;line-height:1.05;letter-spacing:-1.5px;margin-top:14px}
+h1 span{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sub{margin-top:12px;font-size:14px;font-weight:300;color:var(--muted);line-height:1.75;max-width:58ch}
+.homeActions{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}
+
+.homeBody{padding:24px 32px 32px;display:flex;flex-direction:column;gap:20px}
+.vidBox{border-radius:12px;overflow:hidden;border:1px solid var(--border2);background:#000;box-shadow:0 12px 36px rgba(0,0,0,.5)}
+.vidBox iframe{width:100%;height:360px;display:block;border:none}
+
+.secLabel{font-family:var(--fd);font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
+.cards2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.icard{padding:14px 16px;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.02);transition:border-color .2s}
+.icard:hover{border-color:var(--border2)}
+.icard-icon{font-size:18px;margin-bottom:5px}
+.icard-title{font-family:var(--fd);font-size:13px;font-weight:700;margin-bottom:3px}
+.icard-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.aboutTxt{font-size:13.5px;color:var(--muted);line-height:1.8;font-weight:300}
+.aboutTxt strong{color:var(--txt);font-weight:500}
+hr.div{border:none;border-top:1px solid var(--border)}
+
+.instCard{display:flex;align-items:flex-start;gap:16px;padding:18px 20px;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.02)}
+.instLogo{width:60px;height:60px;border-radius:50%;flex-shrink:0;background:radial-gradient(circle at 40% 35%,var(--cyan),var(--violet));display:grid;place-items:center}
+.instLogo span{font-family:var(--fd);font-weight:900;font-size:18px;color:#fff}
+.instName{font-family:var(--fd);font-size:16px;font-weight:800}
+.instRole{font-size:12px;color:var(--cyan);margin-top:2px;margin-bottom:8px}
+.instBio{font-size:13px;color:var(--muted);line-height:1.65;font-weight:300}
+.instStats{display:flex;gap:20px;margin-top:12px;flex-wrap:wrap}
+.statVal{font-family:var(--fd);font-size:20px;font-weight:800}
+.statLbl{font-size:11px;color:var(--muted)}
+
+/* PLAYER — copiado exacto del original que funciona */
+.playerWrap{padding:14px}
+.player{width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--border2);background:#070911;box-shadow:0 12px 36px rgba(0,0,0,.5)}
+.lessonMeta{padding:0 14px 14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.lessonMeta h2{margin:0;font-family:var(--fd);font-size:clamp(16px,2.2vw,22px);font-weight:800;letter-spacing:-.3px}
+.lessonMeta p{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.55;font-weight:300}
+.metaLeft{}
+.metaRight{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start}
+.playerNum{font-family:var(--fd);font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--cyan);margin-bottom:4px}
+
+.playerControls{margin:0 14px 14px;padding-top:14px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.ctrlL{display:flex;gap:8px}
+.ctrlR{display:flex;gap:8px;flex-wrap:wrap}
+
+.notesWrap{margin:0 14px 14px;padding-top:14px;border-top:1px solid var(--border)}
+.notesLbl{font-family:var(--fd);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.notesTa{width:100%;min-height:70px;padding:10px 14px;border-radius:8px;border:1px solid var(--border2);background:rgba(255,255,255,.03);color:var(--txt);font-family:var(--fb);font-size:13px;line-height:1.6;resize:vertical;outline:none;transition:border-color .2s}
+.notesTa:focus{border-color:rgba(0,229,200,.3)}
+.notesTa::placeholder{color:var(--muted2)}
+.notesOk{font-size:11px;color:var(--cyan);opacity:0;transition:opacity .3s;margin-top:5px;height:14px}
+.notesOk.show{opacity:1}
+
+.kbHint{margin:0 14px 18px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.kbHint span{font-size:11px;color:var(--muted2)}
+.key{padding:2px 7px;border-radius:4px;border:1px solid var(--border2);background:rgba(255,255,255,.05);font-size:10px;color:var(--muted);font-family:monospace}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.fade{animation:fadeUp .35s cubic-bezier(.22,1,.36,1) both}
+
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+  .sidebar{position:relative;top:auto;height:auto}
+  #list{max-height:50vh}
+  .cards2{grid-template-columns:1fr}
+  .homeBody{padding:20px}
+  .hero{padding:22px 20px 20px}
+  .instCard{flex-direction:column}
 }
-.tag {
-  display: inline-flex; align-items: center;
-  font-family: var(--font-d); font-size: 10px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
-  color: var(--cyan); padding: 4px 12px; border-radius: 999px;
-  border: 1px solid rgba(0,229,200,.25); background: rgba(0,229,200,.06);
-}
-.home-title {
-  font-family: var(--font-d); font-size: clamp(28px, 3.5vw, 44px);
-  font-weight: 900; line-height: 1.05; letter-spacing: -1.5px; margin-top: 14px;
-}
-.home-title span {
-  background: linear-gradient(90deg, var(--cyan), var(--violet));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.home-sub { margin-top: 12px; font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.75; max-width: 58ch; }
-.home-actions { margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
-
-.home-body { padding: 24px 32px 32px; display: flex; flex-direction: column; gap: 20px; }
-
-/* video en home */
-.vid-wrap { border-radius: 12px; overflow: hidden; border: 1px solid var(--border2); background: #000; box-shadow: 0 12px 36px rgba(0,0,0,.5); }
-.vid-wrap iframe { width: 100%; height: 360px; display: block; border: none; }
-
-.sec-label { font-family: var(--font-d); font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px; }
-
-.cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.info-card {
-  padding: 14px 16px; border: 1px solid var(--border); border-radius: 12px;
-  background: rgba(255,255,255,.02); transition: border-color .2s;
-}
-.info-card:hover { border-color: var(--border2); }
-.info-card-icon { font-size: 18px; margin-bottom: 5px; }
-.info-card-title { font-family: var(--font-d); font-size: 13px; font-weight: 700; margin-bottom: 3px; }
-.info-card-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
-
-.about-txt { font-size: 13.5px; color: var(--muted); line-height: 1.8; font-weight: 300; }
-.about-txt strong { color: var(--txt); font-weight: 500; }
-
-.instructor-card {
-  display: flex; align-items: flex-start; gap: 16px;
-  padding: 18px 20px; border: 1px solid var(--border); border-radius: 12px;
-  background: rgba(255,255,255,.02);
-}
-.inst-logo {
-  width: 60px; height: 60px; border-radius: 50%; flex-shrink: 0;
-  background: radial-gradient(circle at 40% 35%, var(--cyan), var(--violet));
-  display: grid; place-items: center;
-}
-.inst-logo span { font-family: var(--font-d); font-weight: 900; font-size: 18px; color: #fff; }
-.inst-name { font-family: var(--font-d); font-size: 16px; font-weight: 800; }
-.inst-role { font-size: 12px; color: var(--cyan); margin-top: 2px; margin-bottom: 8px; }
-.inst-bio { font-size: 13px; color: var(--muted); line-height: 1.65; font-weight: 300; }
-.inst-stats { display: flex; gap: 20px; margin-top: 12px; flex-wrap: wrap; }
-.stat-val { font-family: var(--font-d); font-size: 20px; font-weight: 800; }
-.stat-lbl { font-size: 11px; color: var(--muted); }
-
-hr.div { border: none; border-top: 1px solid var(--border); }
-
-/* PLAYER */
-#playerSection { display: none; }
-
-.player-vid {
-  border-bottom: 1px solid var(--border);
-  background: #000;
-}
-.player-vid iframe {
-  width: 100%;
-  height: 460px;
-  display: block;
-  border: none;
-}
-
-.player-meta { padding: 20px 24px 24px; }
-.player-num { font-family: var(--font-d); font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--cyan); margin-bottom: 6px; }
-.player-title { font-family: var(--font-d); font-size: clamp(17px, 2.2vw, 24px); font-weight: 800; letter-spacing: -.4px; }
-.player-desc { margin-top: 6px; font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 300; }
-.player-controls {
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 12px;
-  margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);
-}
-.ctrl-left { display: flex; gap: 8px; }
-.ctrl-right { display: flex; gap: 8px; flex-wrap: wrap; }
-
-.notes-wrap { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
-.notes-lbl { font-family: var(--font-d); font-size: 10px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-.notes-ta {
-  width: 100%; min-height: 72px; padding: 11px 14px;
-  border-radius: 8px; border: 1px solid var(--border2);
-  background: rgba(255,255,255,.03); color: var(--txt);
-  font-family: var(--font-b); font-size: 13px; line-height: 1.6;
-  resize: vertical; outline: none; transition: border-color .2s;
-}
-.notes-ta:focus { border-color: rgba(0,229,200,.3); }
-.notes-ta::placeholder { color: var(--muted2); }
-.notes-ok { font-size: 11px; color: var(--cyan); opacity: 0; transition: opacity .3s; margin-top: 5px; height: 14px; }
-.notes-ok.show { opacity: 1; }
-
-.kb { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-top: 14px; }
-.kb span { font-size: 11px; color: var(--muted2); }
-.key {
-  padding: 2px 7px; border-radius: 4px;
-  border: 1px solid var(--border2); background: rgba(255,255,255,.05);
-  font-size: 10px; color: var(--muted); font-family: monospace;
-}
-
-/* ANIM */
-@keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
-.fade { animation: fadeUp .35s cubic-bezier(.22,1,.36,1) both; }
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .shell { grid-template-columns: 1fr; gap: 16px; padding: 16px; }
-  .sidebar { position: relative; top: 0; height: auto; }
-  .lesson-list { max-height: 50vh; }
-  .cards-grid { grid-template-columns: 1fr; }
-  .instructor-card { flex-direction: column; }
-  .home-body { padding: 20px; }
-  .home-hero { padding: 22px 20px 20px; }
-}
-@media (max-width: 500px) {
-  .nav-right .btn:not(.btn-cta) { display: none; }
+@media(max-width:500px){
+  .actions .btn:not(.solid){display:none}
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
+<div class="topbar">
+  <div class="topbar-inner">
     <div class="brand">
-      <div class="logo-mark"><span>EM</span></div>
-      <div class="brand-label">
+      <div class="logo"><span>EM</span></div>
+      <div class="brandTxt">
         <strong>After Effects Experto</strong>
         <small>Entorno 3D · 20 clases</small>
       </div>
     </div>
-    <div class="nav-right">
+    <div class="actions">
       <span class="chip" id="pillProgress">0% completado</span>
-      <button class="btn btn-home" id="goHome" type="button">← INICIO</button>
+      <button class="btn" id="goHome" type="button" style="font-weight:700;letter-spacing:.3px;">← INICIO</button>
       <a class="btn" href="https://www.youtube.com/@emmamel_" target="_blank" rel="noopener">▶ YouTube</a>
-      <button class="btn btn-cta btn-done" id="toggleDone" type="button">✓ Completar clase</button>
+      <button class="btn solid" id="toggleDone" type="button">✓ Completar clase</button>
     </div>
   </div>
-</nav>
+</div>
 
-<div class="shell">
+<div class="container">
+  <div class="grid">
 
-  <!-- MAIN -->
-  <main style="order:1; min-width:0;">
+    <!-- MAIN -->
+    <main>
 
-    <!-- HOME -->
-    <div class="card fade" id="homeSection">
-      <div class="home-hero">
-        <div class="tag">🎬 Workshop · Motion Graphics · After Effects</div>
-        <h1 class="home-title">AFTER EFFECTS<br><span>NIVEL EXPERTO</span></h1>
-        <p class="home-sub">Dominá el entorno 3D en After Effects y llevá tus motion graphics al nivel de las grandes agencias creativas. Veinte clases, técnicas reales, resultados profesionales.</p>
-        <div class="home-actions">
-          <button class="btn btn-cta" id="startBtn" type="button">▶ Comenzar curso</button>
-          <button class="btn" type="button" onclick="window.open('https://drive.google.com/drive/folders/1JwAskl-_V1mdrx0JIWpMMnkqJdgiq4yX?usp=drive_link','_blank')">↓ Recursos</button>
-          <button class="btn" type="button" onclick="window.open('mailto:emmamel.fx@gmail.com?subject=Comentario%20del%20curso','_blank')">💬 Comentarios</button>
-        </div>
-      </div>
-
-      <div class="home-body">
-
-        <!-- intro video -->
-        <div>
-          <div class="vid-wrap">
-            <iframe src="https://www.youtube.com/embed/ptSPBlNyoQ8?rel=0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <!-- HOME -->
+      <div class="card fade" id="homeSection">
+        <div class="hero">
+          <div class="tag2">🎬 Workshop · Motion Graphics · After Effects</div>
+          <h1>AFTER EFFECTS<br><span>NIVEL EXPERTO</span></h1>
+          <p class="sub">Dominá el entorno 3D en After Effects y llevá tus motion graphics al nivel de las grandes agencias creativas. Veinte clases, técnicas reales, resultados profesionales.</p>
+          <div class="homeActions">
+            <button class="btn solid" id="startBtn" type="button">▶ Comenzar curso</button>
+            <button class="btn" type="button" onclick="window.open('https://drive.google.com/drive/folders/1JwAskl-_V1mdrx0JIWpMMnkqJdgiq4yX?usp=drive_link','_blank')">↓ Recursos</button>
+            <button class="btn" type="button" onclick="window.open('mailto:emmamel.fx@gmail.com?subject=Comentario%20del%20curso','_blank')">💬 Comentarios</button>
           </div>
         </div>
 
-        <!-- cards -->
-        <div class="cards-grid">
-          <div class="info-card"><div class="info-card-icon">🧠</div><div class="info-card-title">Para todos los niveles</div><div class="info-card-desc">Desde cero hasta técnicas avanzadas. El ritmo se adapta a tu experiencia.</div></div>
-          <div class="info-card"><div class="info-card-icon">🎥</div><div class="info-card-title">Entorno 3D completo</div><div class="info-card-desc">Cámara 3D, partículas, iluminación y composición profesional.</div></div>
-          <div class="info-card"><div class="info-card-icon">🔁</div><div class="info-card-title">Acceso de por vida</div><div class="info-card-desc">Revisá las clases cuando quieras, sin límite de tiempo.</div></div>
-          <div class="info-card"><div class="info-card-icon">📦</div><div class="info-card-title">Recursos incluidos</div><div class="info-card-desc">Archivos de proyecto y assets listos para descargar desde Drive.</div></div>
-        </div>
+        <div class="homeBody">
+          <div class="vidBox">
+            <iframe src="https://www.youtube.com/embed/ptSPBlNyoQ8?rel=0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+          </div>
 
-        <!-- about -->
-        <p class="about-txt">Este workshop fue diseñado para convertirte en un artista versátil, listo para trabajar en estudio o como freelancer. Vas a dominar la <strong>cámara 3D</strong>, crear animaciones internas, diseñar títulos integrados y aplicar efectos de partículas e iluminación que elevan cualquier producción audiovisual.</p>
+          <div class="cards2">
+            <div class="icard"><div class="icard-icon">🧠</div><div class="icard-title">Para todos los niveles</div><div class="icard-desc">Desde cero hasta técnicas avanzadas. El ritmo se adapta a tu experiencia.</div></div>
+            <div class="icard"><div class="icard-icon">🎥</div><div class="icard-title">Entorno 3D completo</div><div class="icard-desc">Cámara 3D, partículas, iluminación y composición profesional.</div></div>
+            <div class="icard"><div class="icard-icon">🔁</div><div class="icard-title">Acceso de por vida</div><div class="icard-desc">Revisá las clases cuando quieras, sin límite de tiempo.</div></div>
+            <div class="icard"><div class="icard-icon">📦</div><div class="icard-title">Recursos incluidos</div><div class="icard-desc">Archivos de proyecto y assets listos para descargar desde Drive.</div></div>
+          </div>
 
-        <hr class="div"/>
+          <p class="aboutTxt">Este workshop fue diseñado para convertirte en un artista versátil, listo para trabajar en estudio o como freelancer. Vas a dominar la <strong>cámara 3D</strong>, crear animaciones internas, diseñar títulos integrados y aplicar efectos de partículas e iluminación que elevan cualquier producción audiovisual.</p>
 
-        <!-- instructor -->
-        <div>
-          <div class="sec-label">El instructor</div>
-          <div class="instructor-card">
-            <div class="inst-logo"><span>EM</span></div>
-            <div>
-              <div class="inst-name">Emmanuel</div>
-              <div class="inst-role">Diseñador Motion Graphics & 3D · Artista VFX</div>
-              <p class="inst-bio">Lic. en Producción y Realización Audiovisual con más de 15 años trabajando en proyectos para Cine, TV, Publicidad y nuevas plataformas. Diseñé para diferentes marcas y clientes, y hoy te comparto todo lo que aprendí en el camino.</p>
-              <div class="inst-stats">
-                <div><div class="stat-val">15+</div><div class="stat-lbl">Años de experiencia</div></div>
-                <div><div class="stat-val">20</div><div class="stat-lbl">Clases en este curso</div></div>
-                <div><div class="stat-val">AE</div><div class="stat-lbl">After Effects</div></div>
+          <hr class="div"/>
+
+          <div>
+            <div class="secLabel">El instructor</div>
+            <div class="instCard">
+              <div class="instLogo"><span>EM</span></div>
+              <div>
+                <div class="instName">Emmanuel</div>
+                <div class="instRole">Diseñador Motion Graphics & 3D · Artista VFX</div>
+                <p class="instBio">Lic. en Producción y Realización Audiovisual con más de 15 años trabajando en proyectos para Cine, TV, Publicidad y nuevas plataformas. Diseñé para diferentes marcas y clientes, y hoy te comparto todo lo que aprendí en el camino.</p>
+                <div class="instStats">
+                  <div><div class="statVal">15+</div><div class="statLbl">Años de experiencia</div></div>
+                  <div><div class="statVal">20</div><div class="statLbl">Clases en este curso</div></div>
+                  <div><div class="statVal">AE</div><div class="statLbl">After Effects</div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <hr class="div"/>
+          <hr class="div"/>
 
-        <!-- resultado final -->
-        <div>
-          <div class="sec-label">Resultado final del curso</div>
-          <div class="vid-wrap">
-            <iframe src="https://www.youtube.com/embed/bZlzz87AVo4?rel=0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div>
+            <div class="secLabel">Resultado final del curso</div>
+            <div class="vidBox">
+              <iframe src="https://www.youtube.com/embed/bZlzz87AVo4?rel=0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+            </div>
           </div>
         </div>
+      </div><!-- /home -->
 
-      </div>
-    </div><!-- /homeSection -->
-
-    <!-- PLAYER -->
-    <div class="card fade" id="playerSection">
-      <div class="player-vid">
-        <iframe id="frame"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
-      </div>
-      <div class="player-meta">
-        <div class="player-num" id="playerNum">Clase</div>
-        <h2 class="player-title" id="lessonTitle">—</h2>
-        <p class="player-desc" id="lessonDesc">—</p>
-        <div class="player-controls">
-          <div class="ctrl-left">
+      <!-- PLAYER — estructura idéntica al original de ChatGPT -->
+      <div class="card fade" id="playerSection" style="display:none">
+        <div class="playerWrap">
+          <div class="player">
+            <iframe id="frame" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="lessonMeta">
+          <div class="metaLeft">
+            <div class="playerNum" id="playerNum">Clase</div>
+            <h2 id="lessonTitle">—</h2>
+            <p id="lessonDesc">—</p>
+          </div>
+          <div class="metaRight">
+            <a class="btn" id="openYT" href="#" target="_blank" rel="noopener">▶ Ver en YouTube</a>
+          </div>
+        </div>
+        <div class="playerControls">
+          <div class="ctrlL">
             <button class="btn" id="prevBtn" type="button">← Anterior</button>
             <button class="btn" id="nextBtn" type="button">Siguiente →</button>
           </div>
-          <div class="ctrl-right">
-            <button class="btn btn-done" id="toggleDone2" type="button">✓ Marcar completada</button>
-            <a class="btn" id="ytLink" href="#" target="_blank" rel="noopener">▶ Ver en YouTube</a>
+          <div class="ctrlR">
+            <button class="btn" id="toggleDone2" type="button">✓ Marcar completada</button>
           </div>
         </div>
-        <div class="notes-wrap">
-          <div class="notes-lbl">📝 Mis notas de esta clase</div>
-          <textarea class="notes-ta" id="notesArea" placeholder="Anotá lo que quieras recordar…" rows="3"></textarea>
-          <div class="notes-ok" id="notesOk">Nota guardada ✓</div>
+        <div class="notesWrap">
+          <div class="notesLbl">📝 Mis notas de esta clase</div>
+          <textarea class="notesTa" id="notesArea" placeholder="Anotá lo que quieras recordar…" rows="3"></textarea>
+          <div class="notesOk" id="notesOk">Nota guardada ✓</div>
         </div>
-        <div class="kb">
+        <div class="kbHint">
           <span>Atajos:</span>
           <span class="key">←</span><span>anterior</span>
           <span class="key">→</span><span>siguiente</span>
           <span class="key">C</span><span>completar</span>
           <span class="key">H</span><span>inicio</span>
         </div>
+      </div><!-- /player -->
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sideHead">
+        <strong>Contenido del curso</strong>
+        <small>20 clases · Entorno 3D en After Effects</small>
       </div>
-    </div><!-- /playerSection -->
+      <div class="search">
+        <input id="q" type="search" placeholder="Buscar clase…"/>
+      </div>
+      <div id="list"></div>
+    </aside>
 
-  </main>
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar" style="order:2;">
-    <div class="sidebar-head">
-      <h2>Contenido del curso</h2>
-      <p>20 clases · Entorno 3D en After Effects</p>
-    </div>
-    <div class="search-box">
-      <input id="q" type="search" placeholder="Buscar clase…"/>
-    </div>
-    <div class="lesson-list" id="list"></div>
-  </aside>
-
+  </div>
 </div>
 
 <script>
-const lessons = [
-  { t:"01 · Introducción",          d:"Presentación del curso y el instructor.",            url:"https://youtu.be/D1IC09GeKZs" },
-  { t:"02 · Refs de entornos 3D",   d:"El enfoque del workshop y referencias visuales.",    url:"https://youtu.be/HVBjwflEPBA" },
-  { t:"03 · Objetivos",             d:"Qué vas a lograr y cómo vamos a trabajarlo.",        url:"https://youtu.be/4USqAIWAIqc" },
-  { t:"04 · Manos a la obra",       d:"Setup y primeros pasos del proyecto.",               url:"https://youtu.be/LaMZVjZ1se4" },
-  { t:"05 y 06 · Photoshop",        d:"Preparación de recursos y ajustes en Photoshop.",   url:"https://youtu.be/wyMZ_Equajc" },
-  { t:"07 · Interfaz express de AE",d:"Ajustes clave y setup inicial en After Effects.",    url:"https://youtu.be/Ghydv5lH-hU" },
-  { t:"08 · Interfaz AE 3D Cam",    d:"Trabajo con cámara 3D y herramientas principales.", url:"https://youtu.be/Jwr5WONsrnw" },
-  { t:"09 · Import y Composición 3D",d:"Importación y armado de la estructura en la comp.",url:"https://youtu.be/kIUfed9wwzs" },
-  { t:"10 · Animación de cámara I", d:"Primer tramo de animación con cámara 3D.",          url:"https://youtu.be/2eifWwbYoVU" },
-  { t:"11 · Animación de cámara II",d:"Refinamos timing y movimientos de cámara.",         url:"https://youtu.be/YRVPlf9Q8b8" },
-  { t:"12 · Animación interna",     d:"Microanimaciones y vida dentro del entorno.",        url:"https://youtu.be/6iZKgA6W2XA" },
-  { t:"13 · Animación de títulos",  d:"Diseño y animación de títulos integrados.",          url:"https://youtu.be/5Kf3hmlzw7s" },
-  { t:"14 · Composición y Timing",  d:"Ajustes globales de composición y ritmo.",           url:"https://youtu.be/OHG0WslMs8M" },
-  { t:"15 · Efectos de lighting",   d:"Look final: profundidad, atmósfera e iluminación.", url:"https://www.youtube.com/watch?v=8jx3xiaeruY" },
-  { t:"16 · Partículas 3D",         d:"Partículas para elevar el impacto visual.",          url:"https://www.youtube.com/watch?v=JoGWgePrkeA" },
-  { t:"17 · Retoques de composición",d:"Retoques finales de post y composición.",           url:"https://www.youtube.com/watch?v=MIBiBZC7uZ4" },
-  { t:"18 · Optimización",          d:"Orden, rendimiento y limpieza del proyecto.",        url:"https://www.youtube.com/watch?v=Kb5NjjzP8ZU" },
-  { t:"19 · Export final",          d:"Exportación final y entrega del proyecto.",          url:"https://www.youtube.com/watch?v=I4njR2qgrZI" },
-  { t:"20 · Visualización y análisis",d:"Cierre y análisis del resultado final.",           url:"https://www.youtube.com/watch?v=sLxfVUPDj0o" },
-];
+  const lessons = [
+    { t:"01 - Introducción", d:"Breve introducción al curso.", url:"https://youtu.be/D1IC09GeKZs" },
+    { t:"02 - Refes de entornos 3D", d:"Arrancamos el workshop y el enfoque del entorno 3D.", url:"https://youtu.be/HVBjwflEPBA" },
+    { t:"03 - Objetivos", d:"Qué vas a lograr y cómo vamos a trabajarlo.", url:"https://youtu.be/4USqAIWAIqc" },
+    { t:"04 - Manos a la obra", d:"Setup y primeros pasos del proyecto.", url:"https://youtu.be/LaMZVjZ1se4" },
+    { t:"05 y 06 - Photoshop", d:"Preparación de recursos y ajustes (ambas clases en un solo video).", url:"https://youtu.be/wyMZ_Equajc" },
+    { t:"07 - Interfaz express de AE", d:"Ajustes clave y setup inicial en After Effects.", url:"https://youtu.be/Ghydv5lH-hU" },
+    { t:"08 - Interfaz de AE 3D Cam", d:"Trabajo con cámara 3D y herramientas principales.", url:"https://youtu.be/Jwr5WONsrnw" },
+    { t:"09 - Import y Composición de la estructura 3D", d:"Importación y armado de la estructura en la comp.", url:"https://youtu.be/kIUfed9wwzs" },
+    { t:"10 - Animación de cámara 3D I", d:"Primer tramo de animación con cámara 3D.", url:"https://youtu.be/2eifWwbYoVU" },
+    { t:"11 - Animación de cámara 3D II", d:"Continuación: refinamos timing y movimientos.", url:"https://youtu.be/YRVPlf9Q8b8" },
+    { t:"12 - Animación interna", d:"Microanimaciones y vida dentro del entorno.", url:"https://youtu.be/6iZKgA6W2XA" },
+    { t:"13 - Animación de títulos", d:"Diseño y animación de títulos integrados.", url:"https://youtu.be/5Kf3hmlzw7s" },
+    { t:"14 - Composición y Timing", d:"Ajustes globales de comp y ritmo.", url:"https://youtu.be/OHG0WslMs8M" },
+    { t:"15 - Efectos de lighting", d:"Look final: profundidad, atmósfera e iluminación.", url:"https://www.youtube.com/watch?v=8jx3xiaeruY" },
+    { t:"16 - Efectos de Partículas 3D", d:"Partículas para elevar el impacto visual.", url:"https://www.youtube.com/watch?v=JoGWgePrkeA" },
+    { t:"17 - Retoques de Composición", d:"Retoques finales de post y composición.", url:"https://www.youtube.com/watch?v=MIBiBZC7uZ4" },
+    { t:"18 - Optimización del proyecto", d:"Orden, rendimiento y limpieza del proyecto.", url:"https://www.youtube.com/watch?v=Kb5NjjzP8ZU" },
+    { t:"19 - Export Final", d:"Exportación final y entrega.", url:"https://www.youtube.com/watch?v=I4njR2qgrZI" },
+    { t:"20 - Visualización y análisis", d:"Cierre y análisis del resultado.", url:"https://www.youtube.com/watch?v=sLxfVUPDj0o" },
+  ];
 
-const groups = [
-  { label:"Inicio del workshop",         idx:[0,1,2,3] },
-  { label:"Preparación de recursos",     idx:[4] },
-  { label:"After Effects · 3D",          idx:[5,6,7] },
-  { label:"Animación",                   idx:[8,9,10,11,12] },
-  { label:"Look & Post",                 idx:[13,14,15,16,17,18] },
-];
+  const groups = [
+    { name:"Inicio del Workshop", idx:[0,1,2,3] },
+    { name:"Preparación de recursos", idx:[4] },
+    { name:"After Effects + Estructura 3D", idx:[5,6,7] },
+    { name:"Animación", idx:[8,9,10,11,12,13] },
+    { name:"Look & Post", idx:[14,15,16,17,18] },
+  ];
 
-const SK = "ae_experto_v6";
-const NK = "ae_notes_v2";
-const done  = JSON.parse(localStorage.getItem(SK)||"{}");
-const notes = JSON.parse(localStorage.getItem(NK)||"{}");
-let current = null;
-let noteTimer = null;
+  const q = document.getElementById("q");
+  const list = document.getElementById("list");
+  const homeSection = document.getElementById("homeSection");
+  const playerSection = document.getElementById("playerSection");
+  const frame = document.getElementById("frame");
+  const lessonTitle = document.getElementById("lessonTitle");
+  const lessonDesc = document.getElementById("lessonDesc");
+  const openYT = document.getElementById("openYT");
+  const goHome = document.getElementById("goHome");
+  const startBtn = document.getElementById("startBtn");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const toggleDone = document.getElementById("toggleDone");
+  const toggleDone2 = document.getElementById("toggleDone2");
+  const pillProgress = document.getElementById("pillProgress");
+  const playerNum = document.getElementById("playerNum");
+  const notesArea = document.getElementById("notesArea");
+  const notesOk = document.getElementById("notesOk");
 
-const homeSection  = document.getElementById("homeSection");
-const playerSection= document.getElementById("playerSection");
-const frame        = document.getElementById("frame");
-const lessonTitle  = document.getElementById("lessonTitle");
-const lessonDesc   = document.getElementById("lessonDesc");
-const playerNum    = document.getElementById("playerNum");
-const ytLink       = document.getElementById("ytLink");
-const goHome       = document.getElementById("goHome");
-const startBtn     = document.getElementById("startBtn");
-const prevBtn      = document.getElementById("prevBtn");
-const nextBtn      = document.getElementById("nextBtn");
-const toggleDone   = document.getElementById("toggleDone");
-const toggleDone2  = document.getElementById("toggleDone2");
-const pill         = document.getElementById("pillProgress");
-const qEl          = document.getElementById("q");
-const listEl       = document.getElementById("list");
-const notesArea    = document.getElementById("notesArea");
-const notesOk      = document.getElementById("notesOk");
+  const STORAGE_KEY = "em_experto_done_v3";
+  const NOTES_KEY = "em_experto_notes_v1";
+  const done = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+  const notes = JSON.parse(localStorage.getItem(NOTES_KEY) || "{}");
+  let current = null;
+  let noteTimer = null;
 
-function toEmbed(url) {
-  try {
+  function toEmbed(url){
     const u = new URL(url);
     const v = u.searchParams.get("v");
-    if (v) return "https://www.youtube.com/embed/" + v + "?rel=0";
-    const p = u.pathname.split("/").filter(Boolean);
-    if (p.length) return "https://www.youtube.com/embed/" + p[0] + "?rel=0";
-  } catch(e) {}
-  return "";
-}
+    if(v) return "https://www.youtube.com/embed/"+v+"?rel=0";
+    const parts = u.pathname.split("/").filter(Boolean);
+    if(parts.length) return "https://www.youtube.com/embed/"+parts[0]+"?rel=0";
+    return "";
+  }
 
-function updateProgress() {
-  const n = Object.values(done).filter(Boolean).length;
-  pill.textContent = Math.round(n / lessons.length * 100) + "% completado";
-}
+  function showHome(){
+    homeSection.style.display = "";
+    playerSection.style.display = "none";
+    current = null;
+    frame.src = "";
+    openYT.href = "#";
+    toggleDone.textContent = "✓ Completar clase";
+    document.querySelectorAll(".lessonBtn").forEach(function(b){ b.classList.remove("active"); });
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
 
-function setActive(key) {
-  document.querySelectorAll(".lesson-btn").forEach(function(el) {
-    el.classList.remove("active");
-    if (el.dataset.key === String(key)) el.classList.add("active");
-  });
-}
+  function updateProgress(){
+    const total = lessons.length;
+    const doneCount = Object.values(done).filter(Boolean).length;
+    const pct = Math.round((doneCount/total)*100);
+    pillProgress.textContent = pct + "% completado";
+  }
 
-function updateDoneUI() {
-  if (typeof current !== "number") return;
-  var isDone = !!done[current];
-  var label = isDone ? "↩ Marcar pendiente" : "✓ Marcar completada";
-  toggleDone.textContent = label;
-  toggleDone2.textContent = label;
-  toggleDone2.classList.toggle("marked", isDone);
-  document.querySelectorAll(".lesson-btn").forEach(function(el) {
-    var k = parseInt(el.dataset.key);
-    el.classList.toggle("done", !!done[k]);
-    var ch = el.querySelector(".lc");
-    if (ch) ch.textContent = done[k] ? "✓" : "";
-  });
-}
+  function setActiveButton(key){
+    document.querySelectorAll(".lessonBtn").forEach(function(b){ b.classList.remove("active"); });
+    const btn = document.querySelector(".lessonBtn[data-key='"+key+"']");
+    if(btn){ btn.classList.add("active"); btn.scrollIntoView({block:"nearest",behavior:"smooth"}); }
+  }
 
-function showHome() {
-  homeSection.style.display = "";
-  playerSection.style.display = "none";
-  current = null;
-  frame.src = "";
-  setActive(-1);
-  toggleDone.textContent = "✓ Completar clase";
-  window.scrollTo({top:0, behavior:"smooth"});
-}
-
-function playLesson(i) {
-  current = i;
-  var l = lessons[i];
-  homeSection.style.display = "none";
-  playerSection.style.display = "";
-  frame.src = toEmbed(l.url);
-  lessonTitle.textContent = l.t;
-  lessonDesc.textContent = l.d;
-  playerNum.textContent = "Clase " + (i+1) + " de " + lessons.length;
-  ytLink.href = l.url;
-  setActive(i);
-  updateDoneUI();
-  notesArea.value = notes[i] || "";
-  notesOk.classList.remove("show");
-  var btn = document.querySelector(".lesson-btn[data-key='" + i + "']");
-  if (btn) btn.scrollIntoView({block:"nearest", behavior:"smooth"});
-  window.scrollTo({top:0, behavior:"smooth"});
-}
-
-function renderList(term) {
-  var q = (term||"").trim().toLowerCase();
-  listEl.innerHTML = "";
-  groups.forEach(function(g) {
-    var filtered = g.idx.filter(function(i) {
-      if (!q) return true;
-      return lessons[i].t.toLowerCase().includes(q) || lessons[i].d.toLowerCase().includes(q);
+  function updateDoneUI(){
+    if(typeof current !== "number") return;
+    const isDone = !!done[current];
+    const label = isDone ? "↩ Marcar pendiente" : "✓ Marcar completada";
+    toggleDone.textContent = label;
+    toggleDone2.textContent = label;
+    document.querySelectorAll(".lessonBtn").forEach(function(el){
+      const k = parseInt(el.dataset.key);
+      el.classList.toggle("done", !!done[k]);
+      const ch = el.querySelector(".lc");
+      if(ch) ch.textContent = done[k] ? "✓" : "";
     });
-    if (!filtered.length) return;
-    var block = document.createElement("div");
-    block.className = "group";
-    var head = document.createElement("div");
-    head.className = "group-head";
-    head.innerHTML = "<span>" + g.label + "</span><em>" + filtered.length + " clase" + (filtered.length > 1 ? "s" : "") + "</em>";
-    block.appendChild(head);
-    filtered.forEach(function(i) {
-      var l = lessons[i];
-      var btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "lesson-btn" + (done[i] ? " done" : "") + (current === i ? " active" : "");
-      btn.dataset.key = i;
-      btn.innerHTML = '<div class="dot"></div><div class="lt"><div class="ln">' + l.t + '</div><div class="ld">' + l.d + '</div></div><div class="lc">' + (done[i] ? "✓" : "") + '</div>';
-      btn.onclick = function() { playLesson(i); };
-      block.appendChild(btn);
-    });
-    listEl.appendChild(block);
-  });
-}
+  }
 
-function markToggle() {
-  if (typeof current !== "number") return;
-  done[current] = !done[current];
-  localStorage.setItem(SK, JSON.stringify(done));
+  function playLesson(i){
+    const l = lessons[i];
+    current = i;
+    homeSection.style.display = "none";
+    playerSection.style.display = "";
+    frame.src = toEmbed(l.url);
+    lessonTitle.textContent = l.t;
+    lessonDesc.textContent = l.d || "";
+    playerNum.textContent = "Clase " + (i+1) + " de " + lessons.length;
+    openYT.href = l.url;
+    setActiveButton(i);
+    updateDoneUI();
+    notesArea.value = notes[i] || "";
+    notesOk.classList.remove("show");
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  function render(term){
+    const t = (term||"").trim().toLowerCase();
+    list.innerHTML = "";
+    groups.forEach(function(g){
+      const filteredIdx = g.idx.filter(function(i){
+        if(!t) return true;
+        return (lessons[i].t||"").toLowerCase().includes(t) || (lessons[i].d||"").toLowerCase().includes(t);
+      });
+      if(!filteredIdx.length) return;
+      const box = document.createElement("div");
+      box.className = "group";
+      const head = document.createElement("div");
+      head.className = "groupHead";
+      head.innerHTML = "<span>"+g.name+"</span><em>"+filteredIdx.length+" item"+(filteredIdx.length>1?"s":"")+"</em>";
+      box.appendChild(head);
+      filteredIdx.forEach(function(i){
+        const l = lessons[i];
+        const btn = document.createElement("button");
+        btn.className = "lessonBtn" + (done[i]?" done":"") + (current===i?" active":"");
+        btn.type = "button";
+        btn.dataset.key = i;
+        btn.innerHTML = '<div class="dot"></div><div class="lt2"><div class="ln">'+l.t+'</div><div class="ld">'+(l.d||"")+'</div></div><div class="lc">'+(done[i]?"✓":"")+'</div>';
+        btn.onclick = function(){ playLesson(i); };
+        box.appendChild(btn);
+      });
+      list.appendChild(box);
+    });
+    if(typeof current === "number") setActiveButton(current);
+  }
+
+  function markToggle(){
+    if(typeof current !== "number") return;
+    done[current] = !done[current];
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(done));
+    updateProgress();
+    updateDoneUI();
+    render(q.value);
+    setActiveButton(current);
+  }
+
+  notesArea.addEventListener("input", function(){
+    clearTimeout(noteTimer);
+    notesOk.classList.remove("show");
+    noteTimer = setTimeout(function(){
+      if(typeof current === "number"){
+        notes[current] = notesArea.value;
+        localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+        notesOk.classList.add("show");
+        setTimeout(function(){ notesOk.classList.remove("show"); }, 2000);
+      }
+    }, 800);
+  });
+
+  document.addEventListener("keydown", function(e){
+    const tag = document.activeElement.tagName;
+    if(tag==="INPUT"||tag==="TEXTAREA") return;
+    if(e.key==="ArrowLeft"  && typeof current==="number") playLesson(Math.max(0,current-1));
+    if(e.key==="ArrowRight" && typeof current==="number") playLesson(Math.min(lessons.length-1,current+1));
+    if(e.key==="c"||e.key==="C") markToggle();
+    if(e.key==="h"||e.key==="H") showHome();
+  });
+
+  q.addEventListener("input", function(){ render(q.value); });
+  goHome.onclick = showHome;
+  startBtn.onclick = function(){ playLesson(0); };
+  prevBtn.onclick = function(){ if(typeof current==="number") playLesson(Math.max(0,current-1)); };
+  nextBtn.onclick = function(){ if(typeof current==="number") playLesson(Math.min(lessons.length-1,current+1)); };
+  toggleDone.onclick = markToggle;
+  toggleDone2.onclick = markToggle;
+
   updateProgress();
-  updateDoneUI();
-  renderList(qEl.value);
-  setActive(current);
-}
-
-notesArea.addEventListener("input", function() {
-  clearTimeout(noteTimer);
-  notesOk.classList.remove("show");
-  noteTimer = setTimeout(function() {
-    if (typeof current === "number") {
-      notes[current] = notesArea.value;
-      localStorage.setItem(NK, JSON.stringify(notes));
-      notesOk.classList.add("show");
-      setTimeout(function() { notesOk.classList.remove("show"); }, 2000);
-    }
-  }, 800);
-});
-
-document.addEventListener("keydown", function(e) {
-  var tag = document.activeElement.tagName;
-  if (tag === "INPUT" || tag === "TEXTAREA") return;
-  if (e.key === "ArrowLeft"  && typeof current === "number") playLesson(Math.max(0, current-1));
-  if (e.key === "ArrowRight" && typeof current === "number") playLesson(Math.min(lessons.length-1, current+1));
-  if (e.key === "c" || e.key === "C") markToggle();
-  if (e.key === "h" || e.key === "H") showHome();
-});
-
-goHome.onclick   = showHome;
-startBtn.onclick = function() { playLesson(0); };
-prevBtn.onclick  = function() { if (typeof current === "number") playLesson(Math.max(0, current-1)); };
-nextBtn.onclick  = function() { if (typeof current === "number") playLesson(Math.min(lessons.length-1, current+1)); };
-toggleDone.onclick  = markToggle;
-toggleDone2.onclick = markToggle;
-qEl.addEventListener("input", function() { renderList(qEl.value); });
-
-updateProgress();
-renderList();
-showHome();
+  render("");
+  showHome();
 </script>
 </body>
 </html>
